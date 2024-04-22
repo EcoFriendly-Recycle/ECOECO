@@ -1,0 +1,199 @@
+/* 메인배너부터 ~ 프로젝트 모두 감싼 부분 */
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.container img {
+    width: 100%;
+}
+
+/* 진행중인 프로젝트 */
+.ingtitle {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 170px;
+    margin-top: 50px;
+}
+.inglists{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 0 30px;
+    margin-bottom: 50px;
+}
+.inglists .item {
+    min-height: 200px;
+    flex-basis: 250px;
+    flex-grow: 0;
+}
+.inglists .item img {
+    width: 100%;
+    max-height: 140px;
+    border-radius: 5px;
+}
+
+/* 오픈예정 프로젝트 베너 */
+.soon_img {
+    width: 100%;
+    height: auto;
+}
+
+.soon_banner {
+    max-width: 1440px;
+    position: relative;
+    cursor: pointer;
+    /*height: 350px;*/
+}
+.soon_cover {
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+/* 프로젝트 관련 텍스트 */
+.text1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f3802f;
+}
+.text2 {
+    font-weight: bold;
+    color: rgba(47, 47, 47, 0.82);
+}
+.text3 {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(45, 45, 45, 0.6);
+}
+
+/* 오픈예정 프로젝트 베너 텍스트 */
+.soon_text1, .soon_text2, .soon_text3 {
+    position: absolute;
+
+}
+.soon_text1 {
+    display: block;
+    font-size: 50px;
+    font-weight: inherit;
+    color: black;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 80%;
+}
+.soon_text2 {
+    font-weight: inherit;
+    font-size: 50px;
+    color: black;
+    top: 300px;
+    padding-left: 950px;
+    z-index: 2;
+}
+.soon_text3 {
+    display: inline-block;
+    font-size: 35px;
+    font-weight: inherit;
+    color: red;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 80%;
+}
+/* 인기 프로젝트 */
+.populartitle {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+.popularlists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 0 30px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid dimgray;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.popularlists .item {
+    min-height: 200px;
+    flex-basis: 250px;
+    flex-grow: 0;
+}
+.popularlists .item img {
+    width: 100%;
+    max-height: 140px;
+    border-radius: 5px;
+}
+
+/* 신규 프로젝트 */
+.newtitle {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+.newlists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 0 30px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid dimgray;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.newlists .item {
+    min-height: 200px;
+    flex-basis: 250px;
+    flex-grow: 0;
+}
+.newlists .item img {
+    width: 100%;
+    max-height: 140px;
+    border-radius: 5px;
+}
+
+/* 마감 프로젝트 */
+.deadlinetitle {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+.deadlinelists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 0 30px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid dimgray;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.deadlinelists .item {
+    min-height: 200px;
+    flex-basis: 250px;
+    flex-grow: 0;
+}
+.deadlinelists .item img {
+    width: 100%;
+    max-height: 140px;
+    border-radius: 5px;
+}

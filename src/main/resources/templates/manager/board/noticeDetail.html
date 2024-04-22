@@ -1,0 +1,93 @@
+<div th:replace="~{/manager/common/header.html}"></div>
+<div th:replace="~{/manager/common/gnb.html}"></div>
+<script src="/js/board/boardEvent.js" type="text/javascript"></script>
+	
+	<div class="sub_wrap">
+		<aside id="lnb">
+			<ul class="menu">
+				<li><a href="../user/user_list">회원 관리</a></li>
+				<li><a href="../project/new_project_list">프로젝트 관리</a></li>
+				<li><a href="../payment/payment_list.html">결제 및 정산 관리</a></li>
+				<li class="btn_sub on">
+					<a href="/manager/board/noticeList">게시판관리</a>
+					<ul class="sub_menu" style="display: block;">
+						<li class="on"><a href="/manager/board/noticeList">공지사항</a></li>
+						<li><a href="/manager/board/usGreenList">우리가그린</a></li>
+					</ul>
+				</li>
+			</ul>
+		</aside>		
+		<div class="container clearfix">
+			<div class="content">
+
+				<div class="list_tit">
+					<h3>공지사항 상세</h3>
+				</div>
+				<div class="list">
+					<div class="search_wrap">
+						<div class="scrollable">
+							<table class="search_list">
+								<caption>상세보기</caption>
+								<colgroup>
+									<col>
+									<col>
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">번호</th>
+										<th scope="col">분류</th>
+										<th scope="col">소분류</th>
+										<th scope="col">제목</th>
+										<th scope="col">작성일</th>
+										<th scope="col">작성자</th>
+									</tr>
+								</thead>
+								<tbody class="td_bcw">
+								<tr th:if="${noticeDetail != null}" th:each="notice : ${noticeDetail}">
+									<td th:text="${notice.noticeNo}"></td>
+									<td th:text="${notice.noticeCategory}"></td>
+									<td th:text="${notice.noticeSubCategory}"></td>
+									<td th:text="${notice.noticeTitle}"></td>
+									<td th:text="${notice.noticeDate}"></td>
+									<td th:text="${notice.writer.userName}"></td>
+								</tr>
+								</tbody>
+							</table>
+							<br><br><br>
+							<table class="search_list">
+								<caption>상세보기</caption>
+								<thead>
+									<tr>
+										<th scope="col">내용</th>
+									</tr>
+								</thead>
+								<tbody class="td_bcw">
+									<tr>
+                                        <td th:text="${ noticeDetail.noticeDetail }"></td>
+									</tr>
+								</tbody>
+							</table>
+							<br><br><br>
+
+									
+							<br><br><br>
+						</div>
+
+						<div class="write nshadow" th:if="${noticeDetail != null}">
+							<div th:each="notice : ${noticeDetail}">
+								<div class="write_btn align_c mt35">
+									<button class="btn btn_modify" type="button" id="noticeWrite">수정</button>
+									<button class="btn" onclick="history.back()">목록</button>
+									<button class="btn btn_del" th:onclick="'deleteNotice(' + ${notice.noticeNo} + ')'">삭제</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
