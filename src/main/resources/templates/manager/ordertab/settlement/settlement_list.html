@@ -1,10 +1,6 @@
-<head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/manager/paymentmember.css}">
-
-</head>
-<div th:replace="~{/manager/common/header.html}"></div>
-<div th:replace="~{/manager/common/gnb.html}"></div>
-
+<div th:replace="/manager/common/header.html"></div>
+<div th:replace="/manager/common/gnb.html"></div>
+	
 	<div class="sub_wrap">
 		<aside id="lnb">
 			<ul class="menu">
@@ -15,8 +11,8 @@
 					<ul class="sub_menu" style="display: block;">
                         <li><a href="/manager/ordertab/order/order_list">주문</a></li>
                         <li><a href="/manager/ordertab/payment/payment_list">결제 현황</a></li>
-						<li><a href="/manager/ordertab/settlement/settlement_list">정산대기</a></li>
-						<li class="on"><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
+						<li class="on"><a href="/manager/ordertab/settlement/settlement_list">정산대기</a></li>
+						<li><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 					</ul>
 				</li>
 				<li><a href="../benefits/benefits.html">게시판관리</a></li>
@@ -26,17 +22,17 @@
 		<div class="container clearfix">
 			<div class="content">
 				<div class="list_tit">
-					<h3>취소환불</h3>
+					<h3>정산대기</h3>
 				</div>
 				<div class="list">
 					<div class="search_wrap">
 						<form acction="#" method="post">
 							<div class="search table_btn ">
 								<select name="searchOption">
-									<option value="1">결제번호</option>
-									<option value="2">아이디</option>
-									<option value="3">프로젝트번호</option>
-									<option value="4">환불상태</option>
+									<option value="1">프로젝트번호</option>
+									<option value="2">프로젝트명</option>
+									<option value="3">회원번호</option>
+									<option value="4">정산상태</option>
 								</select>
 								<input type="text" name="search">
 								<input type="date" name="searchDate1"> ~ 
@@ -63,37 +59,24 @@
 								</colgroup>
 								<thead>
 									<tr>
-                                        <th><input type="checkbox" name="refundAll" id="refundAll" value="selectall" onclick="selectAll(this)"></th>
-										<th scope="col">환불번호</th>
-										<th scope="col">결제번호</th>
-										<th scope="col">프로젝트번호</th>
-										<th scope="col">결제금액</th>
-										<th scope="col">환불상태</th>
+										<th scope="col">정산번호</th>
+										<th scope="col">프로젝트메이커 회원번호</th>
+										<th scope="col">달성금액</th>
+										<th scope="col">정산상태</th>
+										<th scope="col">프로젝트 종료일</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="refund : ${ refundList }" th:onclick="|location.href='/manager/ordertab/refund/refund_info?refundNo=${refund.refundNo}'|">
-                                        <td onclick="event.cancelBubble=true"><input type="checkbox" name="refundAll"></td>
-										<td th:text="${refund.refundNo}"></td>
-										<td th:text="${refund.paymentNo}"></td>
-										<td th:text="${refund.payment.projectNo }"></td>
-										<td th:text="${refund.payment.paymentPrice}"></td>
-										<td th:text="${refund.refundStatus}"></td>
+									<tr th:each="settlement : ${ settlementList }" th:onclick="|location.href='/manager/ordertab/settlement/settlement_info?settlementNo=${settlement.settlementNo}'|">
+										<td th:text="${ settlement.settlementNo }"></td>
+										<td th:text="${ settlement.makerNo }"></td>
+										<td th:text="${ settlement.project.achievedAmount }"></td>
+										<td th:text="${ settlement.settlementStatus }"></td>
+										<td th:text="${ settlement.project.endDate }"></td>
 
 									</tr>
 
 							</table>
-                            <script>
-                                function selectAll(selectAll) {
-                                    const checkboxes
-                                        = document.getElementsByName('refundAll');
-
-                                    checkboxes.forEach((checkbox) => {
-                                        checkbox.checked = selectAll.checked;
-                                    })
-                                }
-                            </script>
-                            <button class="refundbutton">일괄환불</button>
 						</div>
 
 						<!-- 페이징 바 -->

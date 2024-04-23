@@ -1,5 +1,5 @@
-<div th:replace="/manager/common/header.html"></div>
-<div th:replace="/manager/common/gnb.html"></div>
+<div th:replace="~{/manager/common/header.html}"></div>
+<div th:replace="~{/manager/common/gnb.html}"></div>
 	
 	<div class="sub_wrap">
 		<aside id="lnb">
@@ -11,7 +11,7 @@
 					<ul class="sub_menu" style="display: block;">
 						<li><a href="/manager/ordertab/order/order_list">주문</a></li>
 						<li><a href="/manager/ordertab/payment/payment_list">결제 현황</a></li>
-						<li><a href="/manager/ordertab/calculate/calculate_list">정산대기</a></li>
+						<li><a href="/manager/ordertab/settlement/settlement_list">정산대기</a></li>
 						<li class="on"><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 					</ul>
 				</li>
@@ -37,7 +37,7 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col">결제번호</th>
+										<th scope="col">환불번호</th>
 										<th scope="col">이름</th>
 										<th scope="col">아이디</th>
 										<th scope="col">결제금액</th>
@@ -45,13 +45,13 @@
 									</tr>
 								</thead>
 								<tbody class="td_bcw">
-									<tr>
-										<td>100201</td>
-										<td>홍길동</td>
-										<td>hong12</td>
-                                        <td>150,000</td>
-                                        <td>환불 요청</td>
-									</tr>
+								<tr>
+									<td th:text="${ refundInfo.refundNo }"></td>
+									<td th:text="${ refundInfo.payment.orderer.userName }"></td>
+									<td th:text="${ refundInfo.payment.orderer.userId }"></td>
+									<td th:text="${ refundInfo.payment.paymentPrice }"></td>
+									<td th:text="${ refundInfo.refundStatus }"></td>
+								</tr>
 								</tbody>
 							</table>
 							<br><br><br>
@@ -71,17 +71,18 @@
 										<th scope="col">프로젝트번호</th>
 										<th scope="col">프로젝트명</th>
 										<th scope="col">환불신청일</th>
+										<th scope="col">환불은행</th>
 										<th scope="col">환불계좌</th>
 									</tr>
 								</thead>
 								<tbody class="td_bcw">
-									<tr>
-										<!-- <td class="txt_red">심사중</td> -->
-                                        <td>123456</td>
-                                        <td>바다를 꺠끗하게</td>
-                                        <td>2024-04-01</td>
-                                        <td>101-123456-78</td>
-									</tr>
+								<tr>
+									<td th:text="${ refundInfo.payment.projectNo }"></td>
+									<td th:text="${ refundInfo.payment.project.projectName }"></td>
+									<td th:text="${ refundInfo.refundRequestDate }"></td>
+									<td th:text="${ refundInfo.payment.orderer.bank_account.bankName }"></td>
+									<td th:text="${ refundInfo.payment.orderer.userAccount }"></td>
+								</tr>
 								</tbody>
 							</table>
 							<br><br><br>
@@ -101,33 +102,11 @@
 								</thead>
 								<tbody class="td_bcw">
 									<tr>
-                                        <td>-</td>
+										<td th:text="${ refundInfo.refundDate }"></td>
 									</tr>
 								</tbody>
 							</table>
 							<br><br><br>
-							<!-- <table class="search_list">
-								<caption>상세보기</caption>
-								<colgroup>
-									<col>
-									<col>
-									<col>
-								</colgroup>
-								<thead>
-									<tr>
-										<th scope="col">메이커</th>
-										<th scope="col">메이커연락처</th>
-										<th scope="col">메이커이메일</th>
-									</tr>
-								</thead>
-								<tbody class="td_bcw">
-									<tr>
-										<td>고모텍</td>
-										<td>010-1234-5678</td>
-										<td>gomotec@gomotec.com</td>
-									</tr>
-								</tbody>
-							</table> -->
 						</div>
 						
 						<div class="write nshadow">

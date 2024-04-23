@@ -1,5 +1,13 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
+import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class MakerDTO {
     private int makerNo;
     private String makerName;
@@ -7,7 +15,10 @@ public class MakerDTO {
     private String email;
     private String phone;
     private int userNo;
+    private int projectNo;
 
+    private UserInfoDTO user;
+    private ProjectDTO project;
     public MakerDTO() {
     }
 

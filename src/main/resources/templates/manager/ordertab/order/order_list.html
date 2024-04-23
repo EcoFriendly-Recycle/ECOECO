@@ -1,5 +1,5 @@
-<div th:replace="/manager/common/header.html"></div>
-<div th:replace="/manager/common/gnb.html"></div>
+<div th:replace="~{/manager/common/header.html}"></div>
+<div th:replace="~{/manager/common/gnb.html}"></div>
 	
 	<div class="sub_wrap">
 		<aside id="lnb">
@@ -11,7 +11,7 @@
 						<ul class="sub_menu" style="display: block;">
 							<li class="on"><a href="/manager/ordertab/order/order_list">주문</a></li>
 							<li><a href="/manager/ordertab/payment/payment_list">결제 현황</a></li>
-							<li><a href="/manager/ordertab/calculate/calculate_list">정산대기</a></li>
+							<li><a href="/manager/ordertab/settlement/settlement_list">정산대기</a></li>
 							<li><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 						</ul>
 					</li>
@@ -42,7 +42,7 @@
 							</div>
 						</form>
 						<div class="result table_btn ">
-							<p class="txt">총 <span>2</span>건</p>
+							<p class="txt">총 <span th:text="${paging.totalCount}"></span>건</p>
 							<!-- <div class="r_btn">
 								<a href="notice_write.html" class="btn">공지사항 등록</a>
 							</div> -->
@@ -68,44 +68,84 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr onclick="location.href='/manager/ordertab/order/order_info'">
-										<td>123456</td>
-										<td>예약결제</td>
-										<td>123456</td>
-										<td>10,000</td>
-										<td>배송대기중</td>
-										<td>결제승인</td>
-										<td>2024-03-25 18:20:33</td>
+									<tr th:each="order : ${ orderList }" th:onclick="|location.href='/manager/ordertab/order/orderInfo?orderNo=${order.orderNo}'|">
+										<td th:text="${order.orderNo}"></td>
+										<td th:text="${order.orderCategory}"></td>
+										<td th:text="${order.userNo}"></td>
+										<td th:text="${order.orderPrice}"></td>
+										<td th:text="${order.orderStatus}"></td>
+										<td th:text="${order.paymentStatus}"></td>
+										<td th:text="${order.orderDate}"></td>
+
 									</tr>
-									<tr onclick="location.href='../payment/order_info.html'">
-										<td>123456</td>
-										<td>예약결제</td>
-										<td>123456</td>
-										<td>10,000</td>
-										<td>배송대기중</td>
-										<td>결제승인</td>
-										<td>2024-03-25 18:20:33</td>
-									</tr>
-									<tr onclick="location.href='../payment/order_info.html'">
-										<td>123456</td>
-										<td>예약결제</td>
-										<td>123456</td>
-										<td>10,000</td>
-										<td>배송대기중</td>
-										<td>결제승인</td>
-										<td>2024-03-25 18:20:33</td>
-									</tr>
+
 							</table>
 						</div>
-						
-						<div class="pagination mt40">
-							<a href="#" class="prev">이전 페이지</a>
-							<a href="#" class="on">1</a>
-							<a href="#">2</a>
-							<a href="#">3</a>
-							<a href="#">4</a>
-							<a href="#">99</a>
-							<a href="#" class="next">다음 페이지</a>
+
+						<!-- 페이징 바 -->
+						<div class="pagination mt40" id="paging" align="center">
+
+							<th:block
+									th:if="${ paging.searchCondition != null and paging.searchValue != null }">
+								<!-- 맨 앞으로 이동 -->
+								<button class="front"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=1&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">&lt;&lt;</button>
+
+								<!-- 이전 페이지로 이동 -->
+								<button class="prev"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${paging.page - 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+										th:disabled="${ paging.page <= 1 }">&lt;</button>
+
+								<!-- 숫자 버튼 -->
+								<th:block
+										th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">
+									<button
+											th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${page}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+											th:text="${ page }" th:disabled="${ paging.page eq page }" th:classappend="${paging.page eq page} ? 'on' : ''">
+									</button>
+								</th:block>
+
+								<!-- 다음 페이지로 이동 -->
+								<button class="next"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${paging.page + 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+										th:disabled="${ paging.page >= paging.maxPage }">&gt;</button>
+
+								<!-- 맨 끝으로 이동 -->
+								<button class="end"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${paging.maxPage}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">&gt;&gt;</button>
+
+							</th:block>
+
+							<th:block
+									th:if="${ paging.searchCondition == null  || paging.searchValue == null }">
+								<!-- 맨 앞으로 이동 -->
+								<button class="front"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=1\''">&lt;&lt;</button>
+
+								<!-- 이전 페이지로 이동 -->
+								<button class="prev"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${paging.page - 1}} + '\''"
+										th:disabled="${ paging.page <= 1 }">&lt;</button>
+
+								<!-- 숫자 버튼 -->
+								<th:block
+										th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">
+									<button
+											th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${page}} + '\''"
+											th:text="${ page }" th:disabled="${ paging.page eq page }" th:classappend="${paging.page eq page} ? 'on' : ''">
+									</button>
+								</th:block>
+
+								<!-- 다음 페이지로 이동 -->
+								<button class="next"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${paging.page + 1}} + '\''"
+										th:disabled="${ paging.page >= paging.maxPage }">&gt;</button>
+
+								<!-- 맨 끝으로 이동 -->
+								<button class="end"
+										th:onclick="'location.href=\'/manager/ordertab/order/order_list?page=' + @{${paging.maxPage}} + '\''">&gt;&gt;</button>
+							</th:block>
+
 						</div>
 					</div>
 				</div>
