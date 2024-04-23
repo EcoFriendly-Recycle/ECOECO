@@ -1,6 +1,6 @@
 package com.recycle.ecoeco.accounting.service;
 
-import com.recycle.ecoeco.accounting.model.dao.AdminOrderMapper;
+import com.recycle.ecoeco.accounting.model.dao.manager.AdminOrderMapper;
 import com.recycle.ecoeco.accounting.model.dto.OrderDTO;
 import com.recycle.ecoeco.common.paging.Pagenation;
 import com.recycle.ecoeco.common.paging.SelectCriteria;

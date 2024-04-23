@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 public class MyPageService {

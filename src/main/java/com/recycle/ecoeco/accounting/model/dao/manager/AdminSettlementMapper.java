@@ -14,7 +14,7 @@
 //
 
 
-package com.recycle.ecoeco.accounting.model.dao;
+package com.recycle.ecoeco.accounting.model.dao.manager;
 
 import com.recycle.ecoeco.accounting.model.dto.OrderDTO;
 import com.recycle.ecoeco.accounting.model.dto.SettlementDTO;
