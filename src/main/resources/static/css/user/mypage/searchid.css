@@ -21,8 +21,8 @@ header, main, footer {
 }
 
 header {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 4px 12px gray;
 }
 
@@ -31,12 +31,12 @@ header {
 }
 
 .logo {
-    display:flex; 
+    display:flex;
     justify-content: center;
 }
 
 .logo img{
-    width:350px; 
+    width:350px;
     height: 220px;
 }
 
@@ -88,6 +88,58 @@ header {
 }
 
 #FindIdModal_button {
+    background-color: black;
+    cursor: pointer;
+}
+
+.searchPwdId,
+.searchPwdEmail {
+    width: 300px;
+    height: 40px;
+    border-radius: 8px;
+    /* position: relative; left: 15%; */
+}
+
+.searchPwdButton {
+    width: 300px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #47AD57;
+    /* position: relative; left: 15%; */
+    cursor: pointer;
+}
+
+.findPwdModal {
+    display: none; /* 기본적으로는 안 보이도록 설정 */
+    position: fixed; /* 화면을 가득 채우도록 설정 */
+    z-index: 1; /* 다른 모든 요소 위에 표시되도록 설정 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 스크롤이 필요한 경우 스크롤 허용 */
+    background-color: rgba(0,0,0,0.4); /* 모달 외부의 배경을 어둡게 설정 */
+}
+
+.successFindPwdModal-content {
+    background-color: white;
+    margin: 15% auto; /* 모달을 화면 가운데로 위치시키기 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* 모달의 너비를 조정할 수 있습니다. */
+    text-align: center;
+    border-radius: 20px;
+}
+
+.successFindPwdModal-content button {
+    margin: 0px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    border: 0px solid;
+}
+
+#FindPwdModal_button {
     background-color: black;
     cursor: pointer;
 }
