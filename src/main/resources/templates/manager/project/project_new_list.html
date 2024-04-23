@@ -75,9 +75,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="project : ${ projectNewList }">
+									<tr th:each="project : ${ projectList }">
 										<td th:text= "${ project.projectNo }"></td>
-										<td><a th:href="@{/manager/project/project_detail(projectNo=${ project.projectNo })}" th:text="${ project.projectName }"></a></td>
+										<td><a th:href="@{/manager/project/project_detail(projectNo=${ project.projectNo }, listType=${ paging.listType })}" th:text="${ project.projectName }"></a></td>
 										<td>
 											<th:block th:switch="${project.categoryCode}">
 												<p th:case="1">리빙</p>
@@ -119,30 +119,30 @@
 									th:if="${ paging.searchCondition != null and paging.searchValue != null }">
 								<!-- 맨 앞으로 이동 -->
 								<button class="front"
-										th:onclick="'location.href=\'/manager/project/project_new_list?page=1&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">&lt;&lt;</button>
+										th:onclick="'location.href=\'/manager/project/project_new_list?page=1&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '&searchConditionDate=' + @{${paging.searchConditionDate}} + '&searchDate1=' + @{${paging.searchDate1}} + '&searchDate2=' + @{${paging.searchDate2}} + '\''">&lt;&lt;</button>
 
 								<!-- 이전 페이지로 이동 -->
 								<button class="prev"
-										th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${paging.page - 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+										th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${paging.page - 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '&searchConditionDate=' + @{${paging.searchConditionDate}} + '&searchDate1=' + @{${paging.searchDate1}} + '&searchDate2=' + @{${paging.searchDate2}} + '\''"
 										th:disabled="${ paging.page <= 1 }">&lt;</button>
 
 								<!-- 숫자 버튼 -->
 								<th:block
 										th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">
 									<button
-											th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${page}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+											th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${page}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '&searchConditionDate=' + @{${paging.searchConditionDate}} + '&searchDate1=' + @{${paging.searchDate1}} + '&searchDate2=' + @{${paging.searchDate2}} + '\''"
 											th:text="${ page }" th:disabled="${ paging.page eq page }" th:classappend="${paging.page eq page} ? 'on' : ''">
 									</button>
 								</th:block>
 
 								<!-- 다음 페이지로 이동 -->
 								<button class="next"
-										th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${paging.page + 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+										th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${paging.page + 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '&searchConditionDate=' + @{${paging.searchConditionDate}} + '&searchDate1=' + @{${paging.searchDate1}} + '&searchDate2=' + @{${paging.searchDate2}} + '\''"
 										th:disabled="${ paging.page >= paging.maxPage }">></button>
 
 								<!-- 맨 끝으로 이동 -->
 								<button class="end"
-										th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${paging.maxPage}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">>></button>
+										th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${paging.maxPage}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '&searchConditionDate=' + @{${paging.searchConditionDate}} + '&searchDate1=' + @{${paging.searchDate1}} + '&searchDate2=' + @{${paging.searchDate2}} + '\''">>></button>
 
 							</th:block>
 
@@ -169,7 +169,7 @@
 								<!-- 다음 페이지로 이동 -->
 								<button class="next"
 										th:onclick="'location.href=\'/manager/project/project_new_list?page=' + @{${paging.page + 1}} + '\''"
-										th:disabled="${ paging.page >= paging.maxPage }"> ></button>
+										th:disabled="${ paging.page >= paging.maxPage }">></button>
 
 								<!-- 맨 끝으로 이동 -->
 								<button class="end"

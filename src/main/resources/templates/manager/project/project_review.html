@@ -1,128 +1,122 @@
-<head>
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript">   
-		$(document).ready( function() {
-			$("#headers").load("../inc/header.html");
-			$("#gnb").load("../inc/gnb.html");
-		});
-	</script>
-</head>
-	<div id="headers"></div>
-	<div id="gnb"></div>
+<div th:replace="/manager/common/header.html"></div>
+<div th:replace="/manager/common/gnb.html"></div>
 	
 	<div class="sub_wrap">
 		<aside id="lnb">
 			<ul class="menu">
-				<li><a href="../user/user_list.html">회원 관리</a></li>
+				<li><a href="/manager/user/user_list">회원 관리</a></li>
 				<li class="btn_sub on"><a href="#">프로젝트 관리</a>
 					<ul class="sub_menu" style="display: block;">
-						<li class="on"><a href="../project/project_new_list.html">신규 프로젝트</a></li>
-						<li><a href="../project/project_now_list.html">진행 프로젝트</a></li>
-						<li><a href="../project/project_end_list.html">종료 프로젝트</a></li>
-						<li><a href="../project/project_return_list.html">반려 프로젝트</a></li>
+						<li><a href="/manager/project/project_new_list">신규 프로젝트</a></li>
+						<li><a href="/manager/project/project_now_list">진행 프로젝트</a></li>
+						<li><a href="/manager/project/project_end_list">종료 프로젝트</a></li>
+						<li><a href="/manager/project/project_return_list">반려 프로젝트</a></li>
 					</ul>
 				</li>
-				<li><a href="../payment/payment_list.html">결제 및 정산 관리</a></li>
-				<li><a href="../benefits/benefits.html">혜택 관리</a></li>
-				<li><a href="../board/notice_list.html">게시판관리</a></li>
+				<li><a href="/manager/payment/payment_list">결제 및 정산 관리</a></li>
+				<li><a href="/manager/board/notice_list">게시판관리</a></li>
 			</ul>
 		</aside>		
 		<div class="container clearfix">
 			<div class="content">
 				<div class="top_button">
-					<button class="custom-btn btn-5" onclick="location.href ='project_detail.html'">프로젝트 정보</button><!--
-				 --><button class="custom-btn btn-5" onclick="location.href ='#'">스토리</button><!--
-				 --><button class="custom-btn btn-5" onclick="location.href ='project_news.html'">새소식</button><!--
-				 --><button class="custom-btn btn-5" onclick="location.href ='project_review.html'">응원/리뷰</button><!--
-				 --><button class="custom-btn btn-5" onclick="location.href ='#'">리워드 정보</button>
+					<button class="custom-btn btn-5" th:onclick="|location.href ='@{/manager/project/project_detail(projectNo=${ projectNo }, listType=${ listType })}'|">프로젝트 정보</button><!--
+				 	--><button class="custom-btn btn-5" onclick="location.href ='#'">스토리</button><!--
+				 	--><button class="custom-btn btn-5" th:onclick="|location.href ='@{/manager/project/project_news(projectNo=${ projectNo }, listType=${ listType })}'|">새소식</button><!--
+				 	--><button class="custom-btn btn-5" th:onclick="|location.href ='@{/manager/project/project_review(projectNo=${ projectNo }, listType=${ listType })}'|">응원/리뷰</button><!--
+					--><button class="custom-btn btn-5" onclick="location.href ='#'">리워드 정보</button>
 				</div>
 				<div class="list_tit">
 					<h3>응원 / 리뷰</h3>
 				</div>
 				<div class="list">
 					<div class="search_wrap">
-						<div class="scrollable">
-							<ul class="reviews">
-								<li>
-									<span class="profile"><img src="../images/sub/profile1.png"></span>
-									<span class="check"><input type="checkbox" id="supportReviewsNO1" name="supportReviewsNO1"></span>
-									<span class="name">홍길동</span>
-									<span class="category cheer">응원</span>
-									<p class="date">2024-03-15</p>
-									<p class="comment">4월 20일에 와이프랑 첫캠핑을 가려고 합니다. 그전에 도착 했으면 좋겠는데 그것보다는 문제 없는 놈으로 꼼꼼하게 체크하고 보내주셨으면 좋겠습니다.</p>
-								</li>
-								<li>
-									<span class="profile"><img src="../images/sub/profile1.png"></span>
-									<span class="check"><input type="checkbox" id="supportReviewsNO2" name="supportReviewsNO2"></span>
-									<span class="name">홍길동</span>
-									<span class="category review">리뷰</span>
-									<p class="date">2024-03-17</p>
-									<p class="comment">저번달에 가족들하고 캠핑가서 사용 해봤는데 너무 만족 스러웠어요. 강추 합니다!!!</p>
-								</li>
-								<li>
-									<span class="profile"><img src="../images/sub/profile1.png"></span>
-									<span class="check"><input type="checkbox" id="supportReviewsNO3" name="supportReviewsNO3"></span>
-									<span class="name">홍길동</span>
-									<span class="category cheer">응원</span>
-									<p class="date">2024-03-15</p>
-									<p class="comment">오~ 신박합니다. 캠핑 매니아인 저에게는 딱이네요. 응원합니다!</p>
-								</li>
-							</ul>
-							<!-- <ul class="reviews_user">
-								<li>
-									<span class="profile"><img src="../images/sub/profile1.png"></span>
-									<span class="button"><button class="btn del" onclick="location.href='#'">삭제</button></span>
-									<span class="name">홍길동</span>
-									<span class="category cheer">응원</span>
-									<p class="date">2024-03-15</p>
-									<p class="comment">4월 20일에 와이프랑 첫캠핑을 가려고 합니다. 그전에 도착 했으면 좋겠는데 그것보다는 문제 없는 놈으로 꼼꼼하게 체크하고 보내주셨으면 좋겠습니다.</p>
-								</li>
-								<li>
-									<span class="profile"><img src="../images/sub/profile1.png"></span>
-									<span class="button"><button class="btn modify" onclick="location.href='#'">수정</button></span>
-									<span class="name">홍길동</span>
-									<span class="category review">리뷰</span>
-									<p class="date">2024-03-17</p>
-									<p class="comment">저번달에 가족들하고 캠핑가서 사용 해봤는데 너무 만족 스러웠어요. 강추 합니다!!!</p>
-								</li>
-								<li>
-									<span class="profile"><img src="../images/sub/profile1.png"></span>
-									<span class="name">홍길동</span>
-									<span class="category cheer">응원</span>
-									<p class="date">2024-03-15</p>
-									<p class="comment">오~ 신박합니다. 캠핑 매니아인 저에게는 딱이네요. 응원합니다!</p>
-								</li>
-							</ul>
-							<form action="#" method="post">
-								<div class="reviews_write">
-									<textarea id="supportReviewsContent" name="supportReviewsContent" rows="5"></textarea>
-									<input type="hidden" id="supportReviewsCategory" name="supportReviewsCategory">
-									<button class="category cheer btn" type="button" onclick="category_cheer();">응원</button>
-									<button class="category review btn" type="button" onclick="category_review();">리뷰</button>
-									<button class="btn btn_save" onclick="submit">저장</button>
-								</div>
-							</form>
-							<script>
-								function category_cheer() {
-								  document.getElementById("supportReviewsCategory").value = "1";
-								}
-								function category_review() {
-								  document.getElementById("supportReviewsCategory").value = "2";
-								}
-							</script> -->
-						</div>
-						
-						<div class="write nshadow">
-							<div class="write_btn align_c mt35">
-								<!-- <button class="btn" onclick="history.go(-1)">목록</button> -->
-								<button class="btn btn_del">삭제</button>
+						<form id="deleteForm" action="/manager/project/deleteReview" method="post">
+							<input type="hidden" name="projectNo" id="projectNo" th:value="${ projectNo }">
+							<div class="scrollable">
+								<ul class="reviews">
+									<li th:each="project : ${ projectReview }">
+<!--										<th:block th:if="${ project.userInfo.profile != null and project.userInfo.profile != '' }">-->
+<!--											<span class="profile"><img src="/images/manager/sub/profile1.png"></span>-->
+<!--										</th:block>-->
+<!--										<th:block th:if="${ project.userInfo.profile == null and project.userInfo.profile == '' }">-->
+											<span class="profile"><img src="/images/manager/sub/profile1.png"></span>
+<!--										</th:block>-->
+										<span class="check">
+											<input type="checkbox" th:id="|reviewsNo_${project.supportReviewsNo}|"
+												   				   th:name="|reviewsNo_${project.supportReviewsNo}|"
+													   			   th:value="${project.supportReviewsNo}">
+										</span>
+										<span class="name" th:text="${project.userInfo.userName}"></span>
+										<th:block th:if="${ project.supportReviewsCategory == 1 }">
+											<span class="category cheer">응원</span>
+										</th:block>
+										<th:block th:if="${ project.supportReviewsCategory == 2 }">
+											<span class="category review">리뷰</span>
+										</th:block>
+										<p class="date" th:text="${ project.supportReviewsDate }"></p>
+										<p class="comment" th:text="${ project.supportReviewsContent }"></p>
+									</li>
+								</ul>
 							</div>
-						</div>
+							<div class="write nshadow">
+								<div class="write_btn align_c mt35">
+									<!-- <button class="btn" onclick="history.go(-1)">목록</button> -->
+									<button class="btn btn_del" type="button"
+											th:attr="data-projectNo=${projectNo}, data-listType=${listType}"
+											onclick="deleteSelected(this.getAttribute('data-projectNo'), this.getAttribute('data-listType'))">삭제
+									</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	function deleteSelected(projectNo, listType) {
+
+		// 선택된 체크박스 확인
+		let checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+		// 선택된 체크박스가 없으면 알림 출력
+		if (checkedCheckboxes.length === 0) {
+			alert("선택된 응원/리뷰가 없습니다.");
+			return;
+		}
+
+		if (!confirm("선택한 응원/리뷰를 삭제합니다. \n정말 진행하시겠습니까?")) {
+		} else {
+			// 선택된 항목의 supportReviewsNo 추출
+			let selectedReviews = [];
+			document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
+				selectedReviews.push(checkbox.value);
+			});
+
+			// supportReviewsNo를 hidden input에 설정하여 폼 제출
+			let deleteForm = document.getElementById('deleteForm');
+			selectedReviews.forEach(function (supportReviewsNo) {
+				// supportReviewsNo를 전달할 hidden input 요소 생성
+				let input = document.createElement('input');
+				input.type = 'hidden';
+				input.name = 'selectedReviews';
+				input.value = supportReviewsNo;
+				deleteForm.appendChild(input);
+			});
+
+			// listType을 전달할 hidden input 요소 생성
+			let listTypeInput = document.createElement('input');
+			listTypeInput.type = 'hidden';
+			listTypeInput.name = 'listType';
+			listTypeInput.value = listType;
+			deleteForm.appendChild(listTypeInput);
+
+			// 폼 제출
+			deleteForm.submit();
+		}
+	}
+</script>
 </body>
 </html>
