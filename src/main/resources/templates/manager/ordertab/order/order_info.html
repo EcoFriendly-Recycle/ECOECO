@@ -1,5 +1,5 @@
-<div th:replace="/manager/common/header.html"></div>
-<div th:replace="/manager/common/gnb.html"></div>
+<div th:replace="~{/manager/common/header.html}"></div>
+<div th:replace="~{/manager/common/gnb.html}"></div>
 	
 	<div class="sub_wrap">
 		<aside id="lnb">
@@ -11,7 +11,7 @@
 					<ul class="sub_menu" style="display: block;">
 						<li class="on"><a href="/manager/ordertab/order/order_list">주문</a></li>
 						<li><a href="/manager/ordertab/payment/payment_list">결제 현황</a></li>
-						<li><a href="/manager/ordertab/calculate/calculate_list">정산대기</a></li>
+						<li><a href="/manager/ordertab/settlement/settlement_list">정산대기</a></li>
 						<li><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 					</ul>
 				</li>
@@ -45,19 +45,14 @@
 									</tr>
 								</thead>
 								<tbody class="td_bcw">
-									<tr>
-										<td>100201</td>
-										<td>150,000</td>
-										<td>주문완료</td>
-										<td>즉시결제</td>
-                                        <td>
-                                            <select name="payST">
-                                                <option value="1">결제완료</option>
-                                                <option value="2">결제실패</option>
-                                             </select>
-                                        </td>
-                                        <td>2024-03-25 18:20:33</td>
-									</tr>
+								<tr>
+									<td th:text="${ orderInfo.orderNo }"></td>
+									<td th:text="${ orderInfo.orderPrice }"></td>
+									<td th:text="${ orderInfo.orderStatus }"></td>
+									<td th:text="${ orderInfo.paymentCategory }"></td>
+									<td th:text="${ orderInfo.paymentStatus }"></td>
+									<td th:text="${ orderInfo.orderDate }"></td>
+								</tr>
 								</tbody>
 							</table>
 							<br><br><br>
@@ -81,10 +76,9 @@
 								</thead>
 								<tbody class="td_bcw">
 									<tr>
-										<!-- <td class="txt_red">심사중</td> -->
-										<td>홍길동</td>
-										<td>010-1234-1234</td>
-										<td>서울시 종로구</td>
+										<td th:text="${ orderInfo.recipient }"></td>
+										<td th:text="${ orderInfo.orderPhone }"></td>
+										<td th:text="${ orderInfo.orderAdd }"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -107,9 +101,9 @@
 								</thead>
 								<tbody class="td_bcw">
 									<tr>
-										<td>123456</td>
-										<td>홍길동</td>
-										<td>hogn12</td>
+										<td th:text="${ orderInfo.orderer.userNo }"></td>
+										<td th:text="${ orderInfo.orderer.userName }"></td>
+										<td th:text="${ orderInfo.orderer.userId}"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -130,9 +124,10 @@
 								</thead>
 								<tbody class="td_bcw">
 									<tr>
-										<td>고래지킴이</td>
-										<td>재활용품</td>
-                                        <td>10,000</td>
+										<td th:text="${ orderInfo.reward.project.projectName }"></td>
+										<td th:text="${ orderInfo.reward.rewardName }"></td>
+										<td th:text="${ orderInfo.reward.rewardSum }"></td>
+
 									</tr>
 								</tbody>
 							</table>
