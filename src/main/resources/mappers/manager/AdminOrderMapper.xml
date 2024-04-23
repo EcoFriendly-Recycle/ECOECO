@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.recycle.ecoeco.accounting.model.dao.AdminOrderMapper">
+<mapper namespace="com.recycle.ecoeco.accounting.model.dao.manager.AdminOrderMapper">
 
     <resultMap id="orderResultMap" type="com.recycle.ecoeco.accounting.model.dto.OrderDTO">
         <id property="orderNo" column="orderNo"/>

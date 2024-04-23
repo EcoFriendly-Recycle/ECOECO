@@ -15,7 +15,7 @@
 
 package com.recycle.ecoeco.accounting.service;
 
-import com.recycle.ecoeco.accounting.model.dao.AdminRefundMapper;
+import com.recycle.ecoeco.accounting.model.dao.manager.AdminRefundMapper;
 import com.recycle.ecoeco.accounting.model.dto.OrderDTO;
 import com.recycle.ecoeco.accounting.model.dto.RefundDTO;
 import com.recycle.ecoeco.common.paging.Pagenation;

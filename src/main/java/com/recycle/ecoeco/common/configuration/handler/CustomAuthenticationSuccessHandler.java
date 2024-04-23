@@ -15,7 +15,7 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                                         Authentication authentication) throws IOException, ServletException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ADMIN")) {
-            setDefaultTargetUrl("/mmain");
+            setDefaultTargetUrl("/adminMain");
         } else {
             setDefaultTargetUrl("/main");
         }

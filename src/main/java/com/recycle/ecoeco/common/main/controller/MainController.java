@@ -20,7 +20,7 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/mmain")
+    @GetMapping("/adminMain")
     public void managerMainPage() {}
 
     /* 메인페이지에서 로그인페이지 이동 */
