@@ -2,6 +2,7 @@ package com.recycle.ecoeco.membership.controller.user;
 
 import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
 import com.recycle.ecoeco.membership.service.user.AuthService;
+import com.recycle.ecoeco.membership.service.user.EmailService;
 import com.recycle.ecoeco.membership.service.user.MyPageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.recycle.ecoeco.membership.service.user.PasswordGenerator.generateTemporaryPassword;
+
 
 @Slf4j
 @Controller
@@ -23,9 +26,11 @@ public class MyPageController {
     private final MyPageService myPageService;
     private AuthService authenticationService;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
-    public MyPageController(MyPageService myPageService, PasswordEncoder passwordEncoder) {
+    public MyPageController(MyPageService myPageService, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.myPageService = myPageService;
+        this.emailService = emailService;
         this.authenticationService = authenticationService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -58,6 +63,7 @@ public class MyPageController {
     @GetMapping("/findId")
     public void findIdPage() {}
 
+    /* 아이디 찾기 */
     @PostMapping("/findId")
     public ResponseEntity<String> findId(@RequestParam("userName") String userName, @RequestParam("userEmail") String userEmail) {
 
@@ -77,6 +83,32 @@ public class MyPageController {
     @GetMapping("/findPwd")
     public void findPwdPage() {}
 
+    /* 비밀번호 찾기 구현 메소드 */
+    @PostMapping("/findPwd")
+    public ResponseEntity<String> findPwd(@RequestParam("searchPwdId") String userId, @RequestParam("searchPwdEmail") String userEmail) {
+        String foundPwd = myPageService.findPwdByUserIdAndUserEmail(userId, userEmail);
+
+        if(foundPwd != null) {
+            String temporaryPassword = generateTemporaryPassword();     // 임시비밀번호 생성
+            boolean emailSent = emailService.sendTemporaryPasswordEmail(userEmail, temporaryPassword);
+
+            System.out.println("userEmail : " + userEmail);
+            System.out.println("temporaryPassword : " + temporaryPassword);
+            System.out.println("emailSent : " + emailSent);
+
+            if(emailSent) {
+                // 임시 비밀번호 전송 성공 시 db에 임시 비밀번호 저장
+
+                // 이메일 전송 성공 메시지
+                return ResponseEntity.ok("입력하신 이메일로 임시 비밀번호가 발송되었습니다.");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("임시 비밀번호 발송에 실패하였습니다.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("등록된 회원정보가 없습니다.");
+        }
+    }
+    
     /* 마이페이지 이동 메일화면 이동 */
     @GetMapping("/mypageMain")
     public void mypageMainPage() {}

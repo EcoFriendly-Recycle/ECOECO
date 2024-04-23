@@ -81,3 +81,51 @@ function closeFindIdModal() {
         window.location.href = "/login";
     }
 }
+
+// 비밀번호 찾기 모달 열기
+function openFindPwdModal() {
+    fetch('/user/mypage/findPwd', {
+        method: 'POST',
+        body: new FormData(document.getElementById('findPwdForm'))
+    })
+        .then(response => response.text())
+        .then(data => {
+            const failFindPwdMessage = document.getElementById('failFindPwdMessage');
+            const successFindPwdMessage = document.getElementById('successFindPwdMessage');
+
+            if(data.startsWith("입력하신 이메일로 임시 비밀번호가 발송되었습니다.")) {
+                successFindPwdMessage.textContent = data;
+                failFindPwdMessage.textContent = "";
+            } else {
+                failFindPwdMessage.textContent = data;
+                successFindPwdMessage.textContent = "";
+            }
+
+            const findPwdModal = document.getElementById('findPwdModal');
+            findPwdModal.style.display = 'block';
+
+            // 확인 버튼 클릭 시
+            if(data.startsWith("입력하신 이메일로 임시 비밀번호가 발송되었습니다.")) {
+                document.getElementById('FindPwdModal_button').addEventListener('click', function () {
+                    window.location.href="/login";
+                });
+            }
+        })
+        // 요청이 완료되면 버튼을 다시 활성화
+        .finally(() => {
+            document.querySelector('.searchPwdButton').disabled = false;
+        });
+}
+
+/* 비밀번호 찾기 모달 닫기 */
+function closeFindPwdModal() {
+    // 모달 닫기
+    const findPwdModal = document.getElementById('findPwdModal');
+    findPwdModal.style.display = 'none';
+
+    // 비밀번호를 찾은 경우 로그인 페이지로 이동
+    const successFindPwdMessage = document.getElementById('successFindPwdMessage');
+    if (successFindPwdMessage.textContent !== "") {
+        window.location.href = "/login";
+    }
+}

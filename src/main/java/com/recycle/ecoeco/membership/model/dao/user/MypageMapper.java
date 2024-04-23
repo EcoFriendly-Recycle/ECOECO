@@ -14,4 +14,8 @@ public interface MypageMapper {
 
     UserInfoDTO findIdByUserNameAndEmail(String userName, String userEmail);        // 아이디 찾기
 
+    String findPwdByUserIdAndUserEmail(String userId, String userEmail);        // 비밀번호 찾기
+
+    void updateUserPassword(String encode, String userId);      // 비밀번호 찾고 DB 업데이트
+
 }
