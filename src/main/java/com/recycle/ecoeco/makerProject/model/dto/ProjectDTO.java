@@ -1,7 +1,6 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ProjectDTO {
 
