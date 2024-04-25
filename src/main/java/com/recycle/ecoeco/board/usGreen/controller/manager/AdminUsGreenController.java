@@ -27,15 +27,19 @@ public class AdminUsGreenController {
 
     @GetMapping("/adminUsGreenList")
     public void showUsGreenListPage(@RequestParam(defaultValue = "1") int page,
-                                      @RequestParam(required = false) String searchCondition,
-                                      @RequestParam(required = false) String searchValue,
-                                      @RequestParam(required = false) String searchConditionDate,
-                                      Model model) {
+                                    @RequestParam(required = false) String searchCondition,
+                                    @RequestParam(required = false) String searchValue,
+                                    @RequestParam(required = false) String searchConditionDate,
+                                    @RequestParam(required = false) String searchDate1,
+                                    @RequestParam(required = false) String searchDate2,
+                                    Model model) {
 
         Map<String, String> searchMap = new HashMap<>();
         searchMap.put("searchCondition", searchCondition);
         searchMap.put("searchValue", searchValue);
         searchMap.put("searchConditionDate", searchConditionDate);
+        searchMap.put("searchDate1", searchDate1);
+        searchMap.put("searchDate2", searchDate2);
 
         Map<String, Object> usGreenListAndPaging = adminUsGreenService.selectUsGreenList(searchMap, page);
         model.addAttribute("paging", usGreenListAndPaging.get("paging"));

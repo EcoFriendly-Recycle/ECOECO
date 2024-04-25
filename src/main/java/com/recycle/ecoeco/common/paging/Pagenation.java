@@ -29,10 +29,10 @@ public class Pagenation {
 
 //        return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
 //                offset, searchMap.get("searchCondition"), searchMap.get("searchValue"));
-//        return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
-//                offset, searchMap.get("searchCondition"), searchMap.get("searchValue"), searchMap.get("searchConditionDate"), searchMap.get("searchDate1"), searchMap.get("searchDate2"));
         return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
-                offset, searchMap.get("searchCondition"), searchMap.get("searchValue"), searchMap.get("searchDate1"), searchMap.get("searchDate2"));
+                offset, searchMap.get("searchCondition"), searchMap.get("searchValue"), searchMap.get("searchConditionDate"), searchMap.get("searchDate1"), searchMap.get("searchDate2"));
+//        return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
+//                offset, searchMap.get("searchCondition"), searchMap.get("searchValue"), searchMap.get("searchDate1"), searchMap.get("searchDate2"));
     }
 
     public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, Map<String, String> searchMap, String listType) {
@@ -61,6 +61,8 @@ public class Pagenation {
         return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
                 offset, searchMap.get("searchCondition"), searchMap.get("searchValue"), searchMap.get("searchConditionDate"), searchMap.get("searchDate1"), searchMap.get("searchDate2"), listType);
     }
+
+
 
 //    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount) {
 //        return getSelectCriteria(page, totalCount, limit, buttonAmount, new HashMap<>());

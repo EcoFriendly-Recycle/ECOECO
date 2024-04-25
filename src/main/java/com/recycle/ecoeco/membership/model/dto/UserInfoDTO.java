@@ -6,6 +6,8 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -21,7 +23,7 @@ public class UserInfoDTO implements UserDetails {
     private char userGender;
     private int userGrade;
     private int userPoint;
-    private Date userDate;
+    private LocalDate userDate;
     private int userAccount;
     private String userAddress;
     private UserRole userRole;
@@ -123,11 +125,11 @@ public class UserInfoDTO implements UserDetails {
         this.userPoint = userPoint;
     }
 
-    public Date getUserDate() {
+    public LocalDate getUserDate() {
         return userDate;
     }
 
-    public void setUserDate(Date userDate) {
+    public void setUserDate(LocalDate userDate) {
         this.userDate = userDate;
     }
 

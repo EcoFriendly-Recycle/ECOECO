@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Service
@@ -30,7 +31,7 @@ public class MyPageService {
         }
 
         // 회원 가입일 설정
-        Date signUpDate = new Date();
+        LocalDate signUpDate = LocalDate.now();
 
         user.setUserDate(signUpDate);
         System.out.println("User Date Set : " + user.getUserDate());
