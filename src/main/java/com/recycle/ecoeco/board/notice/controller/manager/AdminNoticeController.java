@@ -2,22 +2,30 @@ package com.recycle.ecoeco.board.notice.controller.manager;
 
 
 import com.recycle.ecoeco.board.notice.model.dto.NoticeDTO;
+import com.recycle.ecoeco.board.notice.model.dto.NoticeImageDTO;
 import com.recycle.ecoeco.board.notice.service.manager.AdminNoticeService;
 import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 @Slf4j
 @Controller
 @RequestMapping("/manager/board")
 public class AdminNoticeController {
+
+    @Value("${image.image-dir}")
+    private String IMAGE_DIR;
 
     private final AdminNoticeService adminNoticeService;
 
@@ -32,12 +40,16 @@ public class AdminNoticeController {
                              @RequestParam(required = false) String searchCondition,
                              @RequestParam(required = false) String searchValue,
                              @RequestParam(required = false) String searchConditionDate,
+                             @RequestParam(required = false) String searchDate1,
+                             @RequestParam(required = false) String searchDate2,
                              Model model) {
 
         Map<String, String> searchMap = new HashMap<>();
         searchMap.put("searchCondition", searchCondition);
         searchMap.put("searchValue", searchValue);
         searchMap.put("searchConditionDate", searchConditionDate);
+        searchMap.put("searchDate1", searchDate1);
+        searchMap.put("searchDate2", searchDate2);
 
         Map<String, Object> noticeListAndPaging = adminNoticeService.selectNoticeList(searchMap, page);
         model.addAttribute("paging", noticeListAndPaging.get("paging"));
@@ -48,7 +60,7 @@ public class AdminNoticeController {
 
     // 공지사항 상세보기
     @GetMapping("/adminNoticeDetail")
-    public String getBoardDetail(@RequestParam int noticeNo, Model model){
+    public String getBoardDetail(@RequestParam int noticeNo, Model model) {
 
         NoticeDTO noticeDetail = adminNoticeService.selectNoticeDetail(noticeNo);
         log.info("noticeDetail : {}", noticeDetail);
@@ -66,19 +78,45 @@ public class AdminNoticeController {
     }
 
     @PostMapping("/write")
-    public String writeBoard(@ModelAttribute NoticeDTO notice,
-                             @AuthenticationPrincipal UserInfoDTO user) {
+    public String writeBoard(NoticeDTO notice, MultipartFile singleFile, @AuthenticationPrincipal UserInfoDTO user) {
+        String noticePath = IMAGE_DIR + "notice";
+        File dir = new File(noticePath);
+        if (!dir.exists()) dir.mkdirs();
 
-//        /* 로그인 기능 구현 후 수정해야댐. 임시로 관리자 번호 때려넣음 */
-//        UserInfoDTO userInfo = new UserInfoDTO();
-//        userInfo.setUserNo(1);
-//        notice.setWriter(userInfo);
+        // 이미지 정보가 있는지 확인하고 처리
+        NoticeImageDTO attachImage = null;
+        try {
+            if (singleFile.getSize() > 0) {
+                // 이미지 파일이 업로드된 경우
+                String noticeOriginFileName = singleFile.getOriginalFilename();
+                log.info("originalFileName : {}", noticeOriginFileName);
 
+                String ext = noticeOriginFileName.substring(noticeOriginFileName.lastIndexOf("."));
+                String noticeSaveName = UUID.randomUUID() + ext;
+                log.info("savedFileName : {}", noticeSaveName);
+
+                /* 서버의 설정 디렉토리에 파일 저장하기 */
+                singleFile.transferTo(new File(noticePath + "/" + noticeSaveName));
+
+                /* DB에 저장할 파일의 정보 설정 */
+                attachImage = new NoticeImageDTO();
+                attachImage.setNoticeOriginFileName(noticeOriginFileName);
+                attachImage.setNoticeSaveName(noticeSaveName);
+                attachImage.setNoticePath("/uploadFiles/notice/");
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // 게시글 작성 정보 설정
         notice.setWriter(user);
-        log.info("writeBoard notice : {}", notice);
+        notice.setImage(attachImage); // 이미지 정보 설정
 
-        adminNoticeService.writeBoard(notice);
+        // 게시글 서비스를 통해 게시글 작성
+        adminNoticeService.writeBoard(notice); // 이미지 파일도 함께 전달
 
+        // 게시글 리스트로 리다이렉트
         return "redirect:/manager/board/adminNoticeList";
     }
 
@@ -118,50 +156,4 @@ public class AdminNoticeController {
 
         return "redirect:/manager/board/adminNoticeDetail?noticeNo=" + noticeNo;
     }
-
-//    @PostMapping("multi-file")
-//    public String multiFileUpload(@RequestParam String multiFileDescription,
-//                                  @RequestParam List<MultipartFile> multiFile,
-//                                  Model model) {
-//
-//        System.out.println("multiFileDescription : " + multiFileDescription);
-//        System.out.println("multiFile : " + multiFile);
-//
-//        String root = "src/main/resources/static";
-//        String filePath = root + "/uploadFiles";
-//
-//        File dir = new File(filePath);
-//        System.out.println(dir.getAbsolutePath());
-//
-//        if (!dir.exists()) dir.mkdirs();
-//
-//        List<NoticeImageDTO> files = new ArrayList<>();
-//
-//        /* 파일명 변경 처리 후 저장 : 다중 파일 반복문 처리 */
-//        try {
-//            for (MultipartFile file : multiFile) {
-//                String noticeOriginFileName = file.getOriginalFilename();
-//                String ext = noticeOriginFileName.substring(noticeOriginFileName.lastIndexOf("."));
-//                String noticeSaveName = UUID.randomUUID() + ext;
-//
-//                /* 파일에 관한 정보 추출 후 보관 */
-//                files.add(new NoticeImageDTO(noticeOriginFileName, noticeSaveName, filePath));
-//
-//                /* 파일 저장 */
-//                file.transferTo(new File(filePath + "/" + noticeSaveName));
-//            }
-//            /* 서버의 정해진 경로로 파일 저장이 완료되면 List<FileDTO> 타입의 객체에 저장된 정보를 DB에 insert 한다. */
-//            model.addAttribute("message", "파일 업로드 완료!");
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//            /* 파일 저장 중간에 실패 시 이전에 저장 된 파일 삭제 */
-//            for (NoticeImageDTO file : files) {
-//                new File(filePath + "/" + file.getNoticeSaveName()).delete();
-//            }
-//            model.addAttribute("message", "파일 업로드 실패..");
-//        }
-//        return "result";
-//    }
 }

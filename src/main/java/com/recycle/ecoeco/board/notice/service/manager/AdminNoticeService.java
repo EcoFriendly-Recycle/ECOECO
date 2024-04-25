@@ -3,11 +3,13 @@ package com.recycle.ecoeco.board.notice.service.manager;
 
 import com.recycle.ecoeco.board.notice.model.dao.manager.AdminNoticeMapper;
 import com.recycle.ecoeco.board.notice.model.dto.NoticeDTO;
+import com.recycle.ecoeco.board.notice.model.dto.NoticeImageDTO;
 import com.recycle.ecoeco.common.paging.Pagenation;
 import com.recycle.ecoeco.common.paging.SelectCriteria;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -61,8 +63,16 @@ public class AdminNoticeService {
     // 공지사항 작성
     public void writeBoard(NoticeDTO notice) {
 
-        notice.setNoticeCategory(notice.getNoticeCategory());
+        // 1. 공지사항 등록
         adminNoticeMapper.insertNotice(notice);
+
+        // 2. 등록된 공지사항의 번호를 가져옴
+        int noticeNo = notice.getNoticeNo();
+
+        // 3. 공지사항 이미지 등록
+        NoticeImageDTO image = notice.getImage();
+        image.setNoticeNo(noticeNo); // 공지사항 번호 설정
+        adminNoticeMapper.insertNoticeImage(image);
     }
 
     // 공지사항 삭제
@@ -96,5 +106,9 @@ public class AdminNoticeService {
             // 엔티티가 존재하지 않을 경우 예외 처리 또는 로그 등 수행
             log.info("됐나유?");
         }
+    }
+
+    // 공지사항 작성 : 이미지 저장
+    public void saveImageInfo(NoticeImageDTO attachImage) {
     }
 }

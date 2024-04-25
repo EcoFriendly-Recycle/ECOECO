@@ -5,14 +5,18 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.recycle.ecoeco.board.notice.model.dao.manager.AdminNoticeMapper">
 
-    <resultMap type="com.recycle.ecoeco.board.notice.model.dto.NoticeDTO" id="noticeResultMap" >
+    <resultMap type="com.recycle.ecoeco.board.notice.model.dto.NoticeDTO" id="noticeResultMap">
         <id property="noticeNo" column="noticeNo"/>
-        <!--        <result property="noticeCategory" column="noticeCategory"/>-->
         <association property="writer" resultMap="userResultMap"/>
+        <association property="image" resultMap="imageResultMap"/>
     </resultMap>
 
-    <resultMap type="com.recycle.ecoeco.membership.model.dto.UserInfoDTO" id="userResultMap" >
+    <resultMap type="com.recycle.ecoeco.membership.model.dto.UserInfoDTO" id="userResultMap">
         <id property="userNo" column="userNo"/>
+    </resultMap>
+
+    <resultMap type="com.recycle.ecoeco.board.notice.model.dto.NoticeImageDTO" id="imageResultMap">
+        <id property="noticeImgNo" column="noticeImgNo"/>
     </resultMap>
 
     <!-- 공지사항 조회 리스트 카운트 -->
@@ -21,13 +25,31 @@
         COUNT(*)
         FROM
         NOTICE b
-        <if test="searchCondition == 'writer'">
-            JOIN
-            USER_INFO u ON(b.userNo = u.userNo)
-        </if>
+        JOIN
+        USER_INFO u ON (b.userNo = u.userNo)
         <where>
             <if test="searchCondition == 'noticeCategory'">
-                b.noticeCategory = #{ searchValue }
+                AND b.noticeCategory LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="searchCondition == 'noticeTitle'">
+                AND b.noticeTitle LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="searchCondition == 'writer'">
+                AND u.userName LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <!-- searchConditionDate에 따른 조건 -->
+            <if test="searchConditionDate == 'noticeDate'">
+                <choose>
+                    <when test="searchDate1 != '' and searchDate1 != null and searchDate2 != '' and searchDate2 != null">
+                        AND b.noticeDate BETWEEN #{ searchDate1 } AND #{ searchDate2 }
+                    </when>
+                    <when test="(searchDate1 != '' and searchDate1 != null and searchDate2 == '') or (searchDate1 != '' and searchDate1 != null and searchDate2 != null)">
+                        AND <![CDATA[ b.noticeDate >= #{ searchDate1 } ]]>
+                    </when>
+                    <when test="(searchDate2 != '' and searchDate2 != null and searchDate1 == '') or (searchDate2 != '' and searchDate2 != null and searchDate1 != null)">
+                        AND <![CDATA[ b.noticeDate <= #{ searchDate2 } ]]>
+                    </when>
+                </choose>
             </if>
             AND
             b.noticeStatus = 'Y'
@@ -47,19 +69,26 @@
         JOIN
         USER_INFO u ON (b.userNo = u.userNo)
         <where>
-            <if test="searchCondition == 'noticeTitle'">
-                b.noticeTitle LIKE CONCAT('%', #{ searchValue }, '%')
-            </if>
             <if test="searchCondition == 'noticeCategory'">
+                AND b.noticeCategory LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="searchCondition == 'noticeTitle'">
+                AND b.noticeTitle LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="searchCondition == 'writer'">
+                AND u.userName LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <!-- searchConditionDate에 따른 조건 -->
+            <if test="searchConditionDate == 'noticeDate'">
                 <choose>
-                    <when test="searchValue == '공지사항'">
-                        b.noticeCategory = '공지사항'
+                    <when test="searchDate1 != '' and searchDate1 != null and searchDate2 != '' and searchDate2 != null">
+                        AND b.noticeDate BETWEEN #{ searchDate1 } AND #{ searchDate2 }
                     </when>
-                    <when test="searchValue == '이벤트'">
-                        b.noticeCategory = '이벤트'
+                    <when test="(searchDate1 != '' and searchDate1 != null and searchDate2 == '') or (searchDate1 != '' and searchDate1 != null and searchDate2 != null)">
+                        AND <![CDATA[ b.noticeDate >= #{ searchDate1 } ]]>
                     </when>
-                    <when test="searchValue == 'FAQ'">
-                        b.noticeCategory = 'FAQ'
+                    <when test="(searchDate2 != '' and searchDate2 != null and searchDate1 == '') or (searchDate2 != '' and searchDate2 != null and searchDate1 != null)">
+                        AND <![CDATA[ b.noticeDate <= #{ searchDate2 } ]]>
                     </when>
                 </choose>
             </if>
@@ -80,49 +109,78 @@
         b.noticeTitle,
         b.noticeDate,
         b.noticeDetail,
-        u.userName
+        u.userName,
+        i.noticeImgNo,
+        i.noticeOriginFileName,
+        i.noticeSaveName,
+        i.noticePath
         FROM
         NOTICE b
         JOIN
         USER_INFO u ON (b.userNo = u.userNo)
+        LEFT JOIN
+        NOTICE_IMAGE i ON (b.noticeNo = i.noticeNo AND noticeImageStatus = 'Y')
         WHERE
         b.noticeNo = #{noticeNo}
+        AND
+        b.noticeStatus = 'Y'
     </select>
 
+    <!-- 공지사항 이미지 등록 -->
+    <insert id="insertNoticeImage">
+        INSERT INTO NOTICE_IMAGE
+        (noticeOriginFileName, noticeSaveName, noticePath, noticeNo)
+        VALUES
+        (#{ noticeOriginFileName }, #{ noticeSaveName }, #{ noticePath }, #{ noticeNo, jdbcType=VARCHAR })
+    </insert>
+
+    <!-- 공지사항 등록 -->
     <insert id="insertNotice">
         INSERT INTO NOTICE
         (noticeCategory, noticeSubCategory, noticeTitle, noticeDetail, noticeDate, userNo)
         VALUES
-        (#{ noticeCategory }, #{ noticeSubCategory }, #{ noticeTitle }, #{ noticeDetail }, current_date(), #{ writer.userNo })
+        (#{ noticeCategory }, #{ noticeSubCategory }, #{ noticeTitle }, #{ noticeDetail }, current_date(),
+        #{ writer.userNo })
         <selectKey keyProperty="noticeNo" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
+    <!-- 공지사항 삭제 -->
     <update id="deleteNotice">
         UPDATE
-        Notice
+        Notice n
+        JOIN
+        Notice_Image ni ON (n.noticeNo = ni.noticeNo)
         SET
-        noticeStatus = 'N'
+        n.noticeStatus = 'N',
+        ni.noticeImageStatus = 'N'
         WHERE
-        noticeNo = #{ noticeNo }
+        n.noticeNo = #{noticeNo}
     </update>
 
+    <!-- 수정페이지에 저장된 값 출력 -->
     <select id="noticeModify" resultMap="noticeResultMap">
         SELECT
         b.noticeNo,
         b.noticeCategory,
         b.noticeSubCategory,
         b.noticeTitle,
-        b.noticeDetail,
         b.noticeDate,
-        m.userNo
+        b.noticeDetail,
+        u.userName,
+        i.noticeImgNo,
+        i.noticeOriginFileName
         FROM
         NOTICE b
         JOIN
-        USER_INFO m ON (b.userNo = m.userNo)
+        USER_INFO u ON (b.userNo = u.userNo)
+        LEFT JOIN
+        NOTICE_IMAGE i ON (b.noticeNo = i.noticeNo AND noticeImageStatus = 'Y')
         WHERE
-        noticeNo = #{ noticeNo }
+        b.noticeNo = #{noticeNo}
+        AND
+        b.noticeStatus = 'Y'
     </select>
 
     <!-- 공지사항 수정 등록 -->
