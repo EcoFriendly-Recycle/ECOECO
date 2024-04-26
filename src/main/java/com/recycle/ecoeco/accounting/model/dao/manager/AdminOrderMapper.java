@@ -1,3 +1,4 @@
+/*
 package com.recycle.ecoeco.accounting.model.dao.manager;
 
 import com.recycle.ecoeco.accounting.model.dto.OrderDTO;
@@ -18,3 +19,4 @@ public interface AdminOrderMapper {
 
     int selectTotalCount(Map<String, String> searchMap);
 }
+*/

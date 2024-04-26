@@ -1,3 +1,4 @@
+/*
 package com.recycle.ecoeco.accounting.controller;
 
 
@@ -64,3 +65,4 @@ public class AdminOrderController {
         return "manager/ordertab/order/order_info";
     }
 }
+*/
