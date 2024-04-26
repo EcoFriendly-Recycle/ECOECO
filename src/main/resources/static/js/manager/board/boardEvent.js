@@ -77,7 +77,19 @@ function noticeModify(noticeNo) {
     window.location.href = "/manager/board/adminNoticeModify?noticeNo=" + noticeNo;
 }
 
-
+<!-- 공지사항 파일 선택 -->
+function displayFileNames(input) {
+    var fileDisplayInput = document.getElementById('file_name_display');
+    if (input.files.length > 0) {
+        if (input.files.length === 1) {
+            fileDisplayInput.value = input.files[0].name;
+        } else {
+            fileDisplayInput.value = input.files.length + "개 파일 선택됨";
+        }
+    } else {
+        fileDisplayInput.value = ''; // 파일 선택 취소 시 텍스트 필드를 비움
+    }
+}
 
 <!-- -----------------------------------------------------------------------------------------------------  -->
 <!-- 우리가그린 삭제 기능 -->

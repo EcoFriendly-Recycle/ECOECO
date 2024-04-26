@@ -1,6 +1,7 @@
 package com.recycle.ecoeco.board.notice.model.dao.manager;
 
 import com.recycle.ecoeco.board.notice.model.dto.NoticeDTO;
+import com.recycle.ecoeco.board.notice.model.dto.NoticeImageDTO;
 import com.recycle.ecoeco.common.paging.SelectCriteria;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -22,5 +23,9 @@ public interface AdminNoticeMapper {
 
     NoticeDTO noticeModify(int noticeNo);           // 공지사항 수정 페이지 이동
 
-    void updateNotice(NoticeDTO existingNotice);
+    void insertNoticeImage(NoticeImageDTO image);      // 공지사항 이미지 등록
+
+    void updateNotice(NoticeDTO existingNotice);    // 공지사항 등록 수정
+
+
 }
