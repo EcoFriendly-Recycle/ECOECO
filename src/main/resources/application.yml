@@ -33,3 +33,7 @@ mybatis:
     properties:
     mail.smtp.auth: true
     mail.smtp.starttls.enable: true
+
+
+image:
+  image-dir: src/main/resources/static/uploadFiles/

@@ -2,11 +2,18 @@ package com.recycle.ecoeco.membership.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.recycle.ecoeco.accounting.model.dto.BankAccountDTO;
-import lombok.*;
+import com.recycle.ecoeco.common.UserRole;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
 
 
 @ToString @Setter @Getter
@@ -22,13 +29,13 @@ public class UserInfoDTO implements UserDetails {
     private int userGrade;
     private int userPoint;
     private Date userDate;
-    private int userAccount;
+    private String userAccount;
     private String userAddress;
     private UserRole userRole;
 
     private boolean passResult;
 
-    private BankAccountDTO Bank_account;
+    private BankAccountDTO bankAccount;
 
     @JsonIgnore
     @Override
@@ -131,11 +138,11 @@ public class UserInfoDTO implements UserDetails {
         this.userDate = userDate;
     }
 
-    public int getUserAccount() {
+    public String getUserAccount() {
         return userAccount;
     }
 
-    public void setUserAccount(int userAccount) {
+    public void setUserAccount(String userAccount) {
         this.userAccount = userAccount;
     }
 
@@ -163,12 +170,12 @@ public class UserInfoDTO implements UserDetails {
         this.passResult = passResult;
     }
 
-    public BankAccountDTO getBank_account() {
-        return Bank_account;
+    public BankAccountDTO getBankAccount() {
+        return bankAccount;
     }
 
-    public void setBank_account(BankAccountDTO bank_account) {
-        Bank_account = bank_account;
+    public void setBankAccount(BankAccountDTO bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     @Override
