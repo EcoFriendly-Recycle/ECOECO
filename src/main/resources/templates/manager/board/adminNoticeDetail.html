@@ -28,9 +28,8 @@
 				<div class="search_wrap">
 					<div class="scrollable">
 						<!-- 이미지 삽입 -->
-						<img class="centered-image"
-							 th:src="@{${noticeDetail.image.noticePath} + ${noticeDetail.image.noticeSaveName}}"
-							 alt="이미지 설명">
+						<img class="centered-image" id="noticeImage"
+							 th:src="@{${noticeDetail.image.noticePath} + ${noticeDetail.image.noticeSaveName}}">
 
 						<!-- 첫 번째 테이블 -->
 						<table class="search_list">
@@ -92,7 +91,7 @@
 							<button class="btn btn_modify" type="button"
 									th:onclick="'noticeModify(' + ${noticeDetail.noticeNo} + ')'">수정
 							</button>
-							<button class="btn" onclick="history.back()">목록</button>
+							<button type="button" class="btn" th:onclick="|window.location.href='/manager/board/adminNoticeList'|">목록</button>
 							<button class="btn btn_del" th:onclick="'deleteNotice(' + ${noticeDetail.noticeNo} + ')'">
 								삭제
 							</button>

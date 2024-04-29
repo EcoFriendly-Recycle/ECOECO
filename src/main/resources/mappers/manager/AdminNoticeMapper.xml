@@ -149,54 +149,68 @@
     <!-- 공지사항 삭제 -->
     <update id="deleteNotice">
         UPDATE
-        Notice n
+            Notice n
         JOIN
-        Notice_Image ni ON (n.noticeNo = ni.noticeNo)
+            Notice_Image ni ON (n.noticeNo = ni.noticeNo)
         SET
-        n.noticeStatus = 'N',
-        ni.noticeImageStatus = 'N'
+            n.noticeStatus = 'N',
+            ni.noticeImageStatus = 'N'
         WHERE
-        n.noticeNo = #{noticeNo}
+            n.noticeNo = #{noticeNo}
     </update>
 
     <!-- 수정페이지에 저장된 값 출력 -->
     <select id="noticeModify" resultMap="noticeResultMap">
         SELECT
-        b.noticeNo,
-        b.noticeCategory,
-        b.noticeSubCategory,
-        b.noticeTitle,
-        b.noticeDate,
-        b.noticeDetail,
-        u.userName,
-        i.noticeImgNo,
-        i.noticeOriginFileName
+            b.noticeNo,
+            b.noticeCategory,
+            b.noticeSubCategory,
+            b.noticeTitle,
+            b.noticeDate,
+            b.noticeDetail,
+            u.userName,
+            i.noticeImgNo,
+            i.noticeOriginFileName,
+            i.noticeSaveName,
+            i.noticePath
         FROM
-        NOTICE b
+            NOTICE b
         JOIN
-        USER_INFO u ON (b.userNo = u.userNo)
+            USER_INFO u ON (b.userNo = u.userNo)
         LEFT JOIN
-        NOTICE_IMAGE i ON (b.noticeNo = i.noticeNo AND noticeImageStatus = 'Y')
+            NOTICE_IMAGE i ON (b.noticeNo = i.noticeNo AND noticeImageStatus = 'Y')
         WHERE
-        b.noticeNo = #{noticeNo}
+            b.noticeNo = #{noticeNo}
         AND
-        b.noticeStatus = 'Y'
+            b.noticeStatus = 'Y'
     </select>
 
-    <!-- 공지사항 수정 등록 -->
+    <!-- 공지사항 수정-->
     <update id="updateNotice">
         UPDATE
-        NOTICE
+            NOTICE
         SET
-        noticeCategory = #{ noticeCategory },
-        noticeSubCategory = #{ noticeSubCategory },
-        noticeTitle = #{ noticeTitle },
-        noticeDate = #{ noticeDate },
-        noticeDetail = #{ noticeDetail }
+            noticeCategory = #{ noticeCategory },
+            noticeSubCategory = #{ noticeSubCategory },
+            noticeTitle = #{ noticeTitle },
+            noticeDate = #{ noticeDate },
+            noticeDetail = #{ noticeDetail }
         WHERE
-        noticeStatus = 'Y'
+            noticeStatus = 'Y'
         AND
-        noticeNo = #{ noticeNo }
+            noticeNo = #{ noticeNo }
     </update>
 
+    <update id="updateNoticeImage">
+        UPDATE
+            NOTICE_IMAGE
+        SET
+            noticeOriginFileName = #{ noticeOriginFileName },
+            noticeSaveName = #{ noticeSaveName },
+            noticePath = #{ noticePath }
+        WHERE
+            noticeImageStatus = 'Y'
+        AND
+            noticeNo = #{ noticeNo }
+    </update>
 </mapper>

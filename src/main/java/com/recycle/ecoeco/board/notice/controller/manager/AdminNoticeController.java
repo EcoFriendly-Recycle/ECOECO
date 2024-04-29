@@ -6,6 +6,7 @@ import com.recycle.ecoeco.board.notice.model.dto.NoticeImageDTO;
 import com.recycle.ecoeco.board.notice.service.manager.AdminNoticeService;
 import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -78,13 +79,18 @@ public class AdminNoticeController {
     }
 
     @PostMapping("/write")
-    public String writeBoard(NoticeDTO notice, MultipartFile singleFile, @AuthenticationPrincipal UserInfoDTO user) {
+    public String writeBoard(NoticeDTO notice, MultipartFile singleFile,
+                             @AuthenticationPrincipal UserInfoDTO user) {
+
+        log.info("notice request : {}", notice);
+        log.info("singleFile request : {}", singleFile);
+
         String noticePath = IMAGE_DIR + "notice";
         File dir = new File(noticePath);
         if (!dir.exists()) dir.mkdirs();
 
         // 이미지 정보가 있는지 확인하고 처리
-        NoticeImageDTO attachImage = null;
+        NoticeImageDTO attachImage = new NoticeImageDTO();
         try {
             if (singleFile.getSize() > 0) {
                 // 이미지 파일이 업로드된 경우
@@ -99,11 +105,9 @@ public class AdminNoticeController {
                 singleFile.transferTo(new File(noticePath + "/" + noticeSaveName));
 
                 /* DB에 저장할 파일의 정보 설정 */
-                attachImage = new NoticeImageDTO();
                 attachImage.setNoticeOriginFileName(noticeOriginFileName);
                 attachImage.setNoticeSaveName(noticeSaveName);
                 attachImage.setNoticePath("/uploadFiles/notice/");
-
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -134,26 +138,33 @@ public class AdminNoticeController {
     // 공지사항 수정 페이지 이동
     @GetMapping("/adminNoticeModify")
     public String showNoticeWriteModifyPage(@RequestParam int noticeNo, Model model) {
-
-        // 1. 데이터 가져오기
+        // 공지사항 정보 가져오기
         NoticeDTO noticeModify = adminNoticeService.noticeModify(noticeNo);
 
-        log.info("noticeModify : {}", noticeModify);
+        // 이미지 정보 출력
+        NoticeImageDTO image = noticeModify.getImage();
+        if (image != null) {
+            System.out.println("이미지 정보: " + image.getNoticeOriginFileName());
+        } else {
+            System.out.println("이미지 정보가 없습니다.");
+        }
 
-        // 2. 모델 등록
+        // 모델에 추가
         model.addAttribute("noticeNo", noticeNo);
         model.addAttribute("noticeModify", noticeModify);
 
-        // 3. 페이지 출력
+        // 페이지 출력
         return "manager/board/adminNoticeModify";
     }
 
+    // 공지사항 수정 등록
     @PostMapping("/adminNoticeModify")
-    public String updateNotice(@RequestParam int noticeNo, NoticeDTO notice) {
-        notice.setNoticeNo(noticeNo);
+    public String updateNotice(@RequestParam int noticeNo, @ModelAttribute NoticeDTO notice,
+                               @RequestParam("singleFile") MultipartFile singleFile) {
+        // 서비스 클래스의 업데이트 메소드 호출
+        adminNoticeService.updateNotice(notice, singleFile);
 
-        adminNoticeService.updateNotice(notice);
-
+        // 수정된 공지사항 상세 페이지로 리다이렉트
         return "redirect:/manager/board/adminNoticeDetail?noticeNo=" + noticeNo;
     }
 }

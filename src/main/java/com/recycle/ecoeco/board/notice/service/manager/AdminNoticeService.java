@@ -6,21 +6,29 @@ import com.recycle.ecoeco.board.notice.model.dto.NoticeDTO;
 import com.recycle.ecoeco.board.notice.model.dto.NoticeImageDTO;
 import com.recycle.ecoeco.common.paging.Pagenation;
 import com.recycle.ecoeco.common.paging.SelectCriteria;
+import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 
 @Slf4j
 @Service
 @Transactional
 public class AdminNoticeService {
+
+    @Value("${image.image-dir}")
+    private String IMAGE_DIR;
 
     private final AdminNoticeMapper adminNoticeMapper;
 
@@ -83,11 +91,13 @@ public class AdminNoticeService {
 
     // 공지사항 작성 정보 불러오기 (수정페이지)
     public NoticeDTO noticeModify(int noticeNo) {
-        return adminNoticeMapper.noticeModify(noticeNo);
+        // 공지사항 정보 및 이미지 정보 가져오기
+        NoticeDTO notice = adminNoticeMapper.noticeModify(noticeNo);
+
+        return notice;
     }
 
-    // 공지사항 수정 등록
-    public void updateNotice(NoticeDTO notice) {
+    public void updateNotice(NoticeDTO notice, MultipartFile singleFile) {
         // 공지사항 번호로 기존 엔티티를 조회
         NoticeDTO existingNotice = adminNoticeMapper.noticeModify(notice.getNoticeNo());
 
@@ -100,15 +110,50 @@ public class AdminNoticeService {
             existingNotice.setNoticeDetail(notice.getNoticeDetail());
             existingNotice.setNoticeDate(LocalDate.now());
 
+            // 이미지 파일이 존재하는 경우
+            if (singleFile != null && !singleFile.isEmpty()) {
+                try {
+                    // 이미지 파일이 업로드된 경우
+                    String noticeOriginFileName = singleFile.getOriginalFilename();
+                    log.info("originalFileName : {}", noticeOriginFileName);
+
+                    String ext = noticeOriginFileName.substring(noticeOriginFileName.lastIndexOf("."));
+                    String noticeSaveName = UUID.randomUUID() + ext;
+                    log.info("savedFileName : {}", noticeSaveName);
+
+                    // 서버의 설정 디렉토리에 파일 저장
+                    String root = "src/main/resources/static/uploadFiles";
+                    String noticePath = root + "/notice";
+
+                    File dir = new File(noticePath);
+                    if (!dir.exists()) dir.mkdirs();
+                    singleFile.transferTo(new File(noticePath + "/" + noticeSaveName));
+
+                    // 새로운 이미지 정보 설정
+                    NoticeImageDTO newImage = new NoticeImageDTO();
+                    newImage.setNoticeOriginFileName(noticeOriginFileName);
+                    newImage.setNoticeSaveName(noticeSaveName);
+                    newImage.setNoticePath("/uploadFiles/notice/");
+
+                    // 새로운 이미지 정보에 공지사항 번호 설정
+                    newImage.setNoticeNo(existingNotice.getNoticeNo());
+
+                    // 새로운 이미지 정보를 기존 공지사항에 연결
+                    existingNotice.setImage(newImage);
+
+                    // 새로운 이미지 정보를 데이터베이스에 저장
+                    adminNoticeMapper.updateNoticeImage(newImage); // 예시 코드이므로 실제 메소드명은 적절히 변경해야 합니다.
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
             // 엔티티 저장
             adminNoticeMapper.updateNotice(existingNotice);
         } else {
             // 엔티티가 존재하지 않을 경우 예외 처리 또는 로그 등 수행
-            log.info("됐나유?");
+            log.info("공지사항이 존재하지 않습니다.");
         }
     }
 
-    // 공지사항 작성 : 이미지 저장
-    public void saveImageInfo(NoticeImageDTO attachImage) {
-    }
 }

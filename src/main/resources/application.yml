@@ -24,6 +24,10 @@ mybatis:
       mvc:
         static-path-pattern=/resources/static/**
 
+# image upload dir
+image:
+  image-dir: src/main/resources/static/uploadFiles/
+
   spring:
     mail:
     host: smtp.gmail.com
@@ -33,7 +37,3 @@ mybatis:
     properties:
     mail.smtp.auth: true
     mail.smtp.starttls.enable: true
-
-# image upload dir
-image:
-  image-dir: src/main/resources/static/uploadFiles/
