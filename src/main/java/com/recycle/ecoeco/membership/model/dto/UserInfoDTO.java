@@ -30,7 +30,7 @@ public class UserInfoDTO implements UserDetails {
 
     private boolean passResult;
 
-    private BankAccountDTO Bank_account;
+    private BankAccountDTO bankAccount;
 
     @JsonIgnore
     @Override
@@ -166,11 +166,11 @@ public class UserInfoDTO implements UserDetails {
     }
 
     public BankAccountDTO getBank_account() {
-        return Bank_account;
+        return bankAccount;
     }
 
     public void setBank_account(BankAccountDTO bank_account) {
-        Bank_account = bank_account;
+        bankAccount = bank_account;
     }
 
     @Override
