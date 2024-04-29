@@ -1,34 +1,30 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
-import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
-public class MakerDTO {
+public class MakerDTO{
     private int makerNo;
     private String makerName;
-    private String primage;
     private String email;
     private String phone;
-    private int userNo;
-    private int projectNo;
 
-    private UserInfoDTO user;
-    private ProjectDTO project;
-    public MakerDTO() {
+    private int projectNo;
+    ProjectDTO projectDTO;
+
+//    private String prImage;
+    public MakerDTO(){
+
     }
 
-    public MakerDTO(int makerNo, String makerName, String primage, String email, String phone, int userNo) {
+    public MakerDTO(String makerName){
+        this.makerName = makerName;
+    }
+
+    public MakerDTO(int makerNo, String makerName, String email, String phone, int projectNo, ProjectDTO projectDTO) {
         this.makerNo = makerNo;
         this.makerName = makerName;
-        this.primage = primage;
         this.email = email;
         this.phone = phone;
-        this.userNo = userNo;
+        this.projectNo = projectNo;
+        this.projectDTO = projectDTO;
     }
 
     public int getMakerNo() {
@@ -47,14 +43,6 @@ public class MakerDTO {
         this.makerName = makerName;
     }
 
-    public String getPrimage() {
-        return primage;
-    }
-
-    public void setPrimage(String primage) {
-        this.primage = primage;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -71,12 +59,20 @@ public class MakerDTO {
         this.phone = phone;
     }
 
-    public int getUserNo() {
-        return userNo;
+    public int getProjectNo() {
+        return projectNo;
     }
 
-    public void setUserNo(int userNo) {
-        this.userNo = userNo;
+    public void setProjectNo(int projectNo) {
+        this.projectNo = projectNo;
+    }
+
+    public ProjectDTO getProjectDTO() {
+        return projectDTO;
+    }
+
+    public void setProjectDTO(ProjectDTO projectDTO) {
+        this.projectDTO = projectDTO;
     }
 
     @Override
@@ -84,10 +80,10 @@ public class MakerDTO {
         return "MakerDTO{" +
                 "makerNo=" + makerNo +
                 ", makerName='" + makerName + '\'' +
-                ", primage='" + primage + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", userNo=" + userNo +
+                ", projectNo=" + projectNo +
+                ", projectDTO=" + projectDTO +
                 '}';
     }
 }

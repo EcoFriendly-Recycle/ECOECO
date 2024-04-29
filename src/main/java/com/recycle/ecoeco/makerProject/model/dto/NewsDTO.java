@@ -1,48 +1,18 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
-import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
-
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class NewsDTO {
-
     private int newsNo;
-    private String newsCategory;
-    private String newsTitle;
-    private String newsContent;
-    private LocalDate newsDate;
-    private String newsImage;
+    private String newsCategory;//새소식 카테고리
+    private String newsTitle;//새소식 작성
+    private String newsContent; //새소식 내용
+    private Date newsDate; // 새소식 작성날짜
+    private String newsImage; // 새소식 이미지
     private int projectNo;
-    private ProjectDTO project;
     private int userNo;
-    private UserInfoDTO userInfo;
 
-    public NewsDTO() {
-    }
-
-    public NewsDTO(int newsNo, String newsCategory, String newsTitle, String newsContent, LocalDate newsDate, String newsImage, int projectNo, int userNo) {
-        this.newsNo = newsNo;
-        this.newsCategory = newsCategory;
-        this.newsTitle = newsTitle;
-        this.newsContent = newsContent;
-        this.newsDate = newsDate;
-        this.newsImage = newsImage;
-        this.projectNo = projectNo;
-        this.userNo = userNo;
-    }
-
-    public NewsDTO(int newsNo, String newsCategory, String newsTitle, String newsContent, LocalDate newsDate, String newsImage, int projectNo, ProjectDTO project, int userNo, UserInfoDTO userInfo) {
-        this.newsNo = newsNo;
-        this.newsCategory = newsCategory;
-        this.newsTitle = newsTitle;
-        this.newsContent = newsContent;
-        this.newsDate = newsDate;
-        this.newsImage = newsImage;
-        this.projectNo = projectNo;
-        this.project = project;
-        this.userNo = userNo;
-        this.userInfo = userInfo;
-    }
+    public NewsDTO() {}
 
     public int getNewsNo() {
         return newsNo;
@@ -76,11 +46,11 @@ public class NewsDTO {
         this.newsContent = newsContent;
     }
 
-    public LocalDate getNewsDate() {
+    public Date getNewsDate() {
         return newsDate;
     }
 
-    public void setNewsDate(LocalDate newsDate) {
+    public void setNewsDate(Date newsDate) {
         this.newsDate = newsDate;
     }
 
@@ -100,14 +70,6 @@ public class NewsDTO {
         this.projectNo = projectNo;
     }
 
-    public ProjectDTO getProject() {
-        return project;
-    }
-
-    public void setProject(ProjectDTO project) {
-        this.project = project;
-    }
-
     public int getUserNo() {
         return userNo;
     }
@@ -116,27 +78,17 @@ public class NewsDTO {
         this.userNo = userNo;
     }
 
-    public UserInfoDTO getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfoDTO userInfo) {
-        this.userInfo = userInfo;
-    }
-
     @Override
     public String toString() {
         return "NewsDTO{" +
                 "newsNo=" + newsNo +
-                ", newsCategory=" + newsCategory +
+                ", newsCategory='" + newsCategory + '\'' +
                 ", newsTitle='" + newsTitle + '\'' +
                 ", newsContent='" + newsContent + '\'' +
                 ", newsDate=" + newsDate +
                 ", newsImage='" + newsImage + '\'' +
                 ", projectNo=" + projectNo +
-                ", project=" + project +
                 ", userNo=" + userNo +
-                ", userInfo=" + userInfo +
                 '}';
     }
 }
