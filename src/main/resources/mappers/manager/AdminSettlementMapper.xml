@@ -6,29 +6,30 @@
 
     <resultMap id="settlementResultMap" type="com.recycle.ecoeco.accounting.model.dto.SettlementDTO">
         <id property="settlementNo" column="settlementNo"/>
-        <association property="maker" resultMap="MakerResultMap"/>
         <association property="project" resultMap="projectResultMap"/>
+        <association property="maker" resultMap="makerResultMap"/>
+        <association property="userInfo" resultMap="userInfoResultMap"/>
     </resultMap>
 
     <resultMap id="projectResultMap" type="com.recycle.ecoeco.makerProject.model.dto.ProjectDTO">
         <id property="projectNo" column="projectNo"/>
-        <association property="maker" resultMap="MakerResultMap"/>
-        <!-- 메이커랑 뭐시기 DTO 누락시킴. 추가해야함 -->
+        <association property="maker" resultMap="makerResultMap"/>
     </resultMap>
-    <resultMap id="MakerResultMap" type="com.recycle.ecoeco.makerProject.model.dto.MakerDTO">
+
+    <resultMap id="makerResultMap" type="com.recycle.ecoeco.makerProject.model.dto.MakerDTO">
         <id property="makerNo" column="makerNo"/>
         <association property="user" resultMap="userInfoResultMap"/>
     </resultMap>
 
     <resultMap id="userInfoResultMap" type="com.recycle.ecoeco.membership.model.dto.UserInfoDTO">
         <id property="userNo" column="userNo"/>
-        <association property="Bank_account" resultMap="bank_accountResultMap"/>
+        <association property="bankAccount" resultMap="bank_accountResultMap"/>
     </resultMap>
 
     <resultMap id="bank_accountResultMap" type="com.recycle.ecoeco.accounting.model.dto.BankAccountDTO">
         <id property="accountNo" column="accountNo"/>
-
     </resultMap>
+
     <!-- 프로젝트 신규 리스트 토탈 카운트 -->
     <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT
@@ -109,54 +110,67 @@
         <!--            AND A.projectStatus in ('2','3','4')-->
         <!--        </where>-->
     </select>
+
     <select id="findSettlementList" resultMap="settlementResultMap">
         SELECT
-        s.settlementNo,
-        s.settlementStatus,
-        s.settlementPrice,
-        s.settlementDate,
-        s.makerNo,
-        s.projectNo,
-        p.endDate AS projectEndDate,
-        p.achievedAmount AS projectAchievedAmount
+            S.settlementNo,
+            S.settlementStatus,
+            S.settlementPrice,
+            S.settlementDate,
+            S.userNo,
+            S.projectNo,
+            P.endDate,
+            P.achievedAmount
         FROM
-        SETTLEMENT s
-        LEFT JOIN
-        PROJECT p ON s.projectNo = p.projectNo
+            SETTLEMENT S
+        JOIN
+            PROJECT P ON (S.projectNo = P.projectNo)
         ORDER BY
-        s.settlementNo DESC
-        LIMIT #{offset}, #{limit};
+            S.settlementNo DESC
+        LIMIT
+            #{offset}, #{limit};
     </select>
 
     <select id="settlementListDetail" resultMap="settlementResultMap">
         SELECT
-        s.settlementNo,
-        s.settlementStatus,
-        s.settlementPrice,
-        s.settlementDate,
-        m.makerNo,
-        m.makerName AS projectMaker,
-        p.projectNo,
-        p.projectName,
-        p.targetAmount,
-        p.achievedAmount,
-        ((p.achievedAmount / p.targetAmount) * 100) AS achievementRate,
-        p.serviceCharge,
-        p.endDate,
-        ui.userAccount,
-        ba.bankName
+            S.settlementNo,
+            S.settlementStatus,
+            S.settlementPrice,
+            S.settlementDate,
+            S.userNo,
+            M.makerNo,
+            M.makerName,
+            P.projectNo,
+            P.projectName,
+            P.targetAmount,
+            P.achievedAmount,
+            ((P.achievedAmount / P.targetAmount) * 100) AS achievementRate,
+            P.serviceCharge,
+            P.endDate,
+            UI.userAccount,
+            UI.accountNO,
+            BA.bankName
         FROM
-        SETTLEMENT s
+            SETTLEMENT S
         JOIN
-        PROJECT p ON s.projectNo = p.projectNo
+            PROJECT P ON S.projectNo = P.projectNo
         JOIN
-        MAKER m ON p.projectNo = m.projectNo
+            MAKER M ON P.projectNo = M.projectNo
         JOIN
-        USER_INFO ui ON m.userNo = ui.userNo
+            USER_INFO UI ON S.userNo = UI.userNo
         JOIN
-        BANK_ACCOUNT ba ON ui.userAccount = ba.accountNo
+            BANK_ACCOUNT BA ON UI.accountNO = BA.accountNo
         WHERE
-        s.settlementNo = #{settlementNo};
-
+            S.settlementNo = #{settlementNo};
     </select>
+
+    <!-- 정산 진행(정산 상태 변경) -->
+    <update id="updateSettlement" parameterType="java.util.Map">
+        UPDATE
+            SETTLEMENT
+        SET
+            settlementStatus = #{ settlementStatus }
+        WHERE
+            settlementNo = #{ settlementNo }
+    </update>
 </mapper>

@@ -11,7 +11,7 @@ import lombok.ToString;
 public class MakerDTO {
     private int makerNo;
     private String makerName;
-    private String primage;
+    private String prImage;
     private String email;
     private String phone;
     private int userNo;
@@ -22,10 +22,10 @@ public class MakerDTO {
     public MakerDTO() {
     }
 
-    public MakerDTO(int makerNo, String makerName, String primage, String email, String phone, int userNo) {
+    public MakerDTO(int makerNo, String makerName, String prImage, String email, String phone, int userNo) {
         this.makerNo = makerNo;
         this.makerName = makerName;
-        this.primage = primage;
+        this.prImage = prImage;
         this.email = email;
         this.phone = phone;
         this.userNo = userNo;
@@ -47,12 +47,12 @@ public class MakerDTO {
         this.makerName = makerName;
     }
 
-    public String getPrimage() {
-        return primage;
+    public String getPrImage() {
+        return prImage;
     }
 
-    public void setPrimage(String primage) {
-        this.primage = primage;
+    public void setPrImage(String prImage) {
+        this.prImage = prImage;
     }
 
     public String getEmail() {
@@ -84,7 +84,7 @@ public class MakerDTO {
         return "MakerDTO{" +
                 "makerNo=" + makerNo +
                 ", makerName='" + makerName + '\'' +
-                ", primage='" + primage + '\'' +
+                ", primage='" + prImage + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", userNo=" + userNo +

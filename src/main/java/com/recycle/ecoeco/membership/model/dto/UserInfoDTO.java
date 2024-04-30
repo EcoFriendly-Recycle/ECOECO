@@ -6,10 +6,11 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
 import java.util.*;
 
 
-@ToString @Setter @Getter
 public class UserInfoDTO implements UserDetails {
     private int userNo;             // 회원번호
     private String userId;
@@ -21,14 +22,15 @@ public class UserInfoDTO implements UserDetails {
     private char userGender;
     private int userGrade;
     private int userPoint;
-    private Date userDate;
-    private int userAccount;
+    private LocalDate userDate;
+    private String userAccount;
     private String userAddress;
     private UserRole userRole;
+    private String accountNo;
 
     private boolean passResult;
 
-    private BankAccountDTO Bank_account;
+    private BankAccountDTO bankAccount;
 
     @JsonIgnore
     @Override
@@ -123,19 +125,27 @@ public class UserInfoDTO implements UserDetails {
         this.userPoint = userPoint;
     }
 
-    public Date getUserDate() {
+    public LocalDate getUserDate() {
         return userDate;
     }
 
-    public void setUserDate(Date userDate) {
+    public void setUserDate(LocalDate userDate) {
         this.userDate = userDate;
     }
 
-    public int getUserAccount() {
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public String getUserAccount() {
         return userAccount;
     }
 
-    public void setUserAccount(int userAccount) {
+    public void setUserAccount(String userAccount) {
         this.userAccount = userAccount;
     }
 
@@ -163,12 +173,12 @@ public class UserInfoDTO implements UserDetails {
         this.passResult = passResult;
     }
 
-    public BankAccountDTO getBank_account() {
-        return Bank_account;
+    public BankAccountDTO getBankAccount() {
+        return bankAccount;
     }
 
-    public void setBank_account(BankAccountDTO bank_account) {
-        Bank_account = bank_account;
+    public void setBankAccount(BankAccountDTO bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     @Override

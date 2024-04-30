@@ -6,37 +6,46 @@
 
     <resultMap id="refundResultMap" type="com.recycle.ecoeco.accounting.model.dto.RefundDTO">
         <id property="refundNo" column="refundNo"/>
-        <association property="payment" resultMap="paymentResultMap"/>
+        <association property="payment" resultMap="generalPaymentResultMap"/>
+    </resultMap>
+
+    <resultMap id="generalPaymentResultMap" type="com.recycle.ecoeco.accounting.model.dto.PaymentDTO">
+        <id property="paymentNo" column="paymentNo"/>
+        <association property="order" resultMap="orderResultMap"/>
+        <association property="reward" resultMap="rewardResultMap"/>
+        <association property="project" resultMap="projectResultMap"/>
+        <association property="orderer" resultMap="userInfoResultMap"/>
     </resultMap>
 
     <resultMap id="paymentResultMap" type="com.recycle.ecoeco.accounting.model.dto.PaymentDTO">
         <id property="paymentNo" column="paymentNo"/>
-        <association property="project" resultMap="projectResultMap"/>
-        <association property="order" resultMap="orderResultMap"/>
-        <association property="reward" resultMap="rewardResultMap"/>
-        <association property="orderer" resultMap="userInfoResultMap"/>
     </resultMap>
-    <resultMap id="userInfoResultMap" type="com.recycle.ecoeco.membership.model.dto.UserInfoDTO">
-        <id property="userNo" column="userNo"/>
-        <association property="Bank_account" resultMap="bank_accountResultMap"/>
-    </resultMap>
+
     <resultMap id="projectResultMap" type="com.recycle.ecoeco.makerProject.model.dto.ProjectDTO">
         <id property="projectNo" column="projectNo"/>
-        <!-- 메이커랑 뭐시기 DTO 누락시킴. 추가해야함 -->
+        <!--        <association property="maker" resultMap="makerResultMap"/>-->
     </resultMap>
+
+    <resultMap id="makerResultMap" type="com.recycle.ecoeco.makerProject.model.dto.MakerDTO">
+        <id property="makerNo" column="makerNo"/>
+        <association property="user" resultMap="userInfoResultMap"/>
+    </resultMap>
+
+    <resultMap id="userInfoResultMap" type="com.recycle.ecoeco.membership.model.dto.UserInfoDTO">
+        <id property="userNo" column="userNo"/>
+        <association property="bankAccount" resultMap="bankAccountResultMap"/>
+    </resultMap>
+
+    <resultMap id="bankAccountResultMap" type="com.recycle.ecoeco.accounting.model.dto.BankAccountDTO">
+        <id property="accountNo" column="accountNo"/>
+    </resultMap>
+
     <resultMap id="orderResultMap" type="com.recycle.ecoeco.accounting.model.dto.OrderDTO">
         <id property="orderNo" column="orderNo"/>
-        <association property="orderer" resultMap="userInfoResultMap"/>
-        <association property="reward" resultMap="rewardResultMap"/>
     </resultMap>
+
     <resultMap id="rewardResultMap" type="com.recycle.ecoeco.makerProject.model.dto.RewardDTO">
         <id property="rewardNo" column="rewardNo"/>
-        <association property="project" resultMap="projectResultMap"/>
-    </resultMap>
-
-    <resultMap id="bank_accountResultMap" type="com.recycle.ecoeco.accounting.model.dto.BankAccountDTO">
-        <id property="accountNo" column="accountNo"/>
-
     </resultMap>
 
     <!-- 프로젝트 신규 리스트 토탈 카운트 -->
@@ -121,54 +130,63 @@
     </select>
     <select id="findRefundList" resultMap="refundResultMap">
         SELECT
-        r.refundNo,
-        r.accountnum,
-        r.refundRequestDate,
-        r.refundDate,
-        r.refundStatus,
-        r.paymentNo,
-        p.projectNo,
-        p.projectName,
-        py.paymentPrice
+            R.refundNo,
+            R.refundRequestDate,
+            R.refundDate,
+            R.refundStatus,
+            R.paymentNo,
+            P.projectNo,
+            P.projectName,
+            PY.paymentPrice
         FROM
-        REFUND r
+            REFUND R
         LEFT JOIN
-        PAYMENT py ON r.paymentNo = py.paymentNo
+            PAYMENT PY ON R.paymentNo = PY.paymentNo
         LEFT JOIN
-        PROJECT p ON py.projectNo = p.projectNo
+            PROJECT P ON PY.projectNo = P.projectNo
         ORDER BY
-        r.refundNo DESC
-        LIMIT #{offset}, #{limit};
+            R.refundNo DESC
+        LIMIT
+            #{offset}, #{limit};
 
     </select>
     <select id="refundListDetail" resultMap="refundResultMap">
         SELECT
-        rf.refundNo,
-        rf.accountnum,
-        rf.refundRequestDate,
-        rf.refundDate,
-        rf.refundStatus,
-        u.userNo,
-        u.userName,
-        u.userId,
-        u.userAccount,
-        p.projectNo,
-        p.projectName,
-        py.paymentPrice,
-        ba.bankName
+            RF.refundNo,
+            RF.refundRequestDate,
+            RF.refundDate,
+            RF.refundStatus,
+            U.userNo,
+            U.userName,
+            U.userId,
+            U.userAccount,
+            U.accountNo,
+            P.projectNo,
+            P.projectName,
+            PY.paymentPrice,
+            BA.bankName
         FROM
-        REFUND rf
+            REFUND RF
         LEFT JOIN
-        PAYMENT py ON rf.paymentNo = py.paymentNo
+            PAYMENT py ON RF.paymentNo = PY.paymentNo
         LEFT JOIN
-        USER_INFO u ON py.userNo = u.userNo
+            USER_INFO U ON PY.userNo = U.userNo
         LEFT JOIN
-        PROJECT p ON py.projectNo = p.projectNo
+            PROJECT P ON PY.projectNo = P.projectNo
         LEFT JOIN
-        BANK_ACCOUNT ba ON u.userAccount = ba.accountNo
+            BANK_ACCOUNT BA ON U.accountNo = BA.accountNo
         WHERE
-        rf.refundNo = #{refundNo};
-
-
+            RF.refundNo = #{refundNo};
     </select>
+
+    <!-- 환불 상태 변경 -->
+    <update id="updateRefund" parameterType="java.util.Map">
+        UPDATE
+            REFUND
+        SET
+            refundStatus = #{ refundStatus },
+            refundDate = curdate()
+        WHERE
+        refundNo = #{ refundNo }
+    </update>
 </mapper>

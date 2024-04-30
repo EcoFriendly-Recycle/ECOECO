@@ -19,7 +19,5 @@ public interface AdminCustomerMapper {
 
     void deleteCustomer(int userNo);
 
-    int updateCustomerGrade(UserInfoDTO userInfo);
-
-//    void updateUserInfo(int userNo, int userGrade);
+    int updateCustomerGrade(Map<String, Object> parameterMap);
 }

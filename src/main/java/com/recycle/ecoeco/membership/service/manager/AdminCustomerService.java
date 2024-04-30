@@ -43,24 +43,46 @@ public class AdminCustomerService {
         adminCustomerMapper.deleteCustomer(userNo);
     }
 
-    public boolean updateCustomerGrade(int userNo, int selectedGrade) {
-        // 사용자의 등급을 업데이트하기 전에 먼저 해당 사용자가 존재하는지 확인합니다.
-        UserInfoDTO userInfo = adminCustomerMapper.userListDetail(userNo);
+    public void updateCustomerGrade(int userNo, int userGrade) {
 
-        // 사용자가 존재하지 않으면 등급을 업데이트할 수 없으므로 false를 반환합니다.
-        if (userInfo == null) {
-            return false;
+        System.out.println("updateCustomerGrade_service");
+
+        Map<String, Object> parameterMap = new HashMap<>();
+
+        parameterMap.put("userNo", String.valueOf(userNo));
+        parameterMap.put("userGrade", userGrade);
+
+        System.out.println("userNo" + userNo);
+        System.out.println("userGrade" + userGrade);
+
+        int result = adminCustomerMapper.updateCustomerGrade(parameterMap);
+
+        System.out.println(parameterMap);
+
+        if (result > 0) {
+            System.out.println("성공");
+        } else {
+            System.out.println("실패");
         }
 
-        // 사용자가 존재하는 경우, 선택한 등급으로 사용자의 등급을 업데이트합니다.
-        userInfo.setUserGrade(selectedGrade);
+//        // 사용자의 등급을 업데이트하기 전에 먼저 해당 사용자가 존재하는지 확인합니다.
+//        UserInfoDTO userInfo = adminCustomerMapper.userListDetail(userNo);
+//
+//        // 사용자가 존재하지 않으면 등급을 업데이트할 수 없으므로 false를 반환합니다.
+//        if (userInfo == null) {
+//            return false;
+//        }
+//
+//        // 사용자가 존재하는 경우, 선택한 등급으로 사용자의 등급을 업데이트합니다.
+//        userInfo.setUserGrade(userGrade);
+//
+//        // 사용자의 등급을 업데이트하는 SQL을 실행합니다.
+//        int rowsAffected = adminCustomerMapper.updateCustomerGrade(userInfo);
+//
+//        // 등급이 성공적으로 업데이트되었는지 여부를 반환합니다.
+//        // 여기서는 업데이트된 행의 수를 기준으로 판단합니다.
+//        return rowsAffected > 0;
 
-        // 사용자의 등급을 업데이트하는 SQL을 실행합니다.
-        int rowsAffected = adminCustomerMapper.updateCustomerGrade(userInfo);
-
-        // 등급이 성공적으로 업데이트되었는지 여부를 반환합니다.
-        // 여기서는 업데이트된 행의 수를 기준으로 판단합니다.
-        return rowsAffected > 0;
     }
 
 }

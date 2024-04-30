@@ -67,4 +67,28 @@ public class AdminRefundService {
 
         return boardListAndPaging;
     }
+
+    //환불 상태 변경
+    public void updateRefund(int refundNo, String refundStatus) {
+
+//        System.out.println("updateRefund_service");
+
+        Map<String, Object> parameterMap = new HashMap<>();
+
+        parameterMap.put("refundNo", String.valueOf(refundNo));
+        parameterMap.put("refundStatus", refundStatus);
+
+//        System.out.println("refundNo" + refundNo);
+//        System.out.println("refundStatus" + refundStatus);
+
+        int result = refundMapper.updateRefund(parameterMap);
+
+//        System.out.println(parameterMap);
+
+        if (result > 0) {
+            System.out.println("성공");
+        } else {
+            System.out.println("실패");
+        }
+    }
 }

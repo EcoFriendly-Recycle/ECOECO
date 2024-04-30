@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -73,32 +74,17 @@ public class AdminSettlementController {
 
         return "manager/ordertab/settlement/settlement_info";
     }
-//@GetMapping("/settlement_info")
-//public String calculateInfo(@RequestParam int settlementNo, Model model) {
-//    SettlementDTO settlementInfo = settlementService.settlementListDetail(settlementNo);
-//    System.out.println("settlementInfo : " + settlementInfo);
-//    if (settlementInfo != null) {
-//        // 달성률 계산
-//        double achievementRate =
-//                ((double) settlementInfo.getProject().getAchievedAmount() /
-//                        (double) settlementInfo.getProject().getTargetAmount()) * 100;
-//
-//        // 소수점 두 자리까지 형식화
-//        DecimalFormat df = new DecimalFormat("#.##");
-//        String formattedAchievementRate = df.format(achievementRate);
-//
-//        // 형식화된 달성률을 DTO에 추가
-//        settlementInfo.setAchievementRate(Double.parseDouble(formattedAchievementRate));
-//
-//        log.info("settlementInfo : {}", settlementInfo);
-//        model.addAttribute("settlementInfo", settlementInfo);
-//    } else {
-//        // settlementInfo가 null일 때의 처리
-//        // 예를 들어, 에러 메시지를 모델에 추가하거나 다른 처리를 수행할 수 있습니다.
-//    }
-//
-//    return "manager/ordertab/settlement/settlement_info";
-//}
+
+    //정산 진행(정산 상태 변경)
+    @PostMapping("/updateSettlement")
+    public String updateSettlement(@RequestParam int settlementNo, @RequestParam String settlementStatus) {
+
+
+        settlementService.updateSettlement(settlementNo, settlementStatus);
+
+        // 변경 후 정산 상세 페이지로 리다이렉트
+        return "redirect:/manager/ordertab/settlement/settlement_info?settlementNo=" + settlementNo;
+    }
 
 
 }

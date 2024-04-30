@@ -30,7 +30,8 @@
     <resultMap type="com.recycle.ecoeco.makerProject.model.dto.ReviewDTO" id="projectReviewResultMap" >
         <id property="supportReviewsNo" column="supportReviewsNo"/>
         <association property="userInfo" resultMap="userInfoResultMap"/>
-        <association property="project" resultMap="ProjectResultMap"/>
+        <association property="userProfileImage" resultMap="userProfileImageResultMap"/>
+        <association property="project" resultMap="projectResultMap"/>
     </resultMap>
 
     <!-- 회원정보 리설트맵 -->
@@ -38,8 +39,13 @@
         <id property="userNo" column="userNo"/>
     </resultMap>
 
+    <!-- 회원 프로필 이미지 리설트맵 -->
+    <resultMap type="com.recycle.ecoeco.membership.model.dto.UserProfileImageDTO" id="userProfileImageResultMap" >
+        <id property="profileImageNo" column="profileImageNo"/>
+    </resultMap>
+
     <!-- 프로젝트 리설트맵 -->
-    <resultMap type="com.recycle.ecoeco.makerProject.model.dto.ProjectDTO" id="ProjectResultMap" >
+    <resultMap type="com.recycle.ecoeco.makerProject.model.dto.ProjectDTO" id="projectResultMap" >
         <id property="projectNo" column="projectNo"/>
     </resultMap>
 
@@ -515,7 +521,7 @@
         PROJECT A
         JOIN
         CATEGORY C ON(A.categoryCode = C.categoryCode)
-        JOIN
+        LEFT JOIN
         MAKER B ON(A.projectNo = B.projectNo)
         WHERE
         A.projectNo = #{ projectNo }
@@ -553,7 +559,7 @@
         PROJECT A
         JOIN
         CATEGORY C ON(A.categoryCode = C.categoryCode)
-        JOIN
+        LEFT JOIN
         MAKER B ON(A.projectNo = B.projectNo)
         WHERE
         A.projectNo = #{ projectNo }
@@ -627,10 +633,14 @@
         ,A.userNo
         ,U.userNo
         ,U.userName
+        ,UP.profileImagePath
+        ,UP.profileImageSaveName
         FROM
         SUPPORT_REVIEWS A
         JOIN
         USER_INFO U ON(A.userNo = U.userNo)
+        LEFT JOIN
+        USER_PROFILE_IMAGE UP ON(A.userNo = UP.userNo)
         WHERE
         A.projectNo = #{projectNo}
         ORDER BY

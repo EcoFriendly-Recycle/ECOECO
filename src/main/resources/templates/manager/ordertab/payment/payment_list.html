@@ -5,7 +5,7 @@
 		<aside id="lnb">
 			<ul class="menu">
 				<li><a href="/manager/customer/customer_list">회원 관리</a></li>
-				<li><a href="../project/new_project_list.html">프로젝트 관리</a></li>
+				<li><a href="/manager/project/project_new_list">프로젝트 관리</a></li>
                 <li class="btn_sub on">
 					<a href="#">결제 및 정산 관리</a>
 					<ul class="sub_menu" style="display: block;">
@@ -15,7 +15,7 @@
 						<li><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 					</ul>
 				</li>
-				<li><a href="../benefits/benefits.html">게시판관리</a></li>
+				<li><a href="/manager/board/adminNoticeList">게시판관리</a></li>
 				
 			</ul>
 		</aside>
@@ -70,8 +70,8 @@
 										<td th:text="${payment.paymentNo}"></td>
 										<td th:text="${payment.userNo}"></td>
 										<td th:text="${payment.projectNo}"></td>
-										<td th:text="${payment.paymentDate}"></td>
-										<td th:text="${payment.paymentPrice}"></td>
+										<td th:text="${#temporals.format(payment.paymentDate, 'yyyy-MM-dd HH:mm')}"></td>
+										<td th:text="${#numbers.formatInteger(payment.paymentPrice,1,'COMMA')}"></td>
 									</tr>
 
 							</table>

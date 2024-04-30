@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Log4j2
@@ -57,7 +59,18 @@ public class AdminRefundController {
         log.info("refundInfo : {}", refundInfo);
         model.addAttribute("refundInfo", refundInfo);
 
-        return "manager/ordertab/refund/refund_info";
+        return "/manager/ordertab/refund/refund_info";
 
+    }
+
+    // 환불 상태 변경
+    @PostMapping("/updateRefund")
+    public String updateRefund(@RequestParam int refundNo, @RequestParam String refundStatus) {
+
+
+        refundService.updateRefund(refundNo, refundStatus);
+
+    // 변경 후 환불 상세 페이지로 리다이렉트
+        return "redirect:/manager/ordertab/refund/refund_info?refundNo=" + refundNo;
     }
 }

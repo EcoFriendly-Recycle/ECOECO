@@ -5,7 +5,7 @@
 		<aside id="lnb">
 			<ul class="menu">
 				<li><a href="/manager/customer/customer_list">회원 관리</a></li>
-				<li><a href="../project/new_project_list.html">프로젝트 관리</a></li>
+				<li><a href="/manager/project/project_new_list">프로젝트 관리</a></li>
                 <li class="btn_sub on">
 					<a href="#">결제 및 정산 관리</a>
 					<ul class="sub_menu" style="display: block;">
@@ -15,7 +15,7 @@
 						<li><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 					</ul>
 				</li>
-				<li><a href="../benefits/benefits.html">게시판관리</a></li>
+				<li><a href="/manager/board/adminNoticeList">게시판관리</a></li>
 				
 			</ul>
 		</aside>
@@ -61,7 +61,7 @@
 									<tr>
 										<th scope="col">정산번호</th>
 										<th scope="col">프로젝트메이커 회원번호</th>
-										<th scope="col">달성금액</th>
+										<th scope="col">정산금액</th>
 										<th scope="col">정산상태</th>
 										<th scope="col">프로젝트 종료일</th>
 									</tr>
@@ -69,8 +69,8 @@
 								<tbody>
 									<tr th:each="settlement : ${ settlementList }" th:onclick="|location.href='/manager/ordertab/settlement/settlement_info?settlementNo=${settlement.settlementNo}'|">
 										<td th:text="${ settlement.settlementNo }"></td>
-										<td th:text="${ settlement.makerNo }"></td>
-										<td th:text="${ settlement.project.achievedAmount }"></td>
+										<td th:text="${ settlement.userNo }"></td>
+										<td th:text="${#numbers.formatInteger(settlement.settlementPrice,1,'COMMA')}"></td>
 										<td th:text="${ settlement.settlementStatus }"></td>
 										<td th:text="${ settlement.project.endDate }"></td>
 
