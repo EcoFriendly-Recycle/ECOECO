@@ -1,6 +1,5 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
-
 import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
 
 public class StoryDTO{
@@ -9,13 +8,14 @@ public class StoryDTO{
     private int projectNo;
     private String storySummary; //요약
     private String storyInfo; //스토리 내용(에디터에서 작성한 글)
+    
     private StoryRepImgDTO storyRepImg;
-    ProjectDTO projectDTO;
-    UserInfoDTO userInfoDTO;
+    private ProjectDTO projectDTO;
+    private UserInfoDTO userInfoDTO;
 
     public StoryDTO(){}
 
-    public StoryDTO(int storyNo, int projectNo, String storySummary, String storyInfo, StoryRepImgDTO storyRepImg, ProjectDTO projectDTO, UserInfoDTO userInfoDTO) {
+    public StoryDTO(int storyNo, int projectNo, String storySummary, String storyInfo) {
         this.storyNo = storyNo;
         this.projectNo = projectNo;
         this.storySummary = storySummary;
@@ -32,6 +32,7 @@ public class StoryDTO{
     public void setStoryNo(int storyNo) {
         this.storyNo = storyNo;
     }
+
 
     public int getProjectNo() {
         return projectNo;

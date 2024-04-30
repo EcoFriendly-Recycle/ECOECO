@@ -547,6 +547,7 @@ div.write .write_btn a.btn_list{display:inline-block; vertical-align:middle; wid
 .reviews li {margin-bottom: 20px;border-bottom: 1px solid #d5d5d5;}
 .reviews input[type="checkbox"] {position: absolute; margin-top: 37px; margin-left: 17px;}
 .reviews .profile {padding-left: 100px; position: absolute;}
+.reviews .profile img {width: 50px;}
 .reviews .name {font-size: 16px; font-weight: 600; padding-left: 170px; padding-right: 15px;}
 .reviews .category {padding-left: 10px; padding-right: 10px; color: #fff; background-color: #FF7733; border-radius:4px;}
 .reviews .category.review {background-color: #47ad57;}

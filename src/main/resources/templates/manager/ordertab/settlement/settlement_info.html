@@ -5,7 +5,7 @@
 		<aside id="lnb">
 			<ul class="menu">
 				<li><a href="/manager/customer/customer_list">회원 관리</a></li>
-				<li><a href="../project/new_project_list.html">프로젝트 관리</a></li>
+				<li><a href="/manager/project/project_new_list">프로젝트 관리</a></li>
 				<li class="btn_sub on">
 					<a href="#">결제 및 정산 관리</a>
 					<ul class="sub_menu" style="display: block;">
@@ -15,7 +15,7 @@
 						<li><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 					</ul>
 				</li>
-				<li><a href="../benefits/benefits.html">게시판관리</a></li>
+				<li><a href="/manager/board/adminNoticeList">게시판관리</a></li>
 
 			</ul>
 		</aside>		
@@ -49,7 +49,7 @@
 								<tr>
 									<td th:text="${ settlementInfo.settlementNo }"></td>
 									<td th:text="${ settlementInfo.projectNo }"></td>
-									<td th:text="${ settlementInfo.makerNo }"></td>
+									<td th:text="${ settlementInfo.project.makerNo }"></td>
 									<td th:text="${ settlementInfo.maker.makerName }"></td>
 									<td th:text="${ settlementInfo.project.projectName }"></td>
 									<td th:text="${ settlementInfo.settlementStatus }"></td>
@@ -78,8 +78,8 @@
 								</thead>
 								<tbody class="td_bcw">
 								<tr>
-									<td th:text="${ settlementInfo.project.targetAmount }"></td>
-									<td th:text="${ settlementInfo.project.achievedAmount }"></td>
+									<td th:text="${#numbers.formatInteger(settlementInfo.project.targetAmount,1,'COMMA')}"></td>
+									<td th:text="${#numbers.formatInteger(settlementInfo.project.achievedAmount,1,'COMMA')}"></td>
 									<td th:text="${ settlementInfo.achievementRate } + '%'"></td>
 									<td th:utext="${ settlementInfo.project.serviceCharge } + '%'"></td>
 								</tr>
@@ -106,11 +106,11 @@
 								</thead>
 								<tbody class="td_bcw">
 									<tr>
-										<td th:text="${ settlementInfo.project.achievedAmount*(0.01*settlementInfo.project.serviceCharge) }"></td>
-										<td th:text="${ settlementInfo.project.achievedAmount }-${ settlementInfo.project.achievedAmount*(0.01*settlementInfo.project.serviceCharge) }"></td>
+										<td th:text="${#numbers.formatInteger((settlementInfo.project.achievedAmount * (0.01 * settlementInfo.project.serviceCharge)),1,'COMMA')}"></td>
+										<td th:text="${#numbers.formatInteger(settlementInfo.project.achievedAmount - ( settlementInfo.project.achievedAmount * (0.01 * settlementInfo.project.serviceCharge)),1,'COMMA')}"></td>
 										<td th:text="${ settlementInfo.project.endDate }"></td>
-										<td th:text="${ settlementInfo.project.maker.user.bank_account.bankName }"></td>
-										<td th:text="${ settlementInfo.project.maker.user.userAccount }"></td>
+										<td th:text="${ settlementInfo.userInfo.bankAccount.bankName }"></td>
+										<td th:text="${ settlementInfo.userInfo.userAccount }"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -129,17 +129,20 @@
 								</thead>
 								<tbody class="td_bcw">
 									<tr>
-										<td th:text="${ settlementInfo.settlementDate }"></td>
+										<td th:text="${#temporals.format(settlementInfo.settlementDate, 'yyyy-MM-dd HH:mm')}"></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						
+
+						<form id="updateForm" action="/manager/ordertab/settlement/updateSettlement" method="post"></form>
 						<div class="write nshadow">
 							<div class="write_btn align_c mt35">
-								<!-- <button class="btn btn_modify" onclick="location.href ='project_modify.html'">수정</button> -->
 								<button class="btn" onclick="history.go(-1)">목록</button>
-								<button class="btn btn_del">정산 진행</button>
+								<button class="btn btn_modify" type="button"
+										th:attr="data-settlementNo=${ settlementInfo.settlementNo }, data-type='Y'"
+										onclick="cahngeStatus(this.getAttribute('data-settlementNo'), this.getAttribute('data-type'))">정산 진행
+								</button>
 							</div>
 						</div>
 					</div>
@@ -148,5 +151,31 @@
 		</div>
 	</div>
 </div>
+<script>
+	function cahngeStatus(settlementNo, type) {
+
+		if (!confirm("해당 프로젝트의 정산을 진행합니다. \n 진행하시겠습니까?")) {
+		} else {
+			// refundNo를 hidden input에 설정하여 폼 제출
+			let updateForm = document.getElementById('updateForm');
+			// refundNo를 전달할 hidden input 요소 생성
+			let input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = 'settlementNo';
+			input.value = settlementNo;
+			updateForm.appendChild(input);
+
+			// refundStatus를 전달할 hidden input 요소 생성
+			let listTypeInput = document.createElement('input');
+			listTypeInput.type = 'hidden';
+			listTypeInput.name = 'settlementStatus';
+			listTypeInput.value = type;
+			updateForm.appendChild(listTypeInput);
+
+			// 폼 제출
+			updateForm.submit();
+		}
+	}
+</script>
 </body>
 </html>

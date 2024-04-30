@@ -75,4 +75,27 @@ public class AdminSettlementService {
 
         return boardListAndPaging;
     }
+
+    //정산 진행(정산 상태 변경)
+    public void updateSettlement(int settlementNo, String settlementStatus) {
+        System.out.println("updateSettlement_service");
+
+        Map<String, Object> parameterMap = new HashMap<>();
+
+        parameterMap.put("settlementNo", String.valueOf(settlementNo));
+        parameterMap.put("settlementStatus", settlementStatus);
+
+        System.out.println("settlementNo" + settlementNo);
+        System.out.println("settlementStatus" + settlementStatus);
+
+        int result = settlementMapper.updateSettlement(parameterMap);
+
+        System.out.println(parameterMap);
+
+        if (result > 0) {
+            System.out.println("성공");
+        } else {
+            System.out.println("실패");
+        }
+    }
 }

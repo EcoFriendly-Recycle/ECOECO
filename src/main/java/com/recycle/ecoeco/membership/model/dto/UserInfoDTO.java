@@ -10,13 +10,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 
 
-@ToString @Setter @Getter
 public class UserInfoDTO implements UserDetails {
     private int userNo;             // 회원번호
     private String userId;
@@ -28,10 +28,11 @@ public class UserInfoDTO implements UserDetails {
     private char userGender;
     private int userGrade;
     private int userPoint;
-    private Date userDate;
+    private LocalDate userDate;
     private String userAccount;
     private String userAddress;
     private UserRole userRole;
+    private String accountNo;
 
     private boolean passResult;
 
@@ -130,14 +131,24 @@ public class UserInfoDTO implements UserDetails {
         this.userPoint = userPoint;
     }
 
-    public Date getUserDate() {
+    public LocalDate getUserDate() {
         return userDate;
     }
 
-    public void setUserDate(Date userDate) {
+    public void setUserDate(LocalDate userDate) {
         this.userDate = userDate;
     }
 
+    //은행번호 추가
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    // 회원 계좌번호
     public String getUserAccount() {
         return userAccount;
     }

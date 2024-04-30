@@ -59,6 +59,7 @@ public class AdminOrderController {
     @GetMapping("/orderInfo")
     public String order_info(@RequestParam int orderNo, Model model){
         OrderDTO orderInfo = adminOrderService.orderListDetail(orderNo);
+
         log.info("orderInfo : {}", orderInfo);
         model.addAttribute("orderInfo", orderInfo);
 

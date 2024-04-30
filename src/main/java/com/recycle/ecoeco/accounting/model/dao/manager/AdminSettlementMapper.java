@@ -34,4 +34,7 @@ public interface AdminSettlementMapper {
     int selectTotalCount(Map<String, String> searchMap);
 
     List<OrderDTO> findSettlementList(SelectCriteria selectCriteria);
+
+    //정산 진행(정산 상태 변경)
+    int updateSettlement(Map<String, Object> parameterMap);
 }

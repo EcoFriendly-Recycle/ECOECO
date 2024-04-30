@@ -5,14 +5,11 @@ public class MakerDTO{
     private String makerName;
     private String email;
     private String phone;
-
     private int projectNo;
     ProjectDTO projectDTO;
+  
+    public MakerDTO(){}
 
-//    private String prImage;
-    public MakerDTO(){
-
-    }
 
     public MakerDTO(String makerName){
         this.makerName = makerName;

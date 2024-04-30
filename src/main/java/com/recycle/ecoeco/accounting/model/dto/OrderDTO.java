@@ -20,16 +20,17 @@ public class OrderDTO implements java.io.Serializable{
     private String paymentCategory;
     private String paymentStatus;
     private LocalDateTime orderDate;
-    private String recipient;
-    private String orderPhone;
-    private String orderAdd;
+    private String buyerName;
+    private String buyerTel;
+    private String buyerAddr;
+    private String buyerAccount;
     private int userNo;
     private int projectNo;
     private int rewardNo;
-
+    private int accountNo;
 
     private UserInfoDTO orderer;    // 회원 DTO == 주문자
     private ProjectDTO project;     // 프로젝트 DTO -> 프로젝트명
     private RewardDTO reward;       // 리워드 DTO -> 리워드명, 금액  dto필드는 하나면 다 가능
-
+    private BankAccountDTO bankAccount;
 }

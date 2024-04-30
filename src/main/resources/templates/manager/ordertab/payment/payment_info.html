@@ -5,7 +5,7 @@
 		<aside id="lnb">
 			<ul class="menu">
 				<li><a href="/manager/customer/customer_list">회원 관리</a></li>
-				<li><a href="../project/new_project_list.html">프로젝트 관리</a></li>
+				<li><a href="/manager/project/project_new_list">프로젝트 관리</a></li>
 				<li class="btn_sub on">
 					<a href="#">결제 및 정산 관리</a>
 					<ul class="sub_menu" style="display: block;">
@@ -15,7 +15,7 @@
 						<li><a href="/manager/ordertab/refund/refund_list">취소 환불</a></li>
 					</ul>
 				</li>
-				<li><a href="../benefits/benefits.html">게시판관리</a></li>
+				<li><a href="/manager/board/adminNoticeList">게시판관리</a></li>
 
 			</ul>
 		</aside>		
@@ -47,8 +47,8 @@
 								<tbody class="td_bcw">
 									<tr>
 										<td th:text="${ paymentInfo.paymentNo }"></td>
-										<td th:text="${ paymentInfo.order.paymentStatus }"></td>
-										<td th:text="${ paymentInfo.order.orderPrice }"></td>
+										<td th:text="${ paymentInfo.order.paymentCategory }"></td>
+										<td th:text="${#numbers.formatInteger(paymentInfo.order.orderPrice,1,'COMMA')}"></td>
 										<td th:text="${ paymentInfo.projectNo }"></td>
 										<td th:text="${ paymentInfo.rewardNo }"></td>
 									</tr>
@@ -72,17 +72,17 @@
 										<th scope="col">이름</th>
 										<th scope="col">결제금액</th>
 										<th scope="col">결제일시</th>
-<!--										<th scope="col">환불은행</th>-->
-<!--										<th scope="col">환불계좌</th>-->
+										<th scope="col">환불은행</th>
+										<th scope="col">환불계좌</th>
 									</tr>
 								</thead>
 								<tbody class="td_bcw">
-								<td th:text="${ paymentInfo.orderer.userId }"></td>
-								<td th:text="${ paymentInfo.orderer.userName }"></td>
-								<td th:text="${ paymentInfo.paymentPrice }"></td>
-								<td th:text="${ paymentInfo.paymentDate }"></td>
-<!--								<td th:text="${ paymentInfo.orderer.userAccount }"></td>-->
-<!--								<td th:text="${ paymentInfo.orderer.userAccount }"></td>-->
+								<td th:text="${ paymentInfo.getOrderer.userId }"></td>
+								<td th:text="${ paymentInfo.getOrderer.userName }"></td>
+								<td th:text="${#numbers.formatInteger(paymentInfo.paymentPrice,1,'COMMA')}"></td>
+								<td th:text="${#temporals.format(paymentInfo.paymentDate, 'yyyy-MM-dd HH:mm')}"></td>
+								<td th:text="${ paymentInfo.orderer.userAccount }"></td>
+								<td th:text="${ paymentInfo.orderer.bankAccount.bankName }"></td>
 								</tbody>
 							</table>
 							<br><br><br>

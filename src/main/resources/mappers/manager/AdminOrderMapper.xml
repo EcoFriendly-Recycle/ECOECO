@@ -21,7 +21,7 @@
 
     <resultMap id="projectResultMap" type="com.recycle.ecoeco.makerProject.model.dto.ProjectDTO">
         <id property="projectNo" column="projectNo"/>
-        <!-- 메이커랑 뭐시기 DTO 누락시킴. 추가해야함 -->
+
     </resultMap>
 
     <!-- 프로젝트 신규 리스트 토탈 카운트 -->
@@ -114,18 +114,19 @@
         paymentCategory,
         paymentStatus,
         orderDate,
-        recipient,
-        orderPhone,
-        orderAdd,
+        buyerName,
+        buyerTel,
+        buyerAddr,
+        buyerAccount,
         userNo,
         projectNo,
-        rewardNo
+        rewardNo,
+        accountNo
         FROM
         `ORDER`
         ORDER BY
         orderNo DESC
         LIMIT #{offset}, #{limit};
-
     </select>
 
     <select id="orderListDetail" resultMap="orderResultMap">
@@ -137,15 +138,16 @@
         o.paymentCategory,
         o.paymentStatus,
         o.orderDate,
-        o.recipient,
-        o.orderPhone,
-        o.orderAdd,
+        o.buyerName,
+        o.buyerTel,
+        o.buyerAddr,
+        o.buyerAccount,
         o.userNo,
         u.userName,
         u.userId,
         p.projectName,
         r.rewardName,
-        r.rewardSum
+        r.rewardPrice
         FROM
         `ORDER` o
         LEFT JOIN

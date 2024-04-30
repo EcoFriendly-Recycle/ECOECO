@@ -6,13 +6,12 @@
 
     <resultMap id="userResultMap" type="com.recycle.ecoeco.membership.model.dto.UserInfoDTO">
         <id property="userNo" column="userNo"/>
-        <association property="Bank_account" resultMap="bank_accountResultMap"/>
+        <association property="bankAccount" resultMap="bankAccountResultMap"/>
 <!--        <result property="userName" column="userName"/> -->
     </resultMap>
 
-    <resultMap id="bank_accountResultMap" type="com.recycle.ecoeco.accounting.model.dto.BankAccountDTO">
+    <resultMap id="bankAccountResultMap" type="com.recycle.ecoeco.accounting.model.dto.BankAccountDTO">
         <id property="accountNo" column="accountNo"/>
-
     </resultMap>
 
 
@@ -118,8 +117,6 @@
         ORDER BY
         u.userNo DESC
         LIMIT #{offset}, #{limit}
-
-
     </select>
 
     <select id="userListDetail" resultMap="userResultMap">
@@ -137,6 +134,8 @@
         ui.userDate,
         ui.userAccount,
         ui.userAddress,
+        ui.userRole,
+        ui.accountNo,
         ba.bankName
         FROM
         USER_INFO ui
@@ -144,7 +143,6 @@
         BANK_ACCOUNT ba ON ui.userAccount = ba.accountNo
         WHERE
         ui.userNo = #{userNo};
-
     </select>
 
     <!-- 회원 삭제 -->
@@ -154,7 +152,7 @@
     </delete>
 
 
-    <update id="updateCustomerGrade" parameterType="com.recycle.ecoeco.membership.model.dto.UserInfoDTO">
+    <update id="updateCustomerGrade" parameterType="java.util.Map">
         UPDATE user_info
         SET
             userGrade = #{userGrade}

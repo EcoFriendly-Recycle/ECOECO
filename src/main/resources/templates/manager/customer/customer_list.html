@@ -10,9 +10,9 @@
 					<li class="on"><a href="/manager/customer/customer_list">회원 정보</a></li>
 				</ul>
 			</li>
-			<li><a href="../project/new_project_list.html">프로젝트 관리</a></li>
+			<li><a href="/manager/project/project_new_list">프로젝트 관리</a></li>
 			<li><a href="/manager/ordertab/order/order_list">결제 및 정산 관리</a></li>
-			<li><a href="../benefits/benefits.html">게시판관리</a></li>
+			<li><a href="/manager/board/adminNoticeList">게시판관리</a></li>
 		</ul>
 	</aside>
 	<div class="container clearfix">
@@ -55,18 +55,18 @@
 								<th scope="col">이름</th>
 								<th scope="col">아이디</th>
 								<th scope="col">가입날짜</th>
-								<th scope="col">포인트</th>
+<!--								<th scope="col">포인트</th>-->
 							</tr>
 							</thead>
 							<tbody>
 <!--							<tr th:each="customer : ${ customerList }" th:onclick="'location.href=\'/manager/customer/customer_info?userNo=\' + ${customer.userNo}'">-->
-							<tr th:each="customer : ${ customerList }" th:onclick="|location.href='/manager/customer/customerInfo?userNo=${customer.userNo}'|">
+							<tr th:each="customer : ${ customerList }" th:onclick="|location.href='/manager/customer/customer_info?userNo=${customer.userNo}'|">
 								<td th:text="${customer.userNo}"></td>
 								<td th:text="${customer.userName}"></td>
 								<td th:text="${customer.userId}"></td>
 <!--								<td th:text="${#dates.format(customer.userDate, 'yyyy-MM-dd')}"></td>-->
 								<td th:text="${ customer.userDate }"></td>
-								<td th:text="${customer.userPoint}"></td>
+<!--								<td th:text="${customer.userPoint}"></td>-->
 							</tr>
 							</tbody>
 						</table>

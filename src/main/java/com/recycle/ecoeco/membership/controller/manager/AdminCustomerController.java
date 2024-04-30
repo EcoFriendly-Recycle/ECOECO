@@ -27,6 +27,7 @@ public class AdminCustomerController {
         this.adminCustomerService = adminCustomerService;
     }
 
+    //회원 관리 리스트
     @GetMapping("/customer_list")
     public String getCustomers(@RequestParam(defaultValue = "1") int page,
                                @RequestParam(required = false) String searchCondition,
@@ -48,14 +49,16 @@ public class AdminCustomerController {
         return "/manager/customer/customer_list";
     }
 
-    @GetMapping("/customerInfo")
+    //회원 관리 상세 페이지
+    @GetMapping("/customer_info")
     public String customer_info(@RequestParam int userNo, Model model) {
         UserInfoDTO customerInfo = adminCustomerService.userListDetail(userNo);
         model.addAttribute("customerInfo", customerInfo);
 
-        return "manager/customer/customer_info";
+        return "/manager/customer/customer_info";
     }
 
+    // 회원 삭제
     @PostMapping("/delete")
     public String deleteCustomer(@RequestParam("userNo") int userNo) {
         System.out.println("======================삭제요청==================================================================");
@@ -63,18 +66,14 @@ public class AdminCustomerController {
         adminCustomerService.deleteCustomer(userNo); // 사용자 삭제 서비스 메서드 호출
         return "redirect:/manager/customer/customer_list"; // 사용자 삭제 후 회원 목록 페이지로 리다이렉트
     }
-    // 다음과 같이 업데이트 등급을 처리하는 엔드포인트를 추가합니다.
-    @PostMapping("/update-grade")
-    public String updateCustomerGrade(@RequestParam("userNo") int userNo, @RequestParam("selectedGrade") int selectedGrade) {
+    // 회원 등급 수정
+    @PostMapping("/update_grade")
+    public String updateCustomerGrade(@RequestParam("userNo") int userNo, @RequestParam("userGrade") int userGrade) {
         // 사용자 번호와 선택한 등급을 서비스에 전달하여 등급을 업데이트합니다.
-        // 서비스 메서드는 해당 사용자의 등급을 업데이트하고 업데이트 성공 여부를 반환할 것입니다.
-        boolean updateSuccess = adminCustomerService.updateCustomerGrade(userNo, selectedGrade);
+        adminCustomerService.updateCustomerGrade(userNo, userGrade);
 
-        if (updateSuccess) {
-            return "User grade updated successfully";
-        } else {
-            return "Failed to update user grade";
-        }
+        // 변경 후 회원관리 상세 페이지로 리다이렉트
+        return "redirect:/manager/customer/customer_info?userNo=" + userNo;
     }
 
 

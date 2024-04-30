@@ -1,6 +1,7 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
 import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
+import com.recycle.ecoeco.membership.model.dto.UserProfileImageDTO;
 
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ public class ReviewDTO {
     private ProjectDTO project;
     private int userNo;
     private UserInfoDTO userInfo;
+    private UserProfileImageDTO userProfileImage;
 
     public ReviewDTO() {
     }
@@ -26,17 +28,7 @@ public class ReviewDTO {
         this.userNo = userNo;
     }
 
-    public ReviewDTO(int supportReviewsNo, LocalDate supportReviewsDate, String supportReviewsContent, int supportReviewsCategory, int projectNo, int userNo, UserInfoDTO userInfo) {
-        this.supportReviewsNo = supportReviewsNo;
-        this.supportReviewsDate = supportReviewsDate;
-        this.supportReviewsContent = supportReviewsContent;
-        this.supportReviewsCategory = supportReviewsCategory;
-        this.projectNo = projectNo;
-        this.userNo = userNo;
-        this.userInfo = userInfo;
-    }
-
-    public ReviewDTO(int supportReviewsNo, LocalDate supportReviewsDate, String supportReviewsContent, int supportReviewsCategory, int projectNo, ProjectDTO project, int userNo, UserInfoDTO userInfo) {
+    public ReviewDTO(int supportReviewsNo, LocalDate supportReviewsDate, String supportReviewsContent, int supportReviewsCategory, int projectNo, ProjectDTO project, int userNo, UserInfoDTO userInfo, UserProfileImageDTO userProfileImage) {
         this.supportReviewsNo = supportReviewsNo;
         this.supportReviewsDate = supportReviewsDate;
         this.supportReviewsContent = supportReviewsContent;
@@ -45,6 +37,7 @@ public class ReviewDTO {
         this.project = project;
         this.userNo = userNo;
         this.userInfo = userInfo;
+        this.userProfileImage = userProfileImage;
     }
 
     public int getSupportReviewsNo() {
@@ -111,6 +104,14 @@ public class ReviewDTO {
         this.userInfo = userInfo;
     }
 
+    public UserProfileImageDTO getUserProfileImage() {
+        return userProfileImage;
+    }
+
+    public void setUserProfileImage(UserProfileImageDTO userProfileImage) {
+        this.userProfileImage = userProfileImage;
+    }
+
     @Override
     public String toString() {
         return "ReviewDTO{" +
@@ -122,6 +123,7 @@ public class ReviewDTO {
                 ", project=" + project +
                 ", userNo=" + userNo +
                 ", userInfo=" + userInfo +
+                ", userProfileImage=" + userProfileImage +
                 '}';
     }
 }

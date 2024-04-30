@@ -33,4 +33,7 @@ public interface AdminRefundMapper {
     int selectTotalCount(Map<String, String> searchMap);
 
     List<OrderDTO> findRefundList(SelectCriteria selectCriteria);
+
+    // 환불 상태 변경
+    int updateRefund(Map<String, Object> parameterMap);
 }
