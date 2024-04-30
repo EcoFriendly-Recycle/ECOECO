@@ -3,7 +3,7 @@ html,body{margin: 0;padding: 0; width: 100%;}
 
 /* 페이지 틀(프로젝트 생성은 모두 동일)*/
 #wrap{width: 1440px;}/*전체 요소를 감싸는 요소 (margin: 0 auto 제거한 상태)*/
-header{height: 200px; background-color: lightgray;}
+/*header{height: 200px; background-color: lightgray;}*/
 aside{width:20%; background-color: #37BD6D; float: left;min-width: 230px;}
 main{width: 82%; display: inline-block;}
 footer{height: 200px; background-color: lightgray;}
@@ -14,8 +14,9 @@ aside{flex: 1; position: relative;}
 .sticky-area ul{margin: 0; padding: 0; line-height: 50%;}
 .sticky-area ul li:nth-child(1){border-top:3px solid white;}
 .sticky-area ul li{display: block; height: 100px; border-bottom:3px solid white;  text-align: center; line-height: 100px; font-size: large; font-weight: bold;}
-.sticky-area ul li a{text-decoration: none;}
-.sticky-area ul li a:visited{color:black;}
+.sticky-area ul li a{color: black; text-decoration: none;}
+.sticky-area ul li a:visited{color: black;}
+
 
 
 .box{position:relative; width:800px; height:300px; margin: 100px auto; display: flex;}
@@ -50,4 +51,25 @@ border:2px solid black}
 
 .write-area .top-area{height: 5%;}
 .write-area .bottom-area{height: 95%;}
+
+
+/* 에디터 CSS(토스트 아님) */
+.editor-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+}ㄴ
+.editor-toolbar {
+    margin-bottom: 10px;
+}
+.editor-toolbar button {
+    margin-right: 5px;
+}
+.editor-content {
+    min-height: 200px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.resizable-img {
+    cursor: pointer;
+}
 

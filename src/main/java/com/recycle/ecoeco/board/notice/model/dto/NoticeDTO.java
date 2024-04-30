@@ -8,7 +8,6 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 
-@Getter @Setter @ToString
 public class NoticeDTO {
 
     private int noticeNo;                   // 공지사항 번호
@@ -25,11 +24,11 @@ public class NoticeDTO {
 
     private char noticeStatus;              // 공지사항 삭제여부
 
-    private int userNo;
+    private int userNo;                     // 공지사항 사용자 번호
 
-    private UserInfoDTO writer;             // 회원DTO에 이름 == 공지사항DTO 작성자 (관리자만 해당)
+    private UserInfoDTO writer;             // 작성자
 
-    private NoticeImageDTO image;
+    private NoticeImageDTO image;           // 이미지
 
     public NoticeDTO() {}
 
@@ -44,5 +43,101 @@ public class NoticeDTO {
         this.userNo = userNo;
         this.writer = writer;
         this.image = image;
+    }
+
+    public int getNoticeNo() {
+        return noticeNo;
+    }
+
+    public void setNoticeNo(int noticeNo) {
+        this.noticeNo = noticeNo;
+    }
+
+    public String getNoticeCategory() {
+        return noticeCategory;
+    }
+
+    public void setNoticeCategory(String noticeCategory) {
+        this.noticeCategory = noticeCategory;
+    }
+
+    public String getNoticeSubCategory() {
+        return noticeSubCategory;
+    }
+
+    public void setNoticeSubCategory(String noticeSubCategory) {
+        this.noticeSubCategory = noticeSubCategory;
+    }
+
+    public String getNoticeTitle() {
+        return noticeTitle;
+    }
+
+    public void setNoticeTitle(String noticeTitle) {
+        this.noticeTitle = noticeTitle;
+    }
+
+    public String getNoticeDetail() {
+        return noticeDetail;
+    }
+
+    public void setNoticeDetail(String noticeDetail) {
+        this.noticeDetail = noticeDetail;
+    }
+
+    public LocalDate getNoticeDate() {
+        return noticeDate;
+    }
+
+    public void setNoticeDate(LocalDate noticeDate) {
+        this.noticeDate = noticeDate;
+    }
+
+    public char getNoticeStatus() {
+        return noticeStatus;
+    }
+
+    public void setNoticeStatus(char noticeStatus) {
+        this.noticeStatus = noticeStatus;
+    }
+
+    public int getUserNo() {
+        return userNo;
+    }
+
+    public void setUserNo(int userNo) {
+        this.userNo = userNo;
+    }
+
+    public UserInfoDTO getWriter() {
+        return writer;
+    }
+
+    public void setWriter(UserInfoDTO writer) {
+        this.writer = writer;
+    }
+
+    public NoticeImageDTO getImage() {
+        return image;
+    }
+
+    public void setImage(NoticeImageDTO image) {
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "NoticeDTO{" +
+                "noticeNo=" + noticeNo +
+                ", noticeCategory='" + noticeCategory + '\'' +
+                ", noticeSubCategory='" + noticeSubCategory + '\'' +
+                ", noticeTitle='" + noticeTitle + '\'' +
+                ", noticeDetail='" + noticeDetail + '\'' +
+                ", noticeDate=" + noticeDate +
+                ", noticeStatus=" + noticeStatus +
+                ", userNo=" + userNo +
+                ", writer=" + writer +
+                ", image=" + image +
+                '}';
     }
 }

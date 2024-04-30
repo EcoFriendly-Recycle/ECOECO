@@ -2,13 +2,19 @@ package com.recycle.ecoeco.membership.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.recycle.ecoeco.accounting.model.dto.BankAccountDTO;
-import lombok.*;
+import com.recycle.ecoeco.common.UserRole;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 
 public class UserInfoDTO implements UserDetails {
@@ -133,6 +139,7 @@ public class UserInfoDTO implements UserDetails {
         this.userDate = userDate;
     }
 
+    //은행번호 추가
     public String getAccountNo() {
         return accountNo;
     }
@@ -141,6 +148,7 @@ public class UserInfoDTO implements UserDetails {
         this.accountNo = accountNo;
     }
 
+    // 회원 계좌번호
     public String getUserAccount() {
         return userAccount;
     }

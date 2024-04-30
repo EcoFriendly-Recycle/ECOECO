@@ -1,21 +1,28 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
-public class StoryDTO {
+import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
+
+public class StoryDTO{
+
     private int storyNo;
-    private String storySummary;
-    private String storyImg;
-    private String storyInfo;
     private int projectNo;
+    private String storySummary; //요약
+    private String storyInfo; //스토리 내용(에디터에서 작성한 글)
+    
+    private StoryRepImgDTO storyRepImg;
+    private ProjectDTO projectDTO;
+    private UserInfoDTO userInfoDTO;
 
-    public StoryDTO() {
-    }
+    public StoryDTO(){}
 
-    public StoryDTO(int storyNo, String storySummary, String storyImg, String storyInfo, int projectNo) {
+    public StoryDTO(int storyNo, int projectNo, String storySummary, String storyInfo) {
         this.storyNo = storyNo;
-        this.storySummary = storySummary;
-        this.storyImg = storyImg;
-        this.storyInfo = storyInfo;
         this.projectNo = projectNo;
+        this.storySummary = storySummary;
+        this.storyInfo = storyInfo;
+        this.storyRepImg = storyRepImg;
+        this.projectDTO = projectDTO;
+        this.userInfoDTO = userInfoDTO;
     }
 
     public int getStoryNo() {
@@ -26,20 +33,21 @@ public class StoryDTO {
         this.storyNo = storyNo;
     }
 
+
+    public int getProjectNo() {
+        return projectNo;
+    }
+
+    public void setProjectNo(int projectNo) {
+        this.projectNo = projectNo;
+    }
+
     public String getStorySummary() {
         return storySummary;
     }
 
     public void setStorySummary(String storySummary) {
         this.storySummary = storySummary;
-    }
-
-    public String getStoryImg() {
-        return storyImg;
-    }
-
-    public void setStoryImg(String storyImg) {
-        this.storyImg = storyImg;
     }
 
     public String getStoryInfo() {
@@ -50,22 +58,40 @@ public class StoryDTO {
         this.storyInfo = storyInfo;
     }
 
-    public int getProjectNo() {
-        return projectNo;
+    public StoryRepImgDTO getStoryRepImg() {
+        return storyRepImg;
     }
 
-    public void setProjectNo(int projectNo) {
-        this.projectNo = projectNo;
+    public void setStoryRepImg(StoryRepImgDTO storyRepImg) {
+        this.storyRepImg = storyRepImg;
+    }
+
+    public ProjectDTO getProjectDTO() {
+        return projectDTO;
+    }
+
+    public void setProjectDTO(ProjectDTO projectDTO) {
+        this.projectDTO = projectDTO;
+    }
+
+    public UserInfoDTO getUserInfoDTO() {
+        return userInfoDTO;
+    }
+
+    public void setUserInfoDTO(UserInfoDTO userInfoDTO) {
+        this.userInfoDTO = userInfoDTO;
     }
 
     @Override
     public String toString() {
         return "StoryDTO{" +
                 "storyNo=" + storyNo +
-                ", storySummary='" + storySummary + '\'' +
-                ", storyImg='" + storyImg + '\'' +
-                ", storyInfo='" + storyInfo + '\'' +
                 ", projectNo=" + projectNo +
+                ", storySummary='" + storySummary + '\'' +
+                ", storyInfo='" + storyInfo + '\'' +
+                ", storyRepImg=" + storyRepImg +
+                ", projectDTO=" + projectDTO +
+                ", userInfoDTO=" + userInfoDTO +
                 '}';
     }
 }

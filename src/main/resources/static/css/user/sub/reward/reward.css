@@ -2,8 +2,7 @@
 html,body{margin: 0;padding: 0; width: 100%;}
 
 /* 페이지 틀(프로젝트 생성은 모두 동일)*/
-#wrap{max-width: 1440px;}/*전체 요소를 감싸는 요소 (margin: 0 auto 제거한 상태)*/ 
-header{height: 200px; background-color: lightgray;}
+#wrap{max-width: 1440px;}/*전체 요소를 감싸는 요소 (margin: 0 auto 제거한 상태)*/
 aside{width:25%; background-color: #37BD6D; float: left; min-width: 230px;}
 main{width: 75%; display: inline-block; padding: 50px;}
 footer{height: 200px; background-color: lightgray;}
@@ -37,8 +36,8 @@ position: fixed;}
 .cancel-img img{width: 50px; height: 50px;}
 .m-frame{width:800px; background-color: white; border-radius: 10px; border: 2px solid lightgray;
 transform: translate(75%, 10%);}
-.m-frame .pp__title{font-size: xx-large; font-weight: bold;}
-.m-frame .pp{ width: 80%; font-size:medium; font-weight: 700; margin-top:20px;
+.pp__title{font-size: xx-large; font-weight: bold;}
+.pp{ width: 80%; font-size:medium; font-weight: 700; margin-top:20px;
 margin-bottom:5px; color:gray;}
 .m-frame input[type=text]{display: block; width: 80%;height: 70px; font-size: 25px;}
 .m-margin-frame{width: 75%; margin: 0 auto;}
@@ -56,11 +55,11 @@ color: #fff;}
 .add:hover{background-color: #36a362;}
 .add:active{background-color: #42d47c;}
 
+/* 모달(등록,수정) 스크립트를 위한 클래스 */
+.m-block{display: block;}
+/* modifyModal.html 불러온 구역*/
+.modify-area{width:100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 7; display: none;position: fixed;}
 
-/* 모달 스크립트를 위한 클래스 */
-.m-block{
-    display: block;
-}
 
 
 /*프로젝트 생성 선택구역(공통 스타일)*/
@@ -70,7 +69,7 @@ color: #fff;}
 .box{position:relative; width:55%; border: 3px solid lightgray; border-radius: 10px; margin:50px 0 100px 0;}
 .r-area p{margin: 0;}
 .r-info{width: 80%; height:100%; padding-left: 50px; }
-.r-success{width: 350px; height: 200px;border:2px solid lightgray; border-radius: 10px; margin-bottom:5px;
+.r-box{width: 350px; height: 200px;border:2px solid lightgray; border-radius: 10px; margin-bottom:5px;
     position: relative; }
 .r-creat-btn{width: 350px; height: 200px; margin-top:10px;}
 .saveBtn-area{ width: 100%; height: 200px; margin: 0 auto; text-align: center;}
@@ -93,6 +92,6 @@ color: #fff;}
 .r-mark p{font-size:15px; font-weight: bold;}
 /* 리워드 수정 버튼 */
 
-.r-success-btn{position: absolute; bottom: 0; }
-.r-success-btn button{width:80px; height: 35px; font-weight: bold;}
+.r-box-btn{position: absolute; bottom: 0; }
+.r-box-btn button{width:80px; height: 35px; font-weight: bold;}
 .rewrite-btn{background-color: #37BD6D; }
