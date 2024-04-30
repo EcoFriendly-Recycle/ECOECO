@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메이커 정보</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/header.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/user/sub/maker/maker.css}">
 </head>
 <body>
-   
-    <header>
-    
-    </header>
+
+<div th:replace="~{/user/common/header.html}"></div>
     <div id="wrap">
     
         <div class="subwrap">
         <aside>
             <div class="sticky-area">
                 <ul>
-                    <li><a href="/user/sub/projectInfo/projectInfo">프로젝트 작성</a></li>
-                    <li><a href="/user/sub/story/story">스토리 정보</a></li>
-                    <li><a href="/user/sub/reward/reward">리워드 설계</a></li>
-                    <li><a href="/user/sub/maker/maker">메이커 정보</a></li>
+                    <li><a href="/user/project/projectInfo/projectInfo">프로젝트 작성</a></li>
+                    <li><a href="/user/project/story/story">스토리 정보</a></li>
+                    <li><a href="/user/project/reward/reward">리워드 설계</a></li>
+                    <li><a href="/user/project/maker/maker">메이커 정보</a></li>
                 </ul>
             </div>
         </aside>
         <main>
+            <form method="post" action="/user/project/maker/maker">
             <div class="maker__title">
                 <p class="main-title">메이커 정보</p>
             </div>
@@ -32,7 +32,7 @@
                 <div class="maker__info">
                     <p class="maker__sub-title">메이커명</p>
                     <p class="maker__sub">법인 사업자는 법인등기부상 법인명 / 개인 사업자는 주민등록상 성명 또는 상호 / 개인은 주민등록상 성명을 입력해 주세요.</p>
-                    <input type="text">
+                    <input type="text" name="makerName">
                 </div>
             </div>
 
@@ -48,20 +48,21 @@
             <div class="box">
                 <div class="maker__info">
                     <p class="maker__sub-title">문의 이메일</p>
-                    <input type="text">
+                    <input type="text" name="email">
                 </div>
             </div>
 
             <div class="box">
                 <div class="maker__info">
                     <p class="maker__sub-title">문의 전화번호</p>
-                    <input type="text">
+                    <input type="text" name="phone">
                 </div>
             </div>
 
                 <div class="saveBtn-area">
                     <button class="saveBtn">저장하기</button>
                 </div>
+            </form>
         </main>
         <footer>
             
@@ -72,13 +73,9 @@
 
 </footer>
 
-    
 
+<script src="/js/user/common/header.js"></script>
 <!-- 현재 적용하지 않은 html(필요시 변경하여 사용예정) -->
 <!-- <p class="main-sub">법인 사업자는 법인등기부상 법인명 / 개인 사업자는 주민등록상 성명 또는 상호 / 개인은 주민등록상 성명을 입력해 주세요.</p> -->
-
-
-
-
 </body>
 </html>

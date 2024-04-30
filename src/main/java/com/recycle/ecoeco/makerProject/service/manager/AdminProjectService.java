@@ -188,7 +188,8 @@ public class AdminProjectService {
 
         parameterMap.put("projectNo", String.valueOf(projectDTO.getProjectNo()) != null ? projectDTO.getProjectNo() : 0);
         parameterMap.put("categoryCode", String.valueOf(projectDTO.getCategoryCode()) != null ? projectDTO.getCategoryCode() : 0);
-        parameterMap.put("projectStatus", projectDTO.getProjectStatus() != null ? projectDTO.getProjectStatus() : 0);
+        //parameterMap.put("projectStatus", projectDTO.getProjectStatus() != null ? projectDTO.getProjectStatus() : 0);
+        parameterMap.put("projectStatus", projectDTO.getProjectStatus());
         parameterMap.put("startDate", projectDTO.getStartDate());
         parameterMap.put("endDate", projectDTO.getEndDate());
         parameterMap.put("phone", makerDTO.getPhone());
