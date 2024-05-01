@@ -6,7 +6,7 @@ html,body{margin: 0;padding: 0; width: 100%;}
 /*header{height: 200px; background-color: lightgray;}*/
 aside{width:20%; background-color: #37BD6D; float: left;min-width: 230px;}
 main{width: 82%; display: inline-block;}
-footer{height: 200px; background-color: lightgray;}
+
 
 .subwrap{display: flex;}
 aside{flex: 1; position: relative;}
@@ -25,7 +25,7 @@ aside{flex: 1; position: relative;}
 .box .left-area .p-sub{width:300px;}
 
 .left-area{width: 45%; height:100%;}
-.right-area{width: 55%; height:100%;}
+.right-area{width: 55%; height:100%; padding-top: 70px;padding-left: 100px;}
 .top-area{width: 100%; height:40%;}
 .bottom-area{width: 100%; height:60%;}
 
@@ -37,11 +37,11 @@ aside{flex: 1; position: relative;}
 .left-area .p-title {margin-bottom:0;}
 
 /* 대표 이미지 업로드 */
-input[type="file"]{
-    display: none;
-}
-.imgBtn{width:300px; height: 200px; background-color: #b9bdba; margin:50px auto; text-align: center;
-border:2px solid black}
+/*input[type="file"]{*/
+/*    display: none;*/
+/*}*/
+/*.imgBtn{width:300px; height: 200px; background-color: #b9bdba; margin:50px auto; text-align: center;*/
+/*border:2px solid black}*/
 
 /* 스토리 작성 */
 .write-area{height: 600px; display: flex; flex-direction: column;}
@@ -53,14 +53,18 @@ border:2px solid black}
 .write-area .bottom-area{height: 95%;}
 
 
+.saveBtn-area{ width: 100%; height: 200px;text-align: center;margin-left: 37%;margin-bottom: 50px;}
+.saveBtn{ width: 300px; height:100px;  border-radius: 10px; background-color: #37BD6D; border-style: none; font-weight: bold; font-size: large; color: white;}
+.saveBtn:hover{background-color:#36a362;}
+.writeClear{width: 300px; height:100px; border-radius: 10px; border-style: none; box-sizing: border-box; font-weight: bold; font-size: large; color: white;}
 /* 에디터 CSS(토스트 아님) */
 .editor-container {
     border: 1px solid #ccc;
     padding: 10px;
 }ㄴ
-.editor-toolbar {
-    margin-bottom: 10px;
-}
+ .editor-toolbar {
+     margin-bottom: 10px;
+ }
 .editor-toolbar button {
     margin-right: 5px;
 }

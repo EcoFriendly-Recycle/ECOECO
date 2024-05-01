@@ -52,7 +52,7 @@
                     <tr class="settlement_detail" th:if="${settlementDTO != null}">
                         <td th:text="${settlementDTO.settlementPrice}"></td>            <!--settlementPrice -->
                         <td th:text="${settlementDTO.project.serviceCharge}"></td>      <!--serviceCharge -->
-                        <td th:text="${settlementDTO.settlementPrice} * (1 - ${settlementDTO.project.serviceCharge}/100)"></td>            <!--settlementPrice*(1-serviceCharge) -->
+                        <td th:text="${settlementDTO.settlementPrice} * (1 - ${settlementDTO.project.serviceCharge}/100).toFixed(0)"></td>     <!--settlementPrice*(1-serviceCharge) -->
                     </tr>
                 </table>
             </form>
