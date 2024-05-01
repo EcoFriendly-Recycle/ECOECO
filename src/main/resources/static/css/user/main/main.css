@@ -5,6 +5,7 @@
 }
 .container img {
     width: 100%;
+    height: 400px;
 }
 
 /* 진행중인 프로젝트 */
@@ -29,6 +30,8 @@
 }
 .inglists .item img {
     width: 100%;
+    width: 100%;
+    height: 140px;
     max-height: 140px;
     border-radius: 5px;
 }
@@ -36,14 +39,14 @@
 /* 오픈예정 프로젝트 베너 */
 .soon_img {
     width: 100%;
-    height: auto;
+    height: 415px;
 }
 
 .soon_banner {
     max-width: 1440px;
     position: relative;
     cursor: pointer;
-    /*height: 350px;*/
+    height: 436px
 }
 .soon_cover {
     position: absolute;
@@ -183,7 +186,7 @@
     justify-content: center;
     padding: 0 30px;
     margin-bottom: 50px;
-    border-bottom: 1px solid dimgray;
+    /*border-bottom: 1px solid dimgray;*/
     padding-bottom: 20px;
     width: 100%;
 }
