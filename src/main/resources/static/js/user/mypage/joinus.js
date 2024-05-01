@@ -173,6 +173,7 @@ window.onload = function() {
             })
 
             if (!mustAgreeChecked) {
+                alert("필수 동의 항목을 모두 체크해주세요.");
                 return false;       // 필수 동의 항목 모두 체크 안됬을때 false 반환
             }
             return true;        // 모든 유효성 검사가 됬을때 true 반환
