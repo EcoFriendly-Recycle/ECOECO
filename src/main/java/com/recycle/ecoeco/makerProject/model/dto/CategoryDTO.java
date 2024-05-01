@@ -3,7 +3,7 @@ package com.recycle.ecoeco.makerProject.model.dto;
 public class CategoryDTO {
     private int categoryCode;
     private String categoryName;
-    ProjectDTO projectDTO;
+    private ProjectDTO projectDTO;
 
 
     public CategoryDTO(){}
