@@ -4,105 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 페이지</title>
-    
-    <style>
-        h1 {
-            text-align: center;
-            border-bottom: 2px solid gray;
-            padding-top: 30px;
-            padding-bottom: 60px;
-        }
-        .line {
-            border-bottom: 1px solid gray;
-            width: 1200px;
-            margin: 0;
-        }
-        .line .text {
-            font-weight: 600; font-size: 16px;
-        }
-        .number-text {
-            font-size: 13px;
-            color:rgb(122, 122, 122)
-        }
-
-        /* 페이지 넘김 버튼 */
-        button {
-        display: inline-block;
-        padding: 10px 15px;
-        margin: 5px;
-        color: #080808;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        }
-
-        /* 버튼 호버 효과 */
-        button:hover {
-            background-color: #9dbee0;
-        }
-
-        /* 활성 버튼 스타일 */
-        button.pagination {
-            color: #717272;
-        }
-
-        /* 셀렉션 박스 */
-        .selection-box {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        /* 텍스트 박스 스타일 */
-        .selection-box select {
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-         /* 검색 박스 스타일 */
-         .search-box {
-            display: flex;
-            align-items: center;
-        }
-    </style>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/borad/notice.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/footer.css}"/>
+    <script th:src="@{/js/main/user/header.js}"></script>
+    <script th:src="@{/js/board/notice/user/notice.js}"></script>
 </head>
+
 <body>
+<div th:replace="~{/user/common/header::header}"></div>
     <h1>공지 사항</h1>
+    <a href="/user/borad/noticeClickDetailPage">
     <div class="line">
         <p class="text">우리동네 크라우드펀딩 지원사업 참여 메이커 모집</p>
         <p class="number-text">2024.03.25</p>
-        <img src="../../../static/images/user/main/city1.png" alt="image" width="150" height="150">
+        <img src="/images/user/main/city1.png" alt="image" width="150" height="150">
     </div>
+    </a>
+    <a href="/user/borad/noticeClickDetailPage">
     <div class="line">
         <p class="text">우리동네 크라우드펀딩 지원사업 참여 메이커 모집</p>
         <p class="number-text">2024.03.25</p>
-        <img src="../../../static/images/user/main/flower1.png" alt="image" width="150" height="150">
+        <img src="/images/user/main/flower1.png" alt="image" width="150" height="150">
     </div>
+    </a>
+    <a href="/user/borad/noticeClickDetailPage">
     <div class="line">
         <p class="text">우리동네 크라우드펀딩 지원사업 참여 메이커 모집</p>
         <p class="number-text">2024.03.25</p>
-        <img src="../../../static/images/user/main/flower2.png" alt="image" width="150" height="150">
+        <img src="/images/user/main/flower2.png" alt="image" width="150" height="150">
     </div>
+    </a>
+    <a href="/user/borad/noticeClickDetailPage">
     <div class="line">
         <p class="text">우리동네 크라우드펀딩 지원사업 참여 메이커 모집</p>
         <p class="number-text">2024.03.25</p>
-        <img src="../../../static/images/user/main/forest1.png" alt="image" width="150" height="150">
+        <img src="/images/user/main/forest1.png" alt="image" width="150" height="150">
     </div>
+    </a>
+    <a href="/user/borad/noticeClickDetailPage">
     <div class="line">
         <p class="text">우리동네 크라우드펀딩 지원사업 참여 메이커 모집</p>
         <p class="number-text">2024.03.25</p>
-        <img src="../../../static/images/user/main/river1.png" alt="image" width="150" height="150">
+        <img src="/images/user/main/river1.png" alt="image" width="150" height="150">
     </div>
+    </a>
+    <a href="/user/borad/noticeClickDetailPage">
     <div class="line">
         <p class="text">우리동네 크라우드펀딩 지원사업 참여 메이커 모집</p>
         <p class="number-text">2024.03.25</p>
-        <img src="../../../static/images/user/main/tower1.png" alt="image" width="150" height="150">
+        <img src="/images/user/main/tower1.png" alt="image" width="150" height="150">
     </div>
+    </a>
 
     <!-- 페이지 넘김 버튼 -->
     <div class="pagination">
@@ -126,8 +79,13 @@
 
     <!-- 검색 박스 -->
     <div class="search-box">
-        <input type="text" id="search">
+        <input type="text" id="searchInput">
         <button onclick="search()">검색</button>
     </div>
+    <!-- 검색 결과를 표시할 공간을 추가 -->
+    <div id="searchResults"></div>
+
+    <div th:replace="/user/common/footer.html"></div>
+    <script src="/js/board/notice/user/notice.js"></script>
 </body>
 </html>
