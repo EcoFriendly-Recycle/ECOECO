@@ -13,56 +13,54 @@
 
 
 <body>
-        <header th:fragment="header">
-            <div class="top">
-               <button class="login ljBtn btn" onclick="location.href='/login'">로그인</button>
-               <button class="join ljBtn btn" onclick="location.href='/joinus'">회원가입</button>
-               <button class="project btn" onclick="location.href='/user/project/projectInfo/projectInfo'">프로젝트 만들기</button>
+<header th:fragment="header">
+    <div class="top">
+        <button class="login ljBtn btn">로그인</button>
+        <button class="join ljBtn btn">회원가입</button>
+        <button class="project btn" onclick="location.href='/user/project/projectInfo/projectInfo'">프로젝트 만들기</button>
+    </div>
+    <div class="middle">
+        <div class="logo">
+            <a href="/main"><img src="/images/user/common/ecoeco_logo.png" alt="에코에코 로고"></a>
+        </div>
+    </div>
+    <div class="bottom">
+        <nav class="gnb">
+            <ul class="gnb-ul">
+                <li class="gnb-cate gnb-li">카테고리</li>
+                <li class="gnb-li"><a href="">인기</a></li>
+                <li class="gnb-li"><a href="">신규</a></li>
+                <li class="gnb-li"><a href="">마감임박</a></li>
+                <li class="gnb-li"><a href="">오픈예정</a></li>
+                <li class="gnb-community gnb-li"><a href="">커뮤니티</a></li>
+                <li class="gnb-li"><input type="text" class="search" placeholder="Search"></li>
+            </ul>
+            <div class="sub-category-area">
+                <ul class="sub-category">
+                    <li><a href="">서브서브</a></li>
+                    <li><a href="">서브</a></li>
+                    <li><a href="">서브서브</a></li>
+                    <li><a href="">서브</a></li>
+                    <li><a href="">서브서브</a></li>
+                    <li><a href="">서브</a></li>
+                    <li><a href="">서브서브</a></li>
+                    <li><a href="">서브</a></li>
+                </ul>
             </div>
-            <div class="middle">
-                <div class="logo">
-                    <img src="/images/user/common/ecoeco_logo.png" alt="에코에코 로고">
-                </div>
+            <div class="sub-community-area">
+                <ul class="sub-community">
+                    <li><a href="">우리가 그린</a></li>
+                    <li><a href="">공지사항</a></li>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">이벤트</a></li>
+                </ul>
             </div>
-            <div class="bottom">
-                <nav class="gnb">
-                    <ul class="gnb-ul">
-                        <li class="gnb-cate gnb-li">카테고리</li>
-                        <li class="gnb-li"><a href="">인기</a></li>
-                        <li class="gnb-li"><a href="">신규</a></li>
-                        <li class="gnb-li"><a href="">마감임박</a></li>
-                        <li class="gnb-li"><a href="">오픈예정</a></li>
-                        <li class="gnb-community gnb-li"><a href="">커뮤니티</a></li>
-                        <li class="gnb-li"><input type="text" class="search" placeholder="Search"></li>
-                    </ul>
-                    <div class="sub-category-area">
-                        <ul class="sub-category">
-                            <li><a href="">서브서브</a></li>
-                            <li><a href="">서브서브</a></li>
-                            <li><a href="">서브서브</a></li>
-                            <li><a href="">서브서브</a></li>
-                            <li><a href="">서브서브</a></li>
-                            <li><a href="">서브서브</a></li>
-                            <li><a href="">서브서브</a></li>
-                            <li><a href="">서브서브</a></li>
-                        </ul>
-                    </div>
-                    <div class="sub-community-area">
-                        <ul class="sub-community">
-                            <li><a href="">우리가 그린</a></li>
-                            <li><a href="">공지사항</a></li>
-                            <li><a href="">FAQ</a></li>
-                            <li><a href="">이벤트</a></li>
-                        </ul>
-                    </div>      
-                </nav>
-            </div>
-        </header>
-
-        <script type="text/javascript" th:src="@{/js/user/mypage/headerAfterLogin.js}"></script>
+        </nav>
+    </div>
+</header>
 
 
-        <script src="../../../../../../../../../../../dev/ECOECO/src/main/resources/static/js/user/common/header.js"></script>
+<script src="/js/user/common/header.js"></script>
 
 </body>
 </html>
