@@ -53,15 +53,17 @@ aside{flex: 1; position: relative;}
 .write-area .bottom-area{height: 95%;}
 
 
-.saveBtn-area{ width: 100%; height: 200px;text-align: center;margin-left: 37%;margin-bottom: 50px;}
-.saveBtn{ width: 300px; height:100px;  border-radius: 10px; background-color: #37BD6D; border-style: none; font-weight: bold; font-size: large; color: white;}
-.saveBtn:hover{background-color:#36a362;}
-.writeClear{width: 300px; height:100px; border-radius: 10px; border-style: none; box-sizing: border-box; font-weight: bold; font-size: large; color: white;}
+.storyBtn-area{width: 100%; text-align: center; margin-left: 0%; margin-bottom: 50px;
+}
+.storyBtn{ width: 300px; height:100px;  border-radius: 10px; background-color: #37BD6D; border-style: none; font-weight: bold; font-size: large; color: white;}
+.storyBtn:hover{background-color:#36a362;}
+/*.writeClear{width: 300px; height:100px; border-radius: 10px; border-style: none; box-sizing: border-box; font-weight: bold; font-size: large; color: white;}*/
+
 /* 에디터 CSS(토스트 아님) */
 .editor-container {
     border: 1px solid #ccc;
     padding: 10px;
-}ㄴ
+}
  .editor-toolbar {
      margin-bottom: 10px;
  }
