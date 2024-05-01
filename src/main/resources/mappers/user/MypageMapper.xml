@@ -46,7 +46,7 @@
         <id property="settlementNo" column="settlementNo"/>
         <association property="maker" column="makerNo" resultMap="myPageMakerResultMap">
             <result property="userNo" column="userNo"/>
-            <result property="user" column="user"/>
+            <result property="userInfo" column="userNo"/>
         </association>
         <association property="project" column="projectNo" resultMap="myPageProjectResultMap">
             <result property="serviceCharge" column="serviceCharge"/>
@@ -87,8 +87,8 @@
         <result property="newsImage" column="newsImage"/>
         <result property="projectNo" column="projectNo"/>
         <result property="userNo" column="userNo"/>
-        <association property="projectNo" column="projectNo"/>
-        <association property="userNo" column="userNo"/>
+        <association property="project" column="projectNo"/>
+        <association property="userInfo" column="userNo"/>
     </resultMap>
 
     <!-- 아이디 중복 체크 -->
@@ -357,18 +357,18 @@
 
     <select id="getNewsList" resultMap="myPageNewsResultMap">
         SELECT
-        newsNo,
-        newsCategory,
-        newsTitle,
-        newsContent,
-        newsDate,
-        newsImage,
-        projectNo,
-        userNo
+            newsNo,
+            newsCategory,
+            newsTitle,
+            newsContent,
+            newsDate,
+            newsImage,
+            projectNo,
+            userNo
         FROM
-        news
+            news
         WHERE
-        projectNo = #{ projectNo } AND userNo = #{ userNo }
+            projectNo = #{ projectNo }
     </select>
 
     <select id="getRegistNewsDetail" resultMap="myPageNewsResultMap">

@@ -125,7 +125,7 @@ public class MakerDTO {
                 ", projectNo=" + projectNo +
                 ", makerProfileDTOList=" + makerProfileDTOList +
                 ", user=" + user +
-                ", project=" + project +
+//                ", project=" + project +
                 '}';
     }
 }
