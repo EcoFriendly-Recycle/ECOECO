@@ -100,18 +100,20 @@ window.onload = function() {
 
     /* 아이디 중복 검사 */
     document.getElementById('duplicationCheck').addEventListener('click', function() {
-        var userId = document.getElementById('userId').value;
+        const userId = document.getElementById('userId').value;
 
         // AJAX 요청
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.open('GET', '/user/mypage/selectUserById?userId=' + userId, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
-                var response = xhr.responseText;
+                const response = xhr.responseText;
                 if (response === "true") {
                     document.getElementById('duplicationResult').innerText = "이미 사용 중인 아이디입니다.";
+                    document.getElementById('duplicationResult').style.color = "red";
                 } else {
                     document.getElementById('duplicationResult').innerText = "사용할 수 있는 아이디입니다.";
+                    document.getElementById('duplicationResult').style.color = "green";
                 }
             } else {
                 console.error('Request failed. Error code: ' + xhr.status);

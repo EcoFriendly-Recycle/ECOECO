@@ -6,71 +6,57 @@
     <title>Payment_Status</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/user/mypage/mypagemain.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/user/header.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/user/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/footer.css}">
 
 </head>
 <body>
 
-    <div style="height: 340px; width: 1440px;">
-        <header th:replace="user/common/header :: headerFragment">
+<div style="height: 340px; width: 100%;">
+    <header th:replace="/user/common/header"></header>
+</div>
 
-        </header>
-    </div>
+<main style="height: 900px; width: 1440px;">
+    <aside th:replace="/user/mypage/mypage_SideBar"></aside>
 
-    <main style="height: 850px; width: 1440px;">
-        <div class="mypageSM" style="float: left; width: 20%; height: 850px;">
-            <!-- 서포터 메이커 마이페이지 이동 버튼-->
-            <div class="toggleButton">
-                <button id="supporterButton" onclick="location.href='user/mypage/mypageMain'">서포터</button>
-                <button id="makerButton" onclick="location.href='user/mypage/mypageMain_Maker'">메이커</button>
-            </div>
-            <!-- 프로필 사진 -->
-            <div class="profileImg">
-                <em class="inputProfileImage" style="background-image: url(/images/user/common/myPageProfile02.png);"></em>
-            </div>
-            <!-- 포인트 -->
-            <div class="pointBox">
-                <input type="text" name="point" id="point" value="여기에 회원 포인트 들어감">
-            </div>
+    <div style="float: left; width: 70%; height: 850px;">
+
+        <div>
+            <h2>결제현황 조회</h2>
+            <hr style="text-align: left; margin-left: 0px; width: 90%;"><br>
         </div>
 
-        <div style="float: left; width: 80%; height: 850px;">
-            
-            <div>
-                <h2>결제현황 조회</h2>
-                <hr style="text-align: left; margin-left: 0px; width: 70%;"><br>
-            </div>
-
+        <form id="payment_StatusForm" action="/user/mypage/payment_Status">
             <table id="payment_Status_table">
                 <tr class="payment_Status_title">
-                    <th scope="col">결제번호</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">아이디</th>
-                    <th scope="col">프로젝트번호</th>
-                    <th scope="col">결제상태</th>
-                    <th scope="col">결제일시</th>
-                    <th scope="col">결제금액</th>                    
+                    <th scope="col">결제번호</th>       <!-- paymentNo -->
+                    <th scope="col">이름</th>          <!-- userName -->
+                    <th scope="col">아이디</th>        <!-- userId -->
+                    <th scope="col">프로젝트번호</th>   <!-- projectNo -->
+                    <th scope="col">결제번호</th>       <!-- apiPayNo -->
+                    <th scope="col">결제일시</th>       <!-- paymentDate -->
+                    <th scope="col">결제금액</th>       <!-- paymentPrice -->
                 </tr>
-                <tr class="payment_Status_detail">
-                    <td>paymentNo</td>
-                    <td>userName</td>
-                    <td>userId</td>
-                    <td>projectNo</td>
-                    <td>paymentStatus</td>
-                    <td>paymentDate</td>
-                    <td>paymentPrice</td>             
-                </tr>                
+                <tr th:each="paymentDTO: ${paymentDTO}" class="payment_Status_detail">
+                    <td th:text="${paymentDTO.paymentNo}"></td>             <!-- paymentNo -->
+                    <td th:text="${paymentDTO.orderer.userName}"></td>      <!-- userName -->
+                    <td th:text="${paymentDTO.orderer.userId}"></td>        <!-- userId -->
+                    <td th:text="${paymentDTO.projectNo}"></td>             <!-- projectNo -->
+                    <td th:text="${paymentDTO.apiPayNo}"></td>              <!-- apiPayNo -->
+                    <td th:text="${paymentDTO.paymentDate}"></td>           <!-- paymentDate -->
+                    <td th:text="${paymentDTO.paymentPrice}"></td>          <!-- paymentPrice -->
+                </tr>
             </table>
+        </form>
 
-        </div>
-    </main>
-
-    <div style="height: 322px; width: 1440px;">
-        <footer th:replace="user/common/footer :: footerFragment">
-
-        </footer>
     </div>
+</main>
+
+<div style="height: 322px; width: 100%;">
+    <footer th:replace="user/common/footer :: footerFragment">
+
+    </footer>
+</div>
 
 </body>
 </html>
