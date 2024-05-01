@@ -3,56 +3,62 @@
     max-width: 1440px;
     margin: 0 auto;
 }
+
+/* 메인베너 이미지 */
 .container img {
     width: 100%;
-}
-
-/* 진행중인 프로젝트 */
-.ingtitle {
-    font-size: 30px;
-    text-align: left;
-    margin-left: 170px;
+    height: auto;
     margin-top: 50px;
 }
-.inglists{
+
+/* 메인 프로젝트 */
+.ingTitle {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+.ingLists{
     display: flex;
     flex-wrap: wrap;
-    gap: 2em;
+    gap: 3em;
     justify-content: center;
     padding: 0 30px;
     margin-bottom: 50px;
 }
-.inglists .item {
+.ingLists .item {
     min-height: 200px;
     flex-basis: 250px;
     flex-grow: 0;
 }
-.inglists .item img {
+.ingLists .item img {
     width: 100%;
     max-height: 140px;
     border-radius: 5px;
 }
 
-/* 오픈예정 프로젝트 베너 */
+/* 오픈예정 프로젝트 베너 이미지 */
 .soon_img {
     width: 100%;
     height: auto;
 }
 
+/* 오픈예정 베너이미지, 커버이미지, 텍스트 */
 .soon_banner {
     max-width: 1440px;
     position: relative;
     cursor: pointer;
-    /*height: 350px;*/
 }
+
+/* 오픈예정 프로젝트 커버 이미지 */
 .soon_cover {
     position: absolute;
     background-repeat: no-repeat;
     width: 100%;
-    height: 80%;
-    top: 50%;
+    height: 70%;
+    top: 10%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     background-color: white;
     opacity: 0.2;
     z-index: 1;
@@ -79,6 +85,7 @@
     position: absolute;
 
 }
+/* 오픈예정 최상단 텍스트 */
 .soon_text1 {
     display: block;
     font-size: 50px;
@@ -91,6 +98,7 @@
     text-align: center;
     width: 80%;
 }
+/* 오픈예정 중간층 텍스트 */
 .soon_text2 {
     font-weight: inherit;
     font-size: 50px;
@@ -99,6 +107,7 @@
     padding-left: 950px;
     z-index: 2;
 }
+/* 오픈예정 최하층 텍스트 */
 .soon_text3 {
     display: inline-block;
     font-size: 35px;
@@ -111,14 +120,17 @@
     text-align: center;
     width: 80%;
 }
+
+
+/* ======================== 섹션 프로젝트 ============================= */
 /* 인기 프로젝트 */
-.populartitle {
+.popularTitle {
     font-size: 30px;
     text-align: left;
     margin-left: 200px;
     margin-top: 50px;
 }
-.popularlists {
+.popularLists {
     display: flex;
     flex-wrap: wrap;
     gap: 2em;
@@ -129,25 +141,54 @@
     padding-bottom: 20px;
     width: 100%;
 }
-.popularlists .item {
+.popularLists .item {
     min-height: 200px;
     flex-basis: 250px;
     flex-grow: 0;
 }
-.popularlists .item img {
+.popularLists .item img {
+    width: 100%;
+    max-height: 140px;
+    border-radius: 5px;
+}
+
+/* 오픈예정 프로젝트 */
+.openTitle {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+.openLists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 0 30px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid dimgray;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.openLists .item {
+    min-height: 200px;
+    flex-basis: 250px;
+    flex-grow: 0;
+}
+.openLists .item img {
     width: 100%;
     max-height: 140px;
     border-radius: 5px;
 }
 
 /* 신규 프로젝트 */
-.newtitle {
+.newTitle {
     font-size: 30px;
     text-align: left;
     margin-left: 200px;
     margin-top: 50px;
 }
-.newlists {
+.newLists {
     display: flex;
     flex-wrap: wrap;
     gap: 2em;
@@ -158,25 +199,25 @@
     padding-bottom: 20px;
     width: 100%;
 }
-.newlists .item {
+.newLists .item {
     min-height: 200px;
     flex-basis: 250px;
     flex-grow: 0;
 }
-.newlists .item img {
+.newLists .item img {
     width: 100%;
     max-height: 140px;
     border-radius: 5px;
 }
 
-/* 마감 프로젝트 */
-.deadlinetitle {
+/* 마감임박 프로젝트 */
+.closeTitle {
     font-size: 30px;
     text-align: left;
     margin-left: 200px;
     margin-top: 50px;
 }
-.deadlinelists {
+.closeLists {
     display: flex;
     flex-wrap: wrap;
     gap: 2em;
@@ -187,12 +228,43 @@
     padding-bottom: 20px;
     width: 100%;
 }
-.deadlinelists .item {
+.closeLists .item {
     min-height: 200px;
     flex-basis: 250px;
     flex-grow: 0;
 }
-.deadlinelists .item img {
+.closeLists .item img {
+    width: 100%;
+    max-height: 140px;
+    border-radius: 5px;
+}
+
+/* ========================= 카테고리 프로젝트 ======================= */
+/* 카테고리 이름 */
+.categoryTitle {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+/* 카테고리 리스트 */
+.categoryLists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 0 30px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid dimgray;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.categoryLists .item {
+    min-height: 200px;
+    flex-basis: 250px;
+    flex-grow: 0;
+}
+.categoryLists .item img {
     width: 100%;
     max-height: 140px;
     border-radius: 5px;
