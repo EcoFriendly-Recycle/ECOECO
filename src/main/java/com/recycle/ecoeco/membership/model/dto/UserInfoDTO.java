@@ -33,6 +33,7 @@ public class UserInfoDTO implements UserDetails {
     private int orderNo;
     private PaymentDTO payment;
     private OrderDTO order;
+
     public UserInfoDTO() {}
 
     public UserInfoDTO(int userNo, String userId, String userPwd, String userName, String userPnum, String userEmail, String userBirth, char userGender, int userGrade, int userPoint, LocalDate userDate, int userAccount, String userAddress, UserRole userRole, boolean passResult, BankAccountDTO bank_account, int paymentNo, int orderNo, PaymentDTO payment, OrderDTO order) {
