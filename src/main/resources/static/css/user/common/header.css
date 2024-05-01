@@ -13,7 +13,7 @@ header{display: flex; flex-direction: column; box-shadow: 0 4px 12px gray;}
 .gnb .gnb-ul .gnb-li{display: block; width: 150px; height: 50px; text-align: center;
     line-height:50px;}
 .gnb .gnb-ul .gnb-li{font-weight: bold;}
-.gnb .gnb-ul .gnb-li a{text-decoration: none;}
+.gnb .gnb-ul .gnb-li a{text-decoration: none; color: black;}
 .gnb .gnb-ul .gnb-li a:visited{color: black;}
 .gnb .gnb-ul .gnb-li > input[type=text] { border: 2px solid lightgray; border-radius: 10px; height: 30px;}
 
@@ -27,15 +27,15 @@ input::placeholder{
     text-indent: 25px;
 }
 /* 서브 카테고리 영역 */
-.sub-category-area{width: 100%;}
+.sub-category-area{width: 100%;display: none;}
 .sub-category{display: flex; flex-direction: row; margin: 0; padding: 0; justify-content: center;}
 .sub-category li{display: block; width: 129px; height: 50px; text-align: center; line-height:50px;}
-.sub-category li a{text-decoration: none;}
+.sub-category li a{text-decoration: none; color: black;}
 .sub-category li a:visited{color: black;}
 
 /* 서브 커뮤니티 영역 */
 .sub-community-area{width: 100%; display: none;}
 .sub-community{display: flex; flex-direction: row; margin: 0; padding: 0; justify-content: center;}
 .sub-community li{display: block; width: 180px; height: 50px; text-align: center; line-height:50px;}
-.sub-community li a{text-decoration: none;}
+.sub-community li a{text-decoration: none; color: black;}
 .sub-community li a:visited{color: black;}
