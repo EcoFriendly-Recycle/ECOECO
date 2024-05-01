@@ -3,15 +3,15 @@ package com.recycle.ecoeco.makerProject.model.dto;
 
 public class StoryRepImgDTO {
 
-        private int storyNo; //스토리 번호
-        private String storyImageFileName;// 스토리 이미지 원본명
-        private String storyImageSaveName; // 스토리 이미지 저장명
-        private String storyImagePath;// 스토리 이미지 경로명
-        private int projectNo;  // 프로젝트 번호
+    private int storyNo; //스토리 번호
+    private String storyImageFileName;// 스토리 이미지 원본명
+    private String storyImageSaveName; // 스토리 이미지 저장명
+    private String storyImagePath;// 스토리 이미지 경로명
+    private int projectNo;  // 프로젝트 번호
 
-        ProjectDTO projectDTO;
+    private ProjectDTO projectDTO;
 
-        public StoryRepImgDTO(){}
+    public StoryRepImgDTO(){}
 
 
     public StoryRepImgDTO(int storyNo, String storyImageFileName, String storyImageSaveName, String storyImagePath, int projectNo, ProjectDTO projectDTO) {

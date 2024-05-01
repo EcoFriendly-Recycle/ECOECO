@@ -1,4 +1,4 @@
-html,body{margin: 0; padding: 0; width: 100%;}
+/*html,body{margin: 0; padding: 0; width: 100%;}*/
 /* #wrap{max-width: 1440px;} */
 header{display: flex; flex-direction: column; box-shadow: 0 4px 12px gray;}
 .top{display: flex; flex-direction: row; justify-content:flex-end; padding-top: 10px; padding-right: 10px;}
@@ -11,14 +11,14 @@ header{display: flex; flex-direction: column; box-shadow: 0 4px 12px gray;}
 .gnb{width: 100%;}
 .gnb .gnb-ul{display: flex; flex-direction: row; margin: 0; padding: 0; justify-content: center;}
 .gnb .gnb-ul .gnb-li{display: block; width: 150px; height: 50px; text-align: center;
-line-height:50px;}
+    line-height:50px;}
 .gnb .gnb-ul .gnb-li{font-weight: bold;}
 .gnb .gnb-ul .gnb-li a{text-decoration: none;}
 .gnb .gnb-ul .gnb-li a:visited{color: black;}
 .gnb .gnb-ul .gnb-li > input[type=text] { border: 2px solid lightgray; border-radius: 10px; height: 30px;}
 
 input[type=text]{
-    background-image: url(./magnifier.png);
+    background-image: url(/static/images/user/common/magnifier.png);
     background-repeat : no-repeat;
     background-size: 18px;
     background-position: 3% 45%;
@@ -27,7 +27,7 @@ input::placeholder{
     text-indent: 25px;
 }
 /* 서브 카테고리 영역 */
-.sub-category-area{width: 100%; display: none;}
+.sub-category-area{width: 100%;}
 .sub-category{display: flex; flex-direction: row; margin: 0; padding: 0; justify-content: center;}
 .sub-category li{display: block; width: 129px; height: 50px; text-align: center; line-height:50px;}
 .sub-category li a{text-decoration: none;}
