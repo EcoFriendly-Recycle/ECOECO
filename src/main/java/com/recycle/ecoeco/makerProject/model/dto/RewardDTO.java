@@ -3,19 +3,19 @@ package com.recycle.ecoeco.makerProject.model.dto;
 public class RewardDTO{
     private int rewardNo;//리워드 번호
     private String rewardName;
-    private int rewardSum; //리워드 금액
+    private int rewardPrice; //리워드 금액
     private String rewardInfo; //리워드 설명
     private int projectNo; //프로젝트 번호
-    ProjectDTO projectDTO;
+    private ProjectDTO projectDTO;
 
     public RewardDTO(){
 
     }
 
-    public RewardDTO(int rewardNo, String rewardName, int rewardSum, String rewardInfo, int projectNo, ProjectDTO projectDTO) {
+    public RewardDTO(int rewardNo, String rewardName, int rewardPrice, String rewardInfo, int projectNo, ProjectDTO projectDTO) {
         this.rewardNo = rewardNo;
         this.rewardName = rewardName;
-        this.rewardSum = rewardSum;
+        this.rewardPrice = rewardPrice;
         this.rewardInfo = rewardInfo;
         this.projectNo = projectNo;
         this.projectDTO = projectDTO;
@@ -37,12 +37,12 @@ public class RewardDTO{
         this.rewardName = rewardName;
     }
 
-    public int getRewardSum() {
-        return rewardSum;
+    public int getRewardPrice() {
+        return rewardPrice;
     }
 
-    public void setRewardSum(int rewardSum) {
-        this.rewardSum = rewardSum;
+    public void setRewardPrice(int rewardPrice) {
+        this.rewardPrice = rewardPrice;
     }
 
     public String getRewardInfo() {
@@ -74,7 +74,7 @@ public class RewardDTO{
         return "RewardDTO{" +
                 "rewardNo=" + rewardNo +
                 ", rewardName='" + rewardName + '\'' +
-                ", rewardSum=" + rewardSum +
+                ", rewardSum=" + rewardPrice +
                 ", rewardInfo='" + rewardInfo + '\'' +
                 ", projectNo=" + projectNo +
                 ", projectDTO=" + projectDTO +

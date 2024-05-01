@@ -1,27 +1,36 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
-public class MakerDTO{
+import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
+
+import java.util.List;
+
+public class MakerDTO {
     private int makerNo;
     private String makerName;
+    private String prImage;
     private String email;
     private String phone;
+    private int userNo;
     private int projectNo;
-    ProjectDTO projectDTO;
-  
-    public MakerDTO(){}
 
+    List<MakerProfileDTO> makerProfileDTOList;
 
-    public MakerDTO(String makerName){
-        this.makerName = makerName;
+    private UserInfoDTO user;
+    private ProjectDTO project;
+    public MakerDTO() {
     }
 
-    public MakerDTO(int makerNo, String makerName, String email, String phone, int projectNo, ProjectDTO projectDTO) {
+    public MakerDTO(int makerNo, String makerName, String prImage, String email, String phone, int userNo, int projectNo, List<MakerProfileDTO> makerProfileDTOList, UserInfoDTO user, ProjectDTO project) {
         this.makerNo = makerNo;
         this.makerName = makerName;
+        this.prImage = prImage;
         this.email = email;
         this.phone = phone;
+        this.userNo = userNo;
         this.projectNo = projectNo;
-        this.projectDTO = projectDTO;
+        this.makerProfileDTOList = makerProfileDTOList;
+        this.user = user;
+        this.project = project;
     }
 
     public int getMakerNo() {
@@ -40,6 +49,14 @@ public class MakerDTO{
         this.makerName = makerName;
     }
 
+    public String getPrImage() {
+        return prImage;
+    }
+
+    public void setPrImage(String prImage) {
+        this.prImage = prImage;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -56,6 +73,14 @@ public class MakerDTO{
         this.phone = phone;
     }
 
+    public int getUserNo() {
+        return userNo;
+    }
+
+    public void setUserNo(int userNo) {
+        this.userNo = userNo;
+    }
+
     public int getProjectNo() {
         return projectNo;
     }
@@ -64,12 +89,28 @@ public class MakerDTO{
         this.projectNo = projectNo;
     }
 
-    public ProjectDTO getProjectDTO() {
-        return projectDTO;
+    public List<MakerProfileDTO> getMakerProfileDTOList() {
+        return makerProfileDTOList;
     }
 
-    public void setProjectDTO(ProjectDTO projectDTO) {
-        this.projectDTO = projectDTO;
+    public void setMakerProfileDTOList(List<MakerProfileDTO> makerProfileDTOList) {
+        this.makerProfileDTOList = makerProfileDTOList;
+    }
+
+    public UserInfoDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserInfoDTO user) {
+        this.user = user;
+    }
+
+    public ProjectDTO getProject() {
+        return project;
+    }
+
+    public void setProject(ProjectDTO project) {
+        this.project = project;
     }
 
     @Override
@@ -77,10 +118,14 @@ public class MakerDTO{
         return "MakerDTO{" +
                 "makerNo=" + makerNo +
                 ", makerName='" + makerName + '\'' +
+                ", prImage='" + prImage + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", userNo=" + userNo +
                 ", projectNo=" + projectNo +
-                ", projectDTO=" + projectDTO +
+                ", makerProfileDTOList=" + makerProfileDTOList +
+                ", user=" + user +
+                ", project=" + project +
                 '}';
     }
 }

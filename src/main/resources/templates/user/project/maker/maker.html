@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메이커 정보</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/footer.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/user/sub/maker/maker.css}">
 </head>
 <body>
 
 <div th:replace="~{/user/common/header.html}"></div>
-    <div id="wrap">
-    
-        <div class="subwrap">
+<div id="wrap">
+
+    <div class="subwrap">
         <aside>
             <div class="sticky-area">
                 <ul>
@@ -24,54 +25,53 @@
             </div>
         </aside>
         <main>
-            <form method="post" action="/user/project/maker/maker">
-            <div class="maker__title">
-                <p class="main-title">메이커 정보</p>
-            </div>
-            <div class="box">
-                <div class="maker__info">
-                    <p class="maker__sub-title">메이커명</p>
-                    <p class="maker__sub">법인 사업자는 법인등기부상 법인명 / 개인 사업자는 주민등록상 성명 또는 상호 / 개인은 주민등록상 성명을 입력해 주세요.</p>
-                    <input type="text" name="makerName">
+            <form method="post" action="/user/project/registMaker" enctype="multipart/form-data">
+                <input type="hidden" name="projectNo" id="projectNo" th:value="${ projectNo }">
+                <div class="maker__title">
+                    <p class="main-title">메이커 정보</p>
                 </div>
-            </div>
+                <div class="box">
+                    <div class="maker__info">
+                        <p class="maker__sub-title">메이커명</p>
+                        <p class="maker__sub">법인 사업자는 법인등기부상 법인명 / 개인 사업자는 주민등록상 성명 또는 상호 / 개인은 주민등록상 성명을 입력해 주세요.</p>
+                        <input type="text" name="makerName">
+                    </div>
+                </div>
 
-            <div class="box">
-                <div class="maker__info">
-                    <p class="maker__sub-title">메이커 프로필 이미지</p>
-                    <p class="maker__sub">3MB 이하의 JPG, JPEG, PNG 파일
-                        해상도 300x300 픽셀 이상</p>
-                    <input type="file">
+                <div class="box">
+                    <div class="maker__info">
+                        <p class="maker__sub-title">메이커 프로필 이미지</p>
+                        <p class="maker__sub">3MB 이하의 JPG, JPEG, PNG 파일
+                            해상도 300x300 픽셀 이상</p>
+                        <input type="file" name="makerProfile">
+                    </div>
                 </div>
-            </div>
 
-            <div class="box">
-                <div class="maker__info">
-                    <p class="maker__sub-title">문의 이메일</p>
-                    <input type="text" name="email">
+                <div class="box">
+                    <div class="maker__info">
+                        <p class="maker__sub-title">문의 이메일</p>
+                        <input type="text" name="email">
+                    </div>
                 </div>
-            </div>
 
-            <div class="box">
-                <div class="maker__info">
-                    <p class="maker__sub-title">문의 전화번호</p>
-                    <input type="text" name="phone">
+                <div class="box">
+                    <div class="maker__info">
+                        <p class="maker__sub-title">문의 전화번호</p>
+                        <input type="text" name="phone">
+                    </div>
                 </div>
-            </div>
 
                 <div class="saveBtn-area">
-                    <button class="saveBtn">저장하기</button>
+                    <button class="saveBtn" style="font-weight: bold; font-size: large; color: white;">저장하기</button>
                 </div>
             </form>
         </main>
         <footer>
-            
+
         </footer>
     </div>
 </div>
-<footer>
-
-</footer>
+<div th:replace="~{/user/common/footer.html}"></div>
 
 
 <script src="/js/user/common/header.js"></script>
