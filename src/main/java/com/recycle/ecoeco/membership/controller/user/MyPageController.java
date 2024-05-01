@@ -77,6 +77,7 @@ public class MyPageController {
 
         return ResponseEntity.ok().body(Map.of("loginStatus", loginStatus));
     }
+
     /* 아이디 중복 검사 */
     @ResponseBody
     @GetMapping("/selectUserById")
