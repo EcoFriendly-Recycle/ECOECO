@@ -1,12 +1,12 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Document</title>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
 
-<!--</head>-->
+</head>
 
 <!-- 
     <div th:replace="~{/user/common/header.html::header}"></div>(헤더 적용할 html에 적용, 위치는 body 최상단)
@@ -19,7 +19,7 @@
             <div class="top">
                <button class="login ljBtn btn" onclick="location.href='/login'">로그인</button>
                <button class="join ljBtn btn" onclick="location.href='/joinus'">회원가입</button>
-               <button class="project btn">프로젝트 만들기</button>
+                <button class="project btn" onclick="location.href='/user/project/projectInfo/projectInfo'">프로젝트 만들기</button>
             </div>
             <div class="middle">
                 <div class="logo">
@@ -63,11 +63,11 @@
                 </nav>
             </div>
         </header>
+<script type="text/javascript" th:src="@{/js/user/mypage/headerAfterLogin.js}"></script>
+<script src="/js/user/common/header.js"></script>
     </div>
 
-<script type="text/javascript" th:src="@{/js/user/mypage/headerAfterLogin.js}"></script>
 
-<script src="/js/user/common/header.js"></script>
 
 </body>
 </html>

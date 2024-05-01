@@ -1,5 +1,7 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
+import com.recycle.ecoeco.membership.model.dto.UserInfoDTO;
+
 import java.sql.Date;
 
 public class NewsDTO {
@@ -11,8 +13,26 @@ public class NewsDTO {
     private String newsImage; // 새소식 이미지
     private int projectNo;
     private int userNo;
+    private ProjectDTO project;
+    private UserInfoDTO userInfo;
 
     public NewsDTO() {}
+
+    public ProjectDTO getProject() {
+        return project;
+    }
+
+    public void setProject(ProjectDTO project) {
+        this.project = project;
+    }
+
+    public UserInfoDTO getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfoDTO userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public int getNewsNo() {
         return newsNo;
@@ -89,6 +109,8 @@ public class NewsDTO {
                 ", newsImage='" + newsImage + '\'' +
                 ", projectNo=" + projectNo +
                 ", userNo=" + userNo +
+                ", project=" + project +
+                ", userInfo=" + userInfo +
                 '}';
     }
 }

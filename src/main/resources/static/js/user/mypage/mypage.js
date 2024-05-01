@@ -7,28 +7,6 @@ function closeRefundModal() {
     document.getElementById("refundmodal").style.display = "none";
 }
 
-// function checkRefundModal() {
-//     const orderNo = document.getElementById('orderNo').value;
-//
-//     console.log(orderNo);
-//     fetch('/user/mypage/mypage_SupportProject_Detail?orderNo=' + orderNo,{
-//         method: 'POST', //
-//         headers: {
-//             'Content-Type': 'application/json' // 요청의 본문 형식을 JSON으로 지정합니다.
-//         }
-//     })
-//         .then(response => {
-//             // 응답을 확인하고 응답에 따른 동작을 수행합니다.
-//             if (response.ok) {
-//                 alert("주문 취소가 완료 되었습니다.");
-//                 window.location.href = '/user/mypage/mypage_SupportProject'; //
-//             } else {
-//                 // 응답이 오류 상태인 경우, 오류 메시지를 표시합니다.
-//                 alert("주문 취소에 실패하였습니다.");
-//             }
-//         })
-// }
-
 function checkRefundModal() {
     const orderNo = document.getElementById('orderNo').value;
 

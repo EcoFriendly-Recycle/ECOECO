@@ -31,7 +31,7 @@
                 </tr>
             </table>
         </div>
-        <form id="mypageNewsForm">
+        <form id="mypageNewsForm" action="/user/mypage/news">
             <div style="margin-top: 50px;">
                 <h2 style="width: 500px; display: inline;">새소식</h2>
                 <button type="button" class="registNewsButton" th:onclick="|location.href='/user/mypage/registNews?projectNo=${projectNo}'|">새소식 등록</button>
@@ -45,7 +45,7 @@
                             <sub th:text="${newsDTO.newsCategory}"></sub>
                             <p th:text="${newsDTO.newsTitle}" th:onclick="|location.href='/user/mypage/registNewsDetail?newsNo=${newsDTO.newsNo}'|" style="margin: 0px; cursor: pointer;"></p>
                             <sup>새소식 번호 :
-                                <span th:text="${newsDTO.newsNo}"></span>&nbsp;&nbsp;
+                                <span th:text="${newsDTO.newsNo}"></span>&nbsp&nbsp
                                 등록일 :
                                 <span th:text="${newsDTO.newsDate}"></span>
                             </sup>
@@ -55,7 +55,6 @@
                 </div>
             </div>
         </form>
-    </div>
     </div>
 </main>
 
