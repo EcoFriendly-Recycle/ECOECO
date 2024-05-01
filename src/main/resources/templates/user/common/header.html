@@ -15,13 +15,13 @@
 <body>
         <header th:fragment="header">
             <div class="top">
-               <button class="login ljBtn btn">로그인</button>
-               <button class="join ljBtn btn">회원가입</button>
+               <button class="login ljBtn btn" onclick="location.href='/login'">로그인</button>
+               <button class="join ljBtn btn" onclick="location.href='/joinus'">회원가입</button>
                <button class="project btn" onclick="location.href='/user/project/projectInfo/projectInfo'">프로젝트 만들기</button>
             </div>
             <div class="middle">
                 <div class="logo">
-                    <img src="/images/user/common/ecoeco_logo2.png" alt="에코에코 로고">
+                    <img src="/images/user/common/ecoeco_logo.png" alt="에코에코 로고">
                 </div>
             </div>
             <div class="bottom">
@@ -59,8 +59,10 @@
             </div>
         </header>
 
- 
-    <script src="../../../../../../../../../../../dev/ECOECO/src/main/resources/static/js/user/common/header.js"></script>
+        <script type="text/javascript" th:src="@{/js/user/mypage/headerAfterLogin.js}"></script>
+
+
+        <script src="../../../../../../../../../../../dev/ECOECO/src/main/resources/static/js/user/common/header.js"></script>
 
 </body>
 </html>

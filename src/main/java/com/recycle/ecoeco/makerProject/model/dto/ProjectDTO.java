@@ -16,7 +16,9 @@ public class ProjectDTO {
     private int targetAmount;//목표금액
     private String projectName;
     private String thumbnail;
-    //private int serviceCharge; //서비스 요금(수수료, 수정해야함);
+    private int serviceCharge; //서비스 요금(수수료, 수정해야함);
+
+
 
     /*관리자*/
     private char projectSorN; //프로젝트 성공여부
@@ -30,7 +32,7 @@ public class ProjectDTO {
 
     }
 
-    public ProjectDTO(int projectNo, int categoryCode, int projectStatus, Date startDate, Date endDate, char deliveryYN, int targetAmount, String projectName, String thumbnail, char projectSorN, int achievedAmount, Date requestDate, Date approvalDate, Date petitionDate, Date dueDate) {
+    public ProjectDTO(int serviceCharge, int projectNo, int categoryCode, int projectStatus, Date startDate, Date endDate, char deliveryYN, int targetAmount, String projectName, String thumbnail, char projectSorN, int achievedAmount, Date requestDate, Date approvalDate, Date petitionDate, Date dueDate) {
         this.projectNo = projectNo;
         this.categoryCode = categoryCode;
         this.projectStatus = projectStatus;
@@ -46,6 +48,15 @@ public class ProjectDTO {
         this.approvalDate = approvalDate;
         this.petitionDate = petitionDate;
         this.dueDate = dueDate;
+        this.serviceCharge = serviceCharge;
+    }
+
+    public int getServiceCharge() {
+        return serviceCharge;
+    }
+
+    public void setServiceCharge(int serviceCharge) {
+        this.serviceCharge = serviceCharge;
     }
 
     public int getProjectNo() {

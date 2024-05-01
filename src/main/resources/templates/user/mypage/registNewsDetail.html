@@ -6,133 +6,105 @@
     <title>registNewsEdit</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/user/mypage/mypagemain.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/user/header.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/user/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/common/footer.css}">
 
 </head>
 <body>
 
-    <div style="height: 340px; width: 1440px;">
-        <header th:replace="user/common/header :: headerFragment">
+<div style="height: 340px; width: 100%;">
+    <header th:replace="/user/common/header"></header>
+</div>
 
-        </header>
-    </div>
+<main style="height: 900px; width: 1440px;">
+    <aside th:replace="/user/mypage/mypage_SideBar"></aside>
 
-    <main style="height: 850px; width: 1440px;">
-        <div>
-            <div class="mypageSM" style="float: left; width: 20%; height: 850px;">
-                <!-- 서포터 메이커 마이페이지 이동 버튼-->
-                <div class="toggleButton">
-                    <button id="supporterButton" onclick="location.href='user/mypage/mypageMain'">서포터</button>
-                    <button id="makerButton" onclick="location.href='user/mypage/mypageMain_Maker'">메이커</button>
-                </div>
-                <!-- 프로필 사진 -->
-                <div class="profileImg">
-                    <em class="inputProfileImage" style="background-image: url(/images/user/common/myPageProfile02.png);"></em>
-                </div>
-                <!-- 포인트 -->
-                <div class="pointBox">
-                    <input type="text" name="point" id="point" value="여기에 회원 포인트 들어감">
-                </div>
-            </div>
-
-            <div style="float: left; width: 80%; height: 850px;">
-                <div class="detailBarBox">
-                    <table class="myprojectDetailBar" style="width: 80%; margin-top: 50px;">
-                        <tr>
-                            <td>프로젝트정보</td>
-                            <td>스토리</td>
-                            <td onclick="location.href='/user/mypage/news'">새소식</td>
-                            <td onclick="location.href='20_mypage_Cheer_Review.html'">응원/리뷰</td>
-                            <td style="border-right: none;">리워드정보</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="registNewsDetailHeadButton" style="margin-top: 30px;">
-                    <h2 style="width: 500px; display: inline;">새소식 수정 및 삭제</h2>
-                    <button class="updateRegistNews" onclick="location.href='/user/mypage/registNews'">수정하기</button>
-                    <button class="deleteRegistNews" onclick="openDeleteModal()">삭제하기</button>
-                    <hr style="text-align: left; margin-left: 0px; width: 70%;"><br>                     
-                </div>
-
-                <!-- 삭제하기 모달창 -->
-                <div id="deleteRegistNewsModal" class="registNewsDeleteModal" style="display: none;">
-                    <div class="news_modal_content" style="width: 300px;">
-                        <p>삭제하시겠습니까?</p>
-                        <button id="delete_button" onclick="saveDelete()">네</button>
-                        <button id="delete_cancel_button" onclick="closeSaveModal()">아니오</button>
-                    </div>
-                </div>
-
-                <!-- 모달창 스크립트 -->
-                <script>
-                    function openDeleteModal() {
-                        document.getElementById("deleteRegistNewsModal").style.display = "block";
-                    }
-        
-                    function closeSaveModal() {
-                        document.getElementById("deleteRegistNewsModal").style.display = "none";
-                    }
-        
-                    function saveDelete() {
-                        // 삭제된 정보를 조회페이지에 반영하는 로직 추가하면됨
-                        // 현재페이지에서 news.html로 넘어가면서 news.html 리스트에 있는 내가 삭제한 새소식이 없어야함
-                        alert("변경사항이 저장되었습니다.")
-                        closeSaveModal();
-                        location.href="/user/mypage/news";
-                    }
-                </script>
-    
-
-                <div style="height: 650px;">
-                    <table class="newsRegist" style="margin-left: 30px;">
-                        
-                        <tr>
-                            <td><strong>분류</strong></td>
-                            <td colspan="3" style="text-align: left;">새소식</td>
-                        </tr>
-                        
-                        <tr>
-                            <td><strong>소분류</strong></td>
-                            <td>
-                                <select name="subcategory" id="subcategory">
-                                    <option value="select">선택</option>
-                                    <option value="rewardinfo">리워드안내</option>
-                                    <option value="notice">공지사항</option>
-                                    <option value="event">이벤트</option>
-                                </select>
-                            </td>
-                            <td><strong>이미지첨부</strong></td>
-                            <td>
-                                <label for="registNewsImage">
-                                    <input type="file" id="registNewsImage" style="cursor: pointer; margin-left: 20px;">
-                                </label>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><strong>제목</strong></td>
-                            <td colspan="3" style="text-align: left;">여기에 제목 출력되고</td>
-                        </tr>
-
-                        <tr style="height: 500px;">
-                            <td><strong>내용</strong></td>
-                            <td colspan="3">여기에 내가 쓴 내용 출력됨</td>
-                        </tr>
-
-                    </table>
-                </div> 
-                
-            </div>
+    <div style="float: left; width: 70%; height: 850px;">
+        <div class="detailBarBox">
+            <table class="myprojectDetailBar" style="width: 80%; margin-top: 50px;">
+                <tr>
+                    <td>프로젝트정보</td>
+                    <td>스토리</td>
+                    <td onclick="location.href='/user/mypage/news'">새소식</td>
+                    <td onclick="location.href='20_mypage_Cheer_Review.html'">응원/리뷰</td>
+                    <td style="border-right: none;">리워드정보</td>
+                </tr>
+            </table>
         </div>
-    </main>
 
-    <div style="height: 322px; width: 1440px;">
-        <footer th:replace="user/common/footer :: footerFragment">
+        <form id="updateNewsDetail" th:action="|/user/mypage/updateNewsDetail/${newsDTO.newsNo}|" method="post">
+            <div class="registNewsDetailHeadButton" style="margin-top: 30px;">
+                <h2 style="width: 500px; display: inline;">새소식 수정 및 삭제</h2>
+                <hr style="text-align: left; margin-left: 0; width: 90%;"><br>
+            </div>
 
-        </footer>
+            <div style="height: 650px;">
+
+                <input type="hidden" name="projectNo" th:value="${newsDTO.project.projectNo}">
+                <input type="hidden" name="newsNo" th:value="${newsDTO.newsNo}">
+                <table class="newsRegist" style="margin-left: 30px;">
+                    <tr>
+                        <td><strong>분류</strong></td>
+                        <td colspan="3" style="text-align: left;">새소식</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>소분류</strong></td>
+                        <td>
+                            <label for="newsCategory"></label>
+                            <select id="newsCategory" name="newsCategory" class="subcategory">
+                                <option value="선택" th:selected="${newsDTO.newsCategory == '선택'}">선택</option>
+                                <option value="리워드안내" th:selected="${newsDTO.newsCategory == '리워드안내'}">리워드안내</option>
+                                <option value="공지사항" th:selected="${newsDTO.newsCategory == '공지사항'}">공지사항</option>
+                                <option value="이벤트" th:selected="${newsDTO.newsCategory == '이벤트'}">이벤트</option>
+                            </select>
+                        </td>
+                        <td><strong>이미지첨부</strong></td>
+                        <td>
+                            <label for="registNewsImage">
+                                <input type="file" id="registNewsImage" style="cursor: pointer; margin-left: 20px;">
+                            </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>제목</strong></td>
+                        <td colspan="3" style="text-align: left;"><label for="newsTitle"></label>
+                            <textarea id="newsTitle" name="newsTitle" class="registNewsTextTitle" th:text="${newsDTO.newsTitle}"></textarea></td>
+                    </tr>
+
+                    <tr style="height: 500px;">
+                        <td><strong>내용</strong></td>
+                        <td colspan="3"><label for="newsContent"></label>
+                            <textarea id="newsContent" name="newsContent" class="registNewsTextBox" cols="50" rows="10" th:text="${newsDTO.newsContent}"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+            <button type="submit" id="updateRegistNewsButton" name="updateRegistNewsButton" class="updateRegistNews">수정하기</button>
+        </form>
+        <form id="deleteNewsForm" action="/user/mypage/registNewsDelete" method="post">
+            <input type="hidden" name="projectNo" th:value="${newsDTO.project.projectNo}">
+            <input type="hidden" name="newsNo" th:value="${newsDTO.newsNo}">
+            <button type="button" id="deleteRegistNewsButton" name="deleteRegistNewsButton" class="deleteRegistNews" onclick="openNewsDeleteModal()">삭제하기</button>
+            <!-- 삭제하기 모달창 -->
+            <div id="deleteRegistNewsModal" class="registNewsDeleteModal" style="display: none;">
+                <div class="news_modal_content" style="width: 300px;">
+                    <p>삭제하시겠습니까?</p>
+                    <button id="delete_button" onclick="newsDelete()">네</button>
+                    <button id="delete_cancel_button" onclick="closeNewsSaveModal()">아니오</button>
+                </div>
+            </div>
+        </form>
     </div>
+</main>
+
+<script type="text/javascript" th:src="@{/js/user/mypage/mypage.js}"></script>
+
+<div style="height: 322px; width: 100%;">
+    <footer th:replace="user/common/footer :: footerFragment">
+
+    </footer>
+</div>
 
 </body>
 </html>

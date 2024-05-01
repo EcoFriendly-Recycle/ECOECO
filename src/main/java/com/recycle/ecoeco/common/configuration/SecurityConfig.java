@@ -40,7 +40,7 @@ public class SecurityConfig {
                 /* 요청에 대한 권한 체크 */
                 .authorizeHttpRequests( auth -> {
                     // 특정 URL에 대한 권한 설정
-                    auth.requestMatchers("/login", "/joinus", "/user/mypage/findSearchInfo", "/user/mypage/findId","/user/mypage/findPwd", "/", "/main").permitAll();
+                    auth.requestMatchers("/login", "/user/mypage/selectUserById", "/joinus", "/user/mypage/findSearchInfo", "/user/mypage/findId","/user/mypage/findPwd", "/", "/main").permitAll();
                     auth.requestMatchers( "/manager/**").hasAnyAuthority("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyAuthority("USER", "ADMIN");
                     //나머지 URL은 모두 인증 필요
