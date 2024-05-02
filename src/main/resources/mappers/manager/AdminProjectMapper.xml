@@ -182,7 +182,6 @@
         ,A.endDate
         ,A.achievedAmount
         ,A.dueDate
-        ,A.thumbnail
         ,A.categoryCode
         ,C.categoryCode
         ,C.categoryName
@@ -266,7 +265,6 @@
         ,A.endDate
         ,A.achievedAmount
         ,A.dueDate
-        ,A.thumbnail
         ,A.categoryCode
         ,C.categoryCode
         ,C.categoryName
@@ -343,7 +341,6 @@
         ,A.endDate
         ,A.achievedAmount
         ,A.dueDate
-        ,A.thumbnail
         ,A.categoryCode
         ,C.categoryCode
         ,C.categoryName
@@ -423,7 +420,6 @@
         ,A.endDate
         ,A.achievedAmount
         ,A.dueDate
-        ,A.thumbnail
         ,A.categoryCode
         ,C.categoryCode
         ,C.categoryName
@@ -507,13 +503,11 @@
         ,A.endDate
         ,A.achievedAmount
         ,A.dueDate
-        ,A.thumbnail
         ,A.categoryCode
         ,C.categoryCode
         ,C.categoryName
         ,B.makerNo
         ,B.makerName
-        ,B.primage
         ,B.email
         ,B.phone
         ,B.userNo
@@ -545,13 +539,11 @@
         ,A.endDate
         ,A.achievedAmount
         ,A.dueDate
-        ,A.thumbnail
         ,A.categoryCode
         ,C.categoryCode
         ,C.categoryName
         ,B.makerNo
         ,B.makerName
-        ,B.primage
         ,B.email
         ,B.phone
         ,B.userNo
