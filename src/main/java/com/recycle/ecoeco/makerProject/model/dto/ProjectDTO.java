@@ -1,52 +1,51 @@
 package com.recycle.ecoeco.makerProject.model.dto;
 
-import java.time.LocalDate;
+import java.sql.Date;
+
+
 
 public class ProjectDTO {
 
+    /* 사용자+관리자 */
     private int projectNo;
-    private String projectName;
-    private String projectStatus;
-    private String projectSorN;
-    private String deliveryYN;
-    private int serviceCharge;
-    private int targetAmount;
-    private LocalDate requestDate;
-    private LocalDate approvalDate;
-    private LocalDate petitionDate;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private long achievedAmount;
-    private LocalDate dueDate;
-    private String thumbnail;
     private int categoryCode;
-    private CategoryDTO category;
-    private int makerNo;
-    private MakerDTO maker;
+    private int projectStatus;
+    private Date startDate;
+    private Date endDate;
+    private char deliveryYN; //배송여부
+    private int targetAmount;//목표금액
+    private String projectName;
+    private String thumbnail;
+    //private int serviceCharge; //서비스 요금(수수료, 수정해야함);
+
+    /*관리자*/
+    private char projectSorN; //프로젝트 성공여부
+    private int achievedAmount; //달성액
+    private Date requestDate; //요청일
+    private Date approvalDate; //승인일
+    private Date petitionDate; //반려일
+    private Date dueDate; //마감일
 
     public ProjectDTO() {
+
     }
 
-    public ProjectDTO(int projectNo, String projectName, String projectStatus, String projectSorN, String deliveryYN, int serviceCharge, int targetAmount, LocalDate requestDate, LocalDate approvalDate, LocalDate petitionDate, LocalDate startDate, LocalDate endDate, long achievedAmount, LocalDate dueDate, String thumbnail, int categoryCode, CategoryDTO category, int makerNo, MakerDTO maker) {
+    public ProjectDTO(int projectNo, int categoryCode, int projectStatus, Date startDate, Date endDate, char deliveryYN, int targetAmount, String projectName, String thumbnail, char projectSorN, int achievedAmount, Date requestDate, Date approvalDate, Date petitionDate, Date dueDate) {
         this.projectNo = projectNo;
-        this.projectName = projectName;
+        this.categoryCode = categoryCode;
         this.projectStatus = projectStatus;
-        this.projectSorN = projectSorN;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.deliveryYN = deliveryYN;
-        this.serviceCharge = serviceCharge;
         this.targetAmount = targetAmount;
+        this.projectName = projectName;
+        this.thumbnail = thumbnail;
+        this.projectSorN = projectSorN;
+        this.achievedAmount = achievedAmount;
         this.requestDate = requestDate;
         this.approvalDate = approvalDate;
         this.petitionDate = petitionDate;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.achievedAmount = achievedAmount;
         this.dueDate = dueDate;
-        this.thumbnail = thumbnail;
-        this.categoryCode = categoryCode;
-        this.category = category;
-        this.makerNo = makerNo;
-        this.maker = maker;
     }
 
     public int getProjectNo() {
@@ -57,44 +56,44 @@ public class ProjectDTO {
         this.projectNo = projectNo;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public int getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setCategoryCode(int categoryCode) {
+        this.categoryCode = categoryCode;
     }
 
-    public String getProjectStatus() {
+    public int getProjectStatus() {
         return projectStatus;
     }
 
-    public void setProjectStatus(String projectStatus) {
+    public void setProjectStatus(int projectStatus) {
         this.projectStatus = projectStatus;
     }
 
-    public String getProjectSorN() {
-        return projectSorN;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setProjectSorN(String projectSorN) {
-        this.projectSorN = projectSorN;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public String getDeliveryYN() {
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public char getDeliveryYN() {
         return deliveryYN;
     }
 
-    public void setDeliveryYN(String deliveryYN) {
+    public void setDeliveryYN(char deliveryYN) {
         this.deliveryYN = deliveryYN;
-    }
-
-    public int getServiceCharge() {
-        return serviceCharge;
-    }
-
-    public void setServiceCharge(int serviceCharge) {
-        this.serviceCharge = serviceCharge;
     }
 
     public int getTargetAmount() {
@@ -105,60 +104,12 @@ public class ProjectDTO {
         this.targetAmount = targetAmount;
     }
 
-    public LocalDate getRequestDate() {
-        return requestDate;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setRequestDate(LocalDate requestDate) {
-        this.requestDate = requestDate;
-    }
-
-    public LocalDate getApprovalDate() {
-        return approvalDate;
-    }
-
-    public void setApprovalDate(LocalDate approvalDate) {
-        this.approvalDate = approvalDate;
-    }
-
-    public LocalDate getPetitionDate() {
-        return petitionDate;
-    }
-
-    public void setPetitionDate(LocalDate petitionDate) {
-        this.petitionDate = petitionDate;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public long getAchievedAmount() {
-        return achievedAmount;
-    }
-
-    public void setAchievedAmount(long achievedAmount) {
-        this.achievedAmount = achievedAmount;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public String getThumbnail() {
@@ -169,60 +120,72 @@ public class ProjectDTO {
         this.thumbnail = thumbnail;
     }
 
-    public int getCategoryCode() {
-        return categoryCode;
+    public char getProjectSorN() {
+        return projectSorN;
     }
 
-    public void setCategoryCode(int categoryCode) {
-        this.categoryCode = categoryCode;
+    public void setProjectSorN(char projectSorN) {
+        this.projectSorN = projectSorN;
     }
 
-    public CategoryDTO getCategory() {
-        return category;
+    public int getAchievedAmount() {
+        return achievedAmount;
     }
 
-    public void setCategory(CategoryDTO category) {
-        this.category = category;
+    public void setAchievedAmount(int achievedAmount) {
+        this.achievedAmount = achievedAmount;
     }
 
-    public int getMakerNo() {
-        return makerNo;
+    public Date getRequestDate() {
+        return requestDate;
     }
 
-    public void setMakerNo(int makerNo) {
-        this.makerNo = makerNo;
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 
-    public MakerDTO getMaker() {
-        return maker;
+    public Date getApprovalDate() {
+        return approvalDate;
     }
 
-    public void setMaker(MakerDTO maker) {
-        this.maker = maker;
+    public void setApprovalDate(Date approvalDate) {
+        this.approvalDate = approvalDate;
+    }
+
+    public Date getPetitionDate() {
+        return petitionDate;
+    }
+
+    public void setPetitionDate(Date petitionDate) {
+        this.petitionDate = petitionDate;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     @Override
     public String toString() {
         return "ProjectDTO{" +
                 "projectNo=" + projectNo +
-                ", projectName='" + projectName + '\'' +
-                ", projectStatus='" + projectStatus + '\'' +
-                ", projectSorN='" + projectSorN + '\'' +
-                ", deliveryYN='" + deliveryYN + '\'' +
-                ", serviceCharge=" + serviceCharge +
+                ", categoryCode=" + categoryCode +
+                ", projectStatus=" + projectStatus +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", deliveryYN=" + deliveryYN +
                 ", targetAmount=" + targetAmount +
+                ", projectName='" + projectName + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", projectSorN=" + projectSorN +
+                ", achievedAmount=" + achievedAmount +
                 ", requestDate=" + requestDate +
                 ", approvalDate=" + approvalDate +
                 ", petitionDate=" + petitionDate +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", achievedAmount=" + achievedAmount +
                 ", dueDate=" + dueDate +
-                ", thumbnail='" + thumbnail + '\'' +
-                ", categoryCode=" + categoryCode +
-                ", category=" + category +
-                ", makerNo=" + makerNo +
-                ", maker=" + maker +
                 '}';
     }
 }

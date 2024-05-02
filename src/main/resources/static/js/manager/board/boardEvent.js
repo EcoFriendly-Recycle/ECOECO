@@ -77,6 +77,20 @@ function noticeModify(noticeNo) {
     window.location.href = "/manager/board/adminNoticeModify?noticeNo=" + noticeNo;
 }
 
+<!-- 공지사항 파일 선택 -->
+function displayFileNames(input) {
+    var fileDisplayInput = document.getElementById('file_name_display');
+    if (input.files.length > 0) {
+        if (input.files.length === 1) {
+            fileDisplayInput.value = input.files[0].name;
+        } else {
+            fileDisplayInput.value = input.files.length + "개 파일 선택됨";
+        }
+    } else {
+        fileDisplayInput.value = ''; // 파일 선택 취소 시 텍스트 필드를 비움
+    }
+}
+
 
 
 <!-- -----------------------------------------------------------------------------------------------------  -->
@@ -99,3 +113,21 @@ function deleteUsGreen(comuNo) {
         })
         .catch(error => console.error('Error:', error));
 }
+
+<!-- 이미지 로드가 되지 않거나 null값일 때 -->
+document.addEventListener("DOMContentLoaded", function() {
+    // 이미지 요소의 id값
+    var imageId = "noticeImage";
+
+    // 해당 id값을 가진 이미지 요소 가져오기
+    var imageElement = document.getElementById(imageId);
+
+    // 이미지 요소가 존재하는지 확인
+    if (imageElement) {
+        // 이미지가 로드되었는지 확인
+        if (!imageElement.complete || imageElement.naturalWidth === 0) {
+            // 이미지가 로드되지 않은 경우 이미지 요소를 숨김
+            imageElement.style.display = "none";
+        }
+    }
+});

@@ -59,6 +59,7 @@ public class AdminSettlementController {
 
         // 달성률 계산하여 DTO에 추가
         double achievementRate =
+                //projectDTO에 getAchievedAmount()없음
                 ((double) settlementInfo.getProject().getAchievedAmount() /
                         (double) settlementInfo.getProject().getTargetAmount()) * 100;
 

@@ -3,13 +3,15 @@ package com.recycle.ecoeco.makerProject.model.dto;
 public class CategoryDTO {
     private int categoryCode;
     private String categoryName;
+    ProjectDTO projectDTO;
 
-    public CategoryDTO() {
-    }
 
-    public CategoryDTO(int categoryCode, String categoryName) {
+    public CategoryDTO(){}
+
+    public CategoryDTO(int categoryCode, String categoryName, ProjectDTO projectDTO) {
         this.categoryCode = categoryCode;
         this.categoryName = categoryName;
+        this.projectDTO = projectDTO;
     }
 
     public int getCategoryCode() {
@@ -28,11 +30,20 @@ public class CategoryDTO {
         this.categoryName = categoryName;
     }
 
+    public ProjectDTO getProjectDTO() {
+        return projectDTO;
+    }
+
+    public void setProjectDTO(ProjectDTO projectDTO) {
+        this.projectDTO = projectDTO;
+    }
+
     @Override
     public String toString() {
         return "CategoryDTO{" +
                 "categoryCode=" + categoryCode +
                 ", categoryName='" + categoryName + '\'' +
+                ", projectDTO=" + projectDTO +
                 '}';
     }
 }

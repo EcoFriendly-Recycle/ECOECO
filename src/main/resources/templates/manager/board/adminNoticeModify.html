@@ -6,11 +6,11 @@
 <div class="sub_wrap">
 	<aside id="lnb">
 		<ul class="menu">
-			<li><a href="/user/user_list.html">회원 관리</a></li>
+			<li><a href="/manager/customer/customer_list">회원 관리</a></li>
 			<li><a href="/project/new_project_list.html">프로젝트 관리</a></li>
 			<li><a href="/payment/payment_list.html">결제 및 정산 관리</a></li>
 			<li class="btn_sub on">
-				<a href="/manager/board/noticeList">게시판관리</a>
+				<a href="/manager/board/adminNoticeList">게시판관리</a>
 				<ul class="sub_menu" style="display: block;">
 					<li class="on"><a href="/manager/board/adminNoticeList">공지사항</a></li>
 					<li><a href="/manager/board/adminUsGreenList">우리가그린</a></li>
@@ -24,7 +24,7 @@
 				<h3>공지사항</h3>
 			</div>
 			<div class="write">
-				<form id="noticeModifyForm" action="/manager/board/adminNoticeModify" method="post" onsubmit='return validateForm()'>
+				<form id="noticeModifyForm" action="/manager/board/adminNoticeModify" method="post" enctype="multipart/form-data" onsubmit='return validateForm()'>
 					<input type="hidden" name="noticeNo" th:field="${noticeModify.noticeNo}" />
 					<input type="hidden" name="noticeDate" th:field="${noticeModify.noticeDate}" />
 					<table>
@@ -65,23 +65,13 @@
 						<tr>
 							<th scope="row">파일첨부</th>
 							<td colspan="3">
-								<ul>
-									<li>
-										<span class="file_name">파일명 : image.jpg</span>
-										<!--											<button class="btn_download"><i>Link</i></button>-->
-									</li>
-								</ul>
 								<div class="file_area">
 									<div class="img_type01">
 										<p>
-											<input type="text" title="파일 등록" placeholder="파일 등록">
+											<input type="text" id="file_name_display" title="파일 등록" th:value=" ${noticeModify.image.noticeOriginFileName}" readonly>
 										</p>
-										<input type="file" id="file_type01">
+										<input type="file" id="file_type01" name="singleFile" onchange="displayFileNames(this);">
 										<label for="file_type01" class="btn_file">파일찾기</label>
-									</div>
-									<div class="btn_area txt_btn">
-										<button class="btn btn_add">추가</button>
-										<button class="btn btn_del">삭제</button>
 									</div>
 								</div>
 							</td>
@@ -89,9 +79,8 @@
 						</tbody>
 					</table>
 					<div class="write_btn align_c mt35">
-
 						<button type="submit" class="btn btn_modify bg_skincolor">등록</button>
-						<button type="button" class="btn" th:onclick="|location.href='/manager/board/adminNoticeList'|">목록</button>
+						<button type="button" class="btn" th:onclick="|window.location.href='/manager/board/adminNoticeList'|">목록</button>
 						<button type="reset" class="btn btn_del">초기화</button>
 					</div>
 				</form>
