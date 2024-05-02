@@ -508,7 +508,6 @@
         ,C.categoryName
         ,B.makerNo
         ,B.makerName
-        ,B.primage
         ,B.email
         ,B.phone
         ,B.userNo
@@ -545,7 +544,6 @@
         ,C.categoryName
         ,B.makerNo
         ,B.makerName
-        ,B.primage
         ,B.email
         ,B.phone
         ,B.userNo
