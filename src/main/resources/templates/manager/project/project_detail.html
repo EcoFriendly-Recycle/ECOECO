@@ -127,7 +127,7 @@
 										<th scope="col">목표금액</th>
 										<th scope="col">달성액</th>
 										<th scope="col">달성률</th>
-										<th scope="col">서포터</th>
+<!--										<th scope="col">서포터</th>-->
 										<th scope="col">배송상품</th>
 									</tr>
 								</thead>
@@ -136,7 +136,7 @@
 										<td th:text="${#numbers.formatInteger(project.targetAmount,1,'COMMA')}"></td>
 										<td th:text="${#numbers.formatInteger(project.achievedAmount,1,'COMMA')}"></td>
 										<td th:text="${#numbers.formatInteger((project.achievedAmount * 100 / project.targetAmount) ,1,'COMMA') + ' %'}"></td>
-										<td>170명</td>
+<!--										<td>170명</td>-->
 										<td th:text="${ project.deliveryYN }"></td>
 									</tr>
 								</tbody>

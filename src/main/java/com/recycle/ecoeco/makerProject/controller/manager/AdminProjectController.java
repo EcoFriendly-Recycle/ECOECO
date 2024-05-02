@@ -33,7 +33,6 @@ public class AdminProjectController {
                                      @RequestParam(required = false) String searchDate2,
                                      Model model){
 
-//        System.out.println("project_new_list_controller");
         String listType = "new";
 
         Map<String, String> searchMap = new HashMap<>();
@@ -42,14 +41,10 @@ public class AdminProjectController {
         searchMap.put("searchConditionDate", searchConditionDate);
         searchMap.put("searchDate1", searchDate1);
         searchMap.put("searchDate2", searchDate2);
-//        System.out.println("searchMap : " + searchMap);
-//        System.out.println("listType : " + listType);
 
         Map<String, Object> boardListAndPaging = adminProjectService.findProjectNewList(searchMap, page, listType);
         model.addAttribute("paging", boardListAndPaging.get("paging"));
         model.addAttribute("projectList", boardListAndPaging.get("boardList"));
-
-//        System.out.println("boardListAndPaging : " + boardListAndPaging);
 
         return "/manager/project/project_new_list";
 
@@ -155,17 +150,12 @@ public class AdminProjectController {
     // 프로젝트 정보 상세 페이지
     @GetMapping("/project_detail")
     public String projectDetail(@RequestParam int projectNo, @RequestParam String listType, Model model) {
-//        System.out.println("project_detail");
-//        System.out.println("projectNo : " + projectNo);
-//        System.out.println("listType : " + listType);
 
         ProjectDTO projectDetail = adminProjectService.projectDetail(projectNo);
 
         model.addAttribute("projectDetail", projectDetail);
         model.addAttribute("projectNo", projectNo);
         model.addAttribute("listType", listType);
-
-//        System.out.println("projectDetail : " + projectDetail);
 
         return "/manager/project/project_detail";
     }
