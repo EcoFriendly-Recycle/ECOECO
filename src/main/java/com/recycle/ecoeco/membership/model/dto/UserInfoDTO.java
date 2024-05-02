@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.recycle.ecoeco.accounting.model.dto.BankAccountDTO;
 import com.recycle.ecoeco.accounting.model.dto.OrderDTO;
 import com.recycle.ecoeco.accounting.model.dto.PaymentDTO;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,11 +23,12 @@ public class UserInfoDTO implements UserDetails {
     private int userGrade;      // 회원 등급
     private int userPoint;      // 회원 포인트
     private LocalDate userDate;     // 회원 가입일
-    private int userAccount;        // 회원 계좌번호
+    private String userAccount;        // 회원 계좌번호
     private String userAddress;     // 회원 주소
     private UserRole userRole;      // 회원 권한
     private boolean passResult;
-    private BankAccountDTO Bank_account;
+    private BankAccountDTO bankAccount;
+    private int accountNo;
     private int paymentNo;
     private int orderNo;
     private PaymentDTO payment;
@@ -36,7 +36,7 @@ public class UserInfoDTO implements UserDetails {
 
     public UserInfoDTO() {}
 
-    public UserInfoDTO(int userNo, String userId, String userPwd, String userName, String userPnum, String userEmail, String userBirth, char userGender, int userGrade, int userPoint, LocalDate userDate, int userAccount, String userAddress, UserRole userRole, boolean passResult, BankAccountDTO bank_account, int paymentNo, int orderNo, PaymentDTO payment, OrderDTO order) {
+    public UserInfoDTO(int userNo, String userId, String userPwd, String userName, String userPnum, String userEmail, String userBirth, char userGender, int userGrade, int userPoint, LocalDate userDate, String userAccount, String userAddress, UserRole userRole, boolean passResult, BankAccountDTO bankAccount, int accountNo) {
         this.userNo = userNo;
         this.userId = userId;
         this.userPwd = userPwd;
@@ -52,7 +52,28 @@ public class UserInfoDTO implements UserDetails {
         this.userAddress = userAddress;
         this.userRole = userRole;
         this.passResult = passResult;
-        Bank_account = bank_account;
+        this.bankAccount = bankAccount;
+        this.accountNo = accountNo;
+    }
+
+    public UserInfoDTO(int userNo, String userId, String userPwd, String userName, String userPnum, String userEmail, String userBirth, char userGender, int userGrade, int userPoint, LocalDate userDate, String userAccount, String userAddress, UserRole userRole, boolean passResult, BankAccountDTO bankAccount, int accountNo, int paymentNo, int orderNo, PaymentDTO payment, OrderDTO order) {
+        this.userNo = userNo;
+        this.userId = userId;
+        this.userPwd = userPwd;
+        this.userName = userName;
+        this.userPnum = userPnum;
+        this.userEmail = userEmail;
+        this.userBirth = userBirth;
+        this.userGender = userGender;
+        this.userGrade = userGrade;
+        this.userPoint = userPoint;
+        this.userDate = userDate;
+        this.userAccount = userAccount;
+        this.userAddress = userAddress;
+        this.userRole = userRole;
+        this.passResult = passResult;
+        this.bankAccount = bankAccount;
+        this.accountNo = accountNo;
         this.paymentNo = paymentNo;
         this.orderNo = orderNo;
         this.payment = payment;
@@ -190,11 +211,11 @@ public class UserInfoDTO implements UserDetails {
         this.userDate = userDate;
     }
 
-    public int getUserAccount() {
+    public String getUserAccount() {
         return userAccount;
     }
 
-    public void setUserAccount(int userAccount) {
+    public void setUserAccount(String userAccount) {
         this.userAccount = userAccount;
     }
 
@@ -222,12 +243,12 @@ public class UserInfoDTO implements UserDetails {
         this.passResult = passResult;
     }
 
-    public BankAccountDTO getBank_account() {
-        return Bank_account;
+    public BankAccountDTO getBankAccount() {
+        return bankAccount;
     }
 
-    public void setBank_account(BankAccountDTO bank_account) {
-        Bank_account = bank_account;
+    public void setBankAccount(BankAccountDTO bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     public int getPaymentNo() {
@@ -262,6 +283,14 @@ public class UserInfoDTO implements UserDetails {
         this.order = order;
     }
 
+    public int getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(int accountNo) {
+        this.accountNo = accountNo;
+    }
+
     @Override
     public String toString() {
         return "UserInfoDTO{" +
@@ -276,11 +305,12 @@ public class UserInfoDTO implements UserDetails {
                 ", userGrade=" + userGrade +
                 ", userPoint=" + userPoint +
                 ", userDate=" + userDate +
-                ", userAccount=" + userAccount +
+                ", userAccount='" + userAccount + '\'' +
                 ", userAddress='" + userAddress + '\'' +
                 ", userRole=" + userRole +
                 ", passResult=" + passResult +
-                ", Bank_account=" + Bank_account +
+                ", bankAccount=" + bankAccount +
+                ", accountNo=" + accountNo +
                 ", paymentNo=" + paymentNo +
                 ", orderNo=" + orderNo +
                 ", payment=" + payment +
@@ -288,4 +318,3 @@ public class UserInfoDTO implements UserDetails {
                 '}';
     }
 }
-
