@@ -47,7 +47,9 @@
   <div class="ingLists">
     <div class="item" th:each="project : ${ mainOpenList }">
       <th:block th:each="thumbnail:${project.projectThumbnailDTO}">
-        <img th:src="@{${thumbnail.projectImagePath} + ${thumbnail.projectImageSaveName}} " alt="상세이미지">
+        <a th:href="|@{'/user/project/detail/detail?projectNo=' + ${project.projectNo}}|">
+          <img th:src="@{${thumbnail.projectImagePath} + ${thumbnail.projectImageSaveName}} " alt="상세이미지">
+        </a>
       </th:block>
       <p class="text1"
          th:text="${#numbers.formatInteger((project.achievedAmount * 100 / project.targetAmount) ,1,'COMMA') + ' % 달성'}"></p>
@@ -61,7 +63,9 @@
   <div class="ingLists">
     <div class="item" th:each="project : ${ mainNewList }">
       <th:block th:each="thumbnail:${project.projectThumbnailDTO}">
-        <img th:src="@{${thumbnail.projectImagePath} + ${thumbnail.projectImageSaveName}} " alt="상세이미지">
+        <a th:href="|@{'/user/project/detail/detail?projectNo=' + ${project.projectNo}}|">
+          <img th:src="@{${thumbnail.projectImagePath} + ${thumbnail.projectImageSaveName}} " alt="상세이미지">
+        </a>
       </th:block>
       <p class="text1"
          th:text="${#numbers.formatInteger((project.achievedAmount * 100 / project.targetAmount) ,1,'COMMA') + ' % 달성'}"></p>
@@ -75,7 +79,9 @@
   <div class="ingLists">
     <div class="item" th:each="project : ${ mainCloseList }">
       <th:block th:each="thumbnail:${project.projectThumbnailDTO}">
-        <img th:src="@{${thumbnail.projectImagePath} + ${thumbnail.projectImageSaveName}} " alt="상세이미지">
+        <a th:href="|@{'/user/project/detail/detail?projectNo=' + ${project.projectNo}}|">
+          <img th:src="@{${thumbnail.projectImagePath} + ${thumbnail.projectImageSaveName}} " alt="상세이미지">
+        </a>
       </th:block>
       <p class="text1"
          th:text="${#numbers.formatInteger((project.achievedAmount * 100 / project.targetAmount) ,1,'COMMA') + ' % 달성'}"></p>

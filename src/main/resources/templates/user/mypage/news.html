@@ -23,12 +23,13 @@
         <div class="detailBarBox">
             <table class="myprojectDetailBar" style="width: 80%; margin-top: 50px;">
                 <tr>
-                    <td>프로젝트정보</td>
-                    <td>스토리</td>
-                    <td onclick="location.href='/user/mypage/news'">새소식</td>
-                    <td onclick="location.href='20_mypage_Cheer_Review.html'">응원/리뷰</td>
-                    <td style="border-right: none;">리워드정보</td>
+                    <td th:onclick="|location.href='/user/project/detail/detail?projectNo=${projectNo}'|">프로젝트정보</td>
+                    <td th:onclick="|location.href='/user/project/detail/detail?projectNo=${projectNo}'|">스토리</td>
+                    <td th:onclick="|location.href='/user/mypage/news?projectNo=${projectNo}'|">새소식</td>
+                    <td th:onclick="|location.href='/user/project/detail/detail?projectNo=${projectNo}'|">응원/리뷰</td>
+                    <td th:onclick="|location.href='/user/project/detail/detail?projectNo=${projectNo}'|" style="border-right: none;">리워드정보</td>
                 </tr>
+
             </table>
         </div>
         <form id="mypageNewsForm" action="/user/mypage/news">

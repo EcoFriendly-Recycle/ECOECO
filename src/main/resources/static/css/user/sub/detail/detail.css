@@ -37,4 +37,4 @@ html, body{margin: 0; padding: 0; width: 100%; min-width: 600px;}
 /* 하위 컨텐츠 */
 .content-bottom{width: 100%; padding-top:50px;}
 .story-img-area{width: 90%; margin: 0 auto;}
-.detail-bottom img{width:1200px;height: 4100px;}
+.detail-bottom img{width:1200px;}
