@@ -21,7 +21,6 @@ public class ProjectDTO {
     private LocalDate endDate;
     private long achievedAmount;
     private LocalDate dueDate;
-    private String thumbnail;
     private int categoryCode;
     private int makerNo;
     private CategoryDTO category;
@@ -31,31 +30,11 @@ public class ProjectDTO {
 
     private List<ProjectThumbnailDTO> projectThumbnailDTO;
 
-    /* 사용자+관리자 */
-//    private int projectNo;
-//    private int categoryCode;
-//    private int projectStatus;
-//    private Date startDate;
-//    private Date endDate;
-//    private char deliveryYN; //배송여부
-//    private int targetAmount;//목표금액
-//    private String projectName;
-//    private String thumbnail;
-//    private int serviceCharge; //서비스 요금(수수료);
-
-    /*관리자*/
-//    private char projectSorN; //프로젝트 성공여부
-//    private int achievedAmount; //달성액
-//    private Date requestDate; //요청일
-//    private Date approvalDate; //승인일
-//    private Date petitionDate; //반려일
-//    private Date dueDate; //마감일
-
     public ProjectDTO() {
 
     }
 
-    public ProjectDTO(int projectNo, String projectName, String projectStatus, String projectSorN, String deliveryYN, int serviceCharge, int targetAmount, LocalDate requestDate, LocalDate approvalDate, LocalDate petitionDate, LocalDate startDate, LocalDate endDate, long achievedAmount, LocalDate dueDate, String thumbnail, int categoryCode, int makerNo, CategoryDTO category, MakerDTO maker, StoryDTO story, List<RewardDTO> reward, List<ProjectThumbnailDTO> projectThumbnailDTO) {
+    public ProjectDTO(int projectNo, String projectName, String projectStatus, String projectSorN, String deliveryYN, int serviceCharge, int targetAmount, LocalDate requestDate, LocalDate approvalDate, LocalDate petitionDate, LocalDate startDate, LocalDate endDate, long achievedAmount, LocalDate dueDate, int categoryCode, int makerNo) {
         this.projectNo = projectNo;
         this.projectName = projectName;
         this.projectStatus = projectStatus;
@@ -70,7 +49,25 @@ public class ProjectDTO {
         this.endDate = endDate;
         this.achievedAmount = achievedAmount;
         this.dueDate = dueDate;
-        this.thumbnail = thumbnail;
+        this.categoryCode = categoryCode;
+        this.makerNo = makerNo;
+    }
+
+    public ProjectDTO(int projectNo, String projectName, String projectStatus, String projectSorN, String deliveryYN, int serviceCharge, int targetAmount, LocalDate requestDate, LocalDate approvalDate, LocalDate petitionDate, LocalDate startDate, LocalDate endDate, long achievedAmount, LocalDate dueDate, int categoryCode, int makerNo, CategoryDTO category, MakerDTO maker, StoryDTO story, List<RewardDTO> reward, List<ProjectThumbnailDTO> projectThumbnailDTO) {
+        this.projectNo = projectNo;
+        this.projectName = projectName;
+        this.projectStatus = projectStatus;
+        this.projectSorN = projectSorN;
+        this.deliveryYN = deliveryYN;
+        this.serviceCharge = serviceCharge;
+        this.targetAmount = targetAmount;
+        this.requestDate = requestDate;
+        this.approvalDate = approvalDate;
+        this.petitionDate = petitionDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.achievedAmount = achievedAmount;
+        this.dueDate = dueDate;
         this.categoryCode = categoryCode;
         this.makerNo = makerNo;
         this.category = category;
@@ -192,14 +189,6 @@ public class ProjectDTO {
         this.dueDate = dueDate;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
     public int getCategoryCode() {
         return categoryCode;
     }
@@ -273,7 +262,6 @@ public class ProjectDTO {
                 ", endDate=" + endDate +
                 ", achievedAmount=" + achievedAmount +
                 ", dueDate=" + dueDate +
-                ", thumbnail='" + thumbnail + '\'' +
                 ", categoryCode=" + categoryCode +
                 ", makerNo=" + makerNo +
                 ", category=" + category +

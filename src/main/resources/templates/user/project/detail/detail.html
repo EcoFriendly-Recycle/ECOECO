@@ -45,7 +45,7 @@
                     <div class="funding-select">
 
                         <div class="cate-area">
-                            <button type="submit" style="width:100%; height: 80px; background-color: #57c957;">주문하기</button>
+                            <button type="button" style="width:100%; height: 80px; background-color: #57c957;" th:onclick="|location.href ='@{/user/payment/crowdfundingPage(projectNo=${ projectNo })}'|">주문하기</button>
                         </div>
 
                     </div>

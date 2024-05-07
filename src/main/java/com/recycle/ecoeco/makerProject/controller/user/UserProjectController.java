@@ -334,6 +334,7 @@ public class UserProjectController {
     public String detail(@ModelAttribute ProjectDTO projectDTO , @ModelAttribute RewardDTO rewardDTO,@RequestParam int projectNo, Model model){
         ProjectDTO projectResult = userProjectService.inquiryProjectInfo(projectNo);
         List<RewardDTO> rewardResult = userProjectService.getAllRewards(projectNo);
+        model.addAttribute("projectNo", projectNo);
         model.addAttribute("inquiry",projectResult);
         model.addAttribute("reward",rewardResult);
         model.addAttribute("projectCategoryNo",projectDTO);

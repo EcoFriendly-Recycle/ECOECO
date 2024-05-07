@@ -6,19 +6,19 @@ public class RewardDTO{
     private int rewardPrice; //리워드 금액
     private String rewardInfo; //리워드 설명
     private int projectNo; //프로젝트 번호
-    private ProjectDTO projectDTO;
+    private ProjectDTO project;
 
     public RewardDTO(){
 
     }
 
-    public RewardDTO(int rewardNo, String rewardName, int rewardPrice, String rewardInfo, int projectNo, ProjectDTO projectDTO) {
+    public RewardDTO(int rewardNo, String rewardName, int rewardPrice, String rewardInfo, int projectNo, ProjectDTO project) {
         this.rewardNo = rewardNo;
         this.rewardName = rewardName;
         this.rewardPrice = rewardPrice;
         this.rewardInfo = rewardInfo;
         this.projectNo = projectNo;
-        this.projectDTO = projectDTO;
+        this.project = project;
     }
 
     public int getRewardNo() {
@@ -61,12 +61,12 @@ public class RewardDTO{
         this.projectNo = projectNo;
     }
 
-    public ProjectDTO getProjectDTO() {
-        return projectDTO;
+    public ProjectDTO getProject() {
+        return project;
     }
 
-    public void setProjectDTO(ProjectDTO projectDTO) {
-        this.projectDTO = projectDTO;
+    public void setProject(ProjectDTO project) {
+        this.project = project;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class RewardDTO{
                 ", rewardSum=" + rewardPrice +
                 ", rewardInfo='" + rewardInfo + '\'' +
                 ", projectNo=" + projectNo +
-                ", projectDTO=" + projectDTO +
+                ", projectDTO=" + project +
                 '}';
     }
 }
