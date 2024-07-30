@@ -10,12 +10,11 @@
 |------|---|
 |![ECOECO_logo](https://github.com/user-attachments/assets/cb6252d4-9b0a-456a-afd2-8a5142bb3e0e)|절약을 상징하는 돼지 저금통과 리사이클 마크의 결합과 재해석을 통해 친근한 접근효과와 환경을 생각한 절약의 **가치 실현**을 담아냈습니다.|
 
+![Untitled](https://github.com/user-attachments/assets/ce7465c8-01c8-4c24-adbb-404267e475e1)
+
 ---
-
-
-
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e42b292-3597-492a-9d2f-caaf0ff36a48/aff1a2f0-fe96-430b-a7f6-9854b827ba1a/Untitled.jpeg)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e42b292-3597-492a-9d2f-caaf0ff36a48/1a29f68a-d272-453f-84c8-9bd36780eaf7/Untitled.png) | ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e42b292-3597-492a-9d2f-caaf0ff36a48/4fda128b-ebcf-4223-af22-cb2d3c683f56/Untitled.png)
+## 펀딩을 업사이클링 하다!
+업사이클 펀딩, 업사이클 마켓
+실패한 펀딩을 보완하여 재펀딩 또는 마켓 판매하여 아쉬운 고객과 메이커 모두를 만족 시킴.
+![Untitled](https://github.com/user-attachments/assets/3228839d-d904-4630-b901-e96fd8bbc633) | ![Untitled (1)](https://github.com/user-attachments/assets/a4ff688b-aabb-498a-9b04-2220d0b51315)
 ---|---|
