@@ -8,7 +8,7 @@
 
 
 |------|---|
-|![ECOECO_logo](https://github.com/user-attachments/assets/cb6252d4-9b0a-456a-afd2-8a5142bb3e0e)|### **Brand Identity**|
+|![ECOECO_logo](https://github.com/user-attachments/assets/cb6252d4-9b0a-456a-afd2-8a5142bb3e0e)| **Brand Identity**|
 |테스트1|테스트2|
 |테스트1|테스트2|
 
